@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context="com.example.vrml.happychildapp.Jennifer_Code.ProfileActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Welcome"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvUserEmail"
+
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:id="@+id/etUserName"
+            android:hint="輸入姓名" />
+
+        <EditText
+            android:id="@+id/etUserposition"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="學生or老師" />
+
+        <Button
+            android:id="@+id/buttonsave"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize = "20sp"
+            android:text="存入資料" />
+
+        <Button
+            android:id="@+id/buttonlogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="登出" />
+
+    </LinearLayout>
+
+</LinearLayout>
