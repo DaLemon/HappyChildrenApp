@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.menu_choose;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -60,9 +61,12 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
+            Intent intent =new Intent();
             @Override
             public void onClick(View v) {
-                     saveUserInformation();
+                saveUserInformation();
+                intent.setClass(ProfileActivity.this,menu_choose.class);
+                startActivity(intent);
             }
         });
         buttonLogout.setOnClickListener(new View.OnClickListener() {
@@ -102,8 +106,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
         UserInformation userInformation = new UserInformation(name,position);
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        Log.d("DEBUG","USER UID"+user.getUid());
-        Log.d("DEBUG","USER NAME"+userInformation.name+" "+userInformation.position);
         databaseReference.child(user.getUid()).setValue(userInformation);
         Toast.makeText(this, "儲存資料中...", Toast.LENGTH_LONG).show();
     }
