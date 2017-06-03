@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     android:layout_gravity="center"
     tools:context="com.example.vrml.happychildapp.Jennifer_Code.ProfileActivity">
 
@@ -18,41 +22,57 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:text="Welcome"
-            android:textSize="30sp"
-            android:layout_gravity="center"
+            android:id="@+id/tvUserEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/tvUserEmail"
+            android:layout_gravity="center"
+            android:text="Welcome"
+            android:textSize="36sp"
 
             />
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="196dp"
             android:layout_height="match_parent"
             android:ems="10"
             android:id="@+id/etUserName"
             android:hint="輸入姓名" />
 
-        <EditText
-            android:id="@+id/etUserposition"
+        <RadioGroup
+            android:id="@+id/rgroup"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="學生or老師" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/StuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="學生" />
+
+            <RadioButton
+                android:id="@+id/TeaButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="老師" />
+        </RadioGroup>
 
         <Button
             android:id="@+id/buttonsave"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize = "20sp"
-            android:text="存入資料" />
+            android:text="存入資料"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/buttonlogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="登出" />
+            android:text="登出"
+            android:textSize="30sp" />
 
     </LinearLayout>
 

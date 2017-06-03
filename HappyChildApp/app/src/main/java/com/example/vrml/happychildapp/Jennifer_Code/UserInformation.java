@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by WennLAB on 2017/5/11.
  */
-public class UserInformation extends AppCompatActivity {
+public class UserInformation{
     public String name;
     public String position;
     public UserInformation(){}
