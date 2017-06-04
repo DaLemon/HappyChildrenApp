@@ -81,9 +81,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "請輸入密碼", Toast.LENGTH_SHORT).show();
             return;
         }
-        progressDialog.setMessage("註冊用戶中...");
-        progressDialog.show();
-
+        progressDialog = ProgressDialog.show(MainActivity.this,"","註冊用戶中...",false,false);
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
                     @Override

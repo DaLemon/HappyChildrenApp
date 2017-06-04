@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,6 +26,7 @@ public class loginActivity extends AppCompatActivity {
     private EditText etpassword;
     private TextView signup;
 
+    private AlertDialog islogin;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -75,26 +77,30 @@ public class loginActivity extends AppCompatActivity {
             Toast.makeText(this, "請輸入密碼", Toast.LENGTH_SHORT).show();
             return;
         }
-        progressDialog.setMessage("");
-        progressDialog.show();
 
+        progressDialog = ProgressDialog.show(loginActivity.this,"","登入中...",false,false);
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 progressDialog.dismiss();
+
                 if (task.isSuccessful()) {
                     //start the profile activity
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     loginActivity.this.finish();
                     //else 13:15
-                }else {
+                } else {
                     Toast.makeText(loginActivity.this, "登入失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
+
   /*  @Override
     public void onClick(View v) {
 
     }*/
     }
+
 }
