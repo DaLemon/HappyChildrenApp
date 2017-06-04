@@ -287,7 +287,7 @@ public class Turn_Card_Game extends AppCompatActivity {
     private void ProgressBarSetting() {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setScaleY(4f);
-        progressBar.setMax(300);
+        progressBar.setMax(600);
         progressBar.setProgress(600);
         mHandler = new Handler();
         progressThread = new Thread(ProgressRunnable);
