@@ -1,11 +1,13 @@
 package com.example.vrml.happychildapp.Jennifer_Code;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import com.example.vrml.happychildapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        //Data Ready
         if (firebaseAuth.getCurrentUser() != null) {
             //profile activity here
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
@@ -70,34 +74,51 @@ public class MainActivity extends AppCompatActivity {
     private void registerUser() {
         String email = etemail.getText().toString().trim();
         String password = etpassword.getText().toString().trim();
-
-        if (TextUtils.isEmpty(email)) {
+        if (!isEmailValid(email)) {
             //email是空的
-            Toast.makeText(this, "請輸入信箱", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "email format error", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password) && password.length()>=6) {
             //密碼是空的
-            Toast.makeText(this, "請輸入密碼", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "password format error", Toast.LENGTH_SHORT).show();
             return;
         }
-        progressDialog = ProgressDialog.show(MainActivity.this,"","註冊用戶中...",false,false);
+        progressDialog = ProgressDialog.show(MainActivity.this, "", "註冊用戶中...", false, false);
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
                         if (task.isSuccessful()) {
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                            finish();
-                            //Toast.makeText(MainActivity.this, "註冊成功!", Toast.LENGTH_SHORT).show();
+                            SendMail();
                         } else {
+                            Log.e("DEBUG", "Sign-in Failed: " + task.getException().getMessage());
                             Toast.makeText(MainActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
                         }
-                        //progressDialog.dismiss();
+                        progressDialog.dismiss();
                     }
                 });
     }
-//
+
+    private void SendMail(){
+        final ProgressDialog EmailDialog = ProgressDialog.show(MainActivity.this,"","驗證信寄出中...",false,false);;
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user != null){
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                public void onComplete(@NonNull Task<Void> task) {
+                    EmailDialog.dismiss();
+                    if (task.isSuccessful()) {
+                        Toast.makeText(MainActivity.this, "驗證信寄出成功!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "驗證信寄出失敗!!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            });
+        }
+    }
+
+    //
 //   View.OnClickListener onClickListener = new View.OnClickListener() {
 //        @Override
 //        public void onClick(View view) {
@@ -110,4 +131,8 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }
 //    };
+    //Check Email Foramt
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 }
