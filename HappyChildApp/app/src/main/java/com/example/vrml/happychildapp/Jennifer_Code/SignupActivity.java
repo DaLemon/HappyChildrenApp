@@ -96,7 +96,8 @@ public class SignUpActivity extends AppCompatActivity {
                     EmailDialog.dismiss();
                     if (task.isSuccessful()) {
                         Toast.makeText(SignUpActivity.this, "驗證信寄出成功!!", Toast.LENGTH_SHORT).show();
-
+                        startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+                        SignUpActivity.this.finish();
                     } else {
                         Log.e("TAG", task.toString());
                         Toast.makeText(SignUpActivity.this, "驗證信寄出失敗!!", Toast.LENGTH_SHORT).show();
@@ -107,9 +108,6 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    private void ChangeToLogIn() {
-
-    }
 
     //Check Email Foramt
     boolean isEmailValid(CharSequence email) {
