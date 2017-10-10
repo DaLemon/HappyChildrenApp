@@ -37,7 +37,7 @@ public class loginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null ) {
+        if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()) {
             //start profile activity here
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             loginActivity.this.finish();
@@ -59,7 +59,7 @@ public class loginActivity extends AppCompatActivity {
         signup.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(loginActivity.this, SignInActivity.class));
+                startActivity(new Intent(loginActivity.this, SignupActivity.class));
                 loginActivity.this.finish();
             }
         });
@@ -74,7 +74,7 @@ public class loginActivity extends AppCompatActivity {
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "請輸入密碼", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "password can't be empty and less than six words", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -82,7 +82,6 @@ public class loginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));

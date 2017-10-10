@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.vrml.happychildapp.Jennifer_Code.SignInActivity;
+import com.example.vrml.happychildapp.Jennifer_Code.SignupActivity;
 import com.example.vrml.happychildapp.R;
 
 
@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private PrefManager prefManager;
 
     //看完跳至Jennifer_Code 登入
-    private Class ToActivity = SignInActivity.class;
+    private Class ToActivity = SignupActivity.class;
     //檢查是否為第一次啟動()
     private boolean CheckFirst = false;
 

@@ -1,6 +1,5 @@
 package com.example.vrml.happychildapp.Jennifer_Code;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     private Button button;
     private EditText etemail;
@@ -36,12 +35,6 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        //Data Ready
-        if (firebaseAuth.getCurrentUser() != null) {
-            //profile activity here
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-            finish();
-        }
 
         progressDialog = new ProgressDialog(this);
         button = (Button) findViewById(R.id.signup);
@@ -59,14 +52,7 @@ public class SignInActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SignInActivity.this, loginActivity.class));
-                //MainActivity.this.finish();
-           /*     Intent intent =new Intent();
-                intent.setClass(MainActivity.this,loginActivity.class);
-                startActivity(intent);
-                MainActivity.this.finish();*/
-
+                startActivity(new Intent(SignupActivity.this, loginActivity.class));
             }
         });
     }
@@ -84,7 +70,7 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(this, "password can't be empty and less than six words", Toast.LENGTH_SHORT).show();
             return;
         }
-        progressDialog = ProgressDialog.show(SignInActivity.this, "", "註冊用戶中...", false, false);
+        progressDialog = ProgressDialog.show(SignupActivity.this, "", "註冊用戶中...", false, false);
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
                     @Override
@@ -93,7 +79,7 @@ public class SignInActivity extends AppCompatActivity {
                             SendMail();
                         } else {
                             Log.e("DEBUG", "Sign-in Failed: " + task.getException().getMessage());
-                            Toast.makeText(SignInActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignupActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
                         }
                         progressDialog.dismiss();
                     }
@@ -101,21 +87,25 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void SendMail(){
-        final ProgressDialog EmailDialog = ProgressDialog.show(SignInActivity.this,"","驗證信寄出中...",false,false);;
+        final ProgressDialog EmailDialog = ProgressDialog.show(SignupActivity.this,"","驗證信寄出中...",false,false);;
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user != null){
             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 public void onComplete(@NonNull Task<Void> task) {
                     EmailDialog.dismiss();
                     if (task.isSuccessful()) {
-                        Toast.makeText(SignInActivity.this, "驗證信寄出成功!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "驗證信寄出成功!!", Toast.LENGTH_SHORT).show();
+
                     } else {
-                        Toast.makeText(SignInActivity.this, "驗證信寄出失敗!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "驗證信寄出失敗!!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
             });
         }
+    }
+    private void ChangeToLogIn(){
+
     }
     //Check Email Foramt
     boolean isEmailValid(CharSequence email) {
