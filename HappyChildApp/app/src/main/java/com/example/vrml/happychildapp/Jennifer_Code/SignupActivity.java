@@ -65,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "email format error", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(password) && password.length()>=6) {
+        if (TextUtils.isEmpty(password) || password.length() < 6) {
             //密碼是空的
             Toast.makeText(this, "password can't be empty and less than six words", Toast.LENGTH_SHORT).show();
             return;
@@ -86,10 +86,11 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
-    private void SendMail(){
-        final ProgressDialog EmailDialog = ProgressDialog.show(SignUpActivity.this,"","驗證信寄出中...",false,false);;
+    private void SendMail() {
+        final ProgressDialog EmailDialog = ProgressDialog.show(SignUpActivity.this, "", "驗證信寄出中...", false, false);
+
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user != null){
+        if (user != null) {
             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 public void onComplete(@NonNull Task<Void> task) {
                     EmailDialog.dismiss();
@@ -97,6 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(SignUpActivity.this, "驗證信寄出成功!!", Toast.LENGTH_SHORT).show();
 
                     } else {
+                        Log.e("TAG", task.toString());
                         Toast.makeText(SignUpActivity.this, "驗證信寄出失敗!!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -104,9 +106,11 @@ public class SignUpActivity extends AppCompatActivity {
             });
         }
     }
-    private void ChangeToLogIn(){
+
+    private void ChangeToLogIn() {
 
     }
+
     //Check Email Foramt
     boolean isEmailValid(CharSequence email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();

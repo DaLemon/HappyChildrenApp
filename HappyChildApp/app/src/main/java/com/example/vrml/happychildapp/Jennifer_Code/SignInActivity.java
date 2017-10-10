@@ -41,8 +41,8 @@ public class SignInActivity extends AppCompatActivity {
             //start profile activity here
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             SignInActivity.this.finish();
-
         }
+
         progressDialog = new ProgressDialog(this);
         buttonsignin = (Button) findViewById(R.id.buttonsignin);
         etemail = (EditText) findViewById(R.id.etemail);
@@ -55,7 +55,6 @@ public class SignInActivity extends AppCompatActivity {
                 userLogin();
             }
         });
-
         signup.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,34 +69,35 @@ public class SignInActivity extends AppCompatActivity {
         String password = etpassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "請輸入信箱", Toast.LENGTH_SHORT).show();
+            Toast("信箱格式有錯");
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "password can't be empty and less than six words", Toast.LENGTH_SHORT).show();
+            Toast("password can't be empty and less than six words");
             return;
         }
 
-        progressDialog = ProgressDialog.show(SignInActivity.this,"","登入中...",false,false);
+        progressDialog = ProgressDialog.show(SignInActivity.this, "", "登入中...", false, false);
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                    SignInActivity.this.finish();
-                    //else 13:15
+                    if (!firebaseAuth.getCurrentUser().isEmailVerified())
+                        Toast("信箱未驗證，請先至信箱點及驗證信喔!!");
+                    else {
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        SignInActivity.this.finish();
+                    }
                 } else {
-                    Toast.makeText(SignInActivity.this, "登入失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
+                    Toast("登入失敗!請在試一次^^!!");
                 }
             }
 
         });
-
-  /*  @Override
-    public void onClick(View v) {
-
-    }*/
     }
 
+    private void Toast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }
