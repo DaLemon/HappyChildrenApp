@@ -37,7 +37,7 @@ public class loginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null) {
+        if (firebaseAuth.getCurrentUser() != null ) {
             //start profile activity here
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             loginActivity.this.finish();
@@ -59,7 +59,7 @@ public class loginActivity extends AppCompatActivity {
         signup.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(loginActivity.this, MainActivity.class));
+                startActivity(new Intent(loginActivity.this, SignInActivity.class));
                 loginActivity.this.finish();
             }
         });
@@ -84,9 +84,7 @@ public class loginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 progressDialog.dismiss();
-
                 if (task.isSuccessful()) {
-                    //start the profile activity
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     loginActivity.this.finish();
                     //else 13:15

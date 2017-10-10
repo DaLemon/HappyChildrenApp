@@ -20,7 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     private Button button;
     private EditText etemail;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, loginActivity.class));
+                startActivity(new Intent(SignInActivity.this, loginActivity.class));
                 //MainActivity.this.finish();
            /*     Intent intent =new Intent();
                 intent.setClass(MainActivity.this,loginActivity.class);
@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (TextUtils.isEmpty(password) && password.length()>=6) {
             //密碼是空的
-            Toast.makeText(this, "password format error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "password can't be empty and less than six words", Toast.LENGTH_SHORT).show();
             return;
         }
-        progressDialog = ProgressDialog.show(MainActivity.this, "", "註冊用戶中...", false, false);
+        progressDialog = ProgressDialog.show(SignInActivity.this, "", "註冊用戶中...", false, false);
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
                     @Override
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                             SendMail();
                         } else {
                             Log.e("DEBUG", "Sign-in Failed: " + task.getException().getMessage());
-                            Toast.makeText(MainActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
                         }
                         progressDialog.dismiss();
                     }
@@ -101,36 +101,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void SendMail(){
-        final ProgressDialog EmailDialog = ProgressDialog.show(MainActivity.this,"","驗證信寄出中...",false,false);;
+        final ProgressDialog EmailDialog = ProgressDialog.show(SignInActivity.this,"","驗證信寄出中...",false,false);;
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user != null){
             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 public void onComplete(@NonNull Task<Void> task) {
                     EmailDialog.dismiss();
                     if (task.isSuccessful()) {
-                        Toast.makeText(MainActivity.this, "驗證信寄出成功!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "驗證信寄出成功!!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(MainActivity.this, "驗證信寄出失敗!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "驗證信寄出失敗!!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
             });
         }
     }
-
-    //
-//   View.OnClickListener onClickListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//            if (view == button) {
-//                registerUser();
-//
-//            }
-//            if(view== login){
-//
-//            }
-//        }
-//    };
     //Check Email Foramt
     boolean isEmailValid(CharSequence email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();

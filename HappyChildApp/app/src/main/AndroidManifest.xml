@@ -70,7 +70,7 @@
         </activity>
 
         <activity
-            android:name=".Jennifer_Code.MainActivity"
+            android:name=".Jennifer_Code.SignInActivity"
             android:screenOrientation="landscape">
         </activity>
         <activity
@@ -79,9 +79,7 @@
         <activity
             android:name=".Jennifer_Code.ProfileActivity"
             android:screenOrientation="landscape"></activity>
-        <activity
-            android:name=".Jennifer_Code.UserInformation"
-            android:screenOrientation="landscape"></activity>
+
 
     </application>
 
