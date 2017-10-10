@@ -20,7 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class loginActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     private Button buttonsignin;
     private EditText etemail;
     private EditText etpassword;
@@ -40,7 +40,7 @@ public class loginActivity extends AppCompatActivity {
         if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()) {
             //start profile activity here
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-            loginActivity.this.finish();
+            SignInActivity.this.finish();
 
         }
         progressDialog = new ProgressDialog(this);
@@ -59,8 +59,8 @@ public class loginActivity extends AppCompatActivity {
         signup.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(loginActivity.this, SignupActivity.class));
-                loginActivity.this.finish();
+                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                SignInActivity.this.finish();
             }
         });
     }
@@ -78,17 +78,17 @@ public class loginActivity extends AppCompatActivity {
             return;
         }
 
-        progressDialog = ProgressDialog.show(loginActivity.this,"","登入中...",false,false);
+        progressDialog = ProgressDialog.show(SignInActivity.this,"","登入中...",false,false);
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                    loginActivity.this.finish();
+                    SignInActivity.this.finish();
                     //else 13:15
                 } else {
-                    Toast.makeText(loginActivity.this, "登入失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this, "登入失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
                 }
             }
 

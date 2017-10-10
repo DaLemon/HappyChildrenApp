@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context="com.example.vrml.happychildapp.Jennifer_Code.loginActivity"
+    tools:context="com.example.vrml.happychildapp.Jennifer_Code.SignInActivity"
     android:focusable="true"
     android:focusableInTouchMode="true">
 

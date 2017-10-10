@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         //回到登入介面
         if (firebaseAuth.getCurrentUser() == null) {
 
-            startActivity(new Intent(ProfileActivity.this, loginActivity.class));
+            startActivity(new Intent(ProfileActivity.this, SignInActivity.class));
             ProfileActivity.this.finish();
         }
 
@@ -74,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 firebaseAuth.signOut();
 
-                startActivity(new Intent(ProfileActivity.this, loginActivity.class));
+                startActivity(new Intent(ProfileActivity.this, SignInActivity.class));
                 ProfileActivity.this.finish();
             }
         });
