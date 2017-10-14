@@ -2,6 +2,7 @@ package com.example.vrml.happychildapp.Jennifer_Code;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -60,8 +61,14 @@ public class SignInActivity extends AppCompatActivity {
             reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+
                     if(dataSnapshot.hasChild(firebaseUser.getUid())){
-                        Log.e("TAG","YESSS");
+                        //GET DATA Name AND Position
+                        UserInformation temp = dataSnapshot.child(firebaseUser.getUid()).getValue(UserInformation.class);
+                        //SAVE TO User
+                        SharedPreferences sharedPreferences = getSharedPreferences("User" , MODE_PRIVATE);
+                        sharedPreferences.edit().putString("Name", temp.name).apply();
+                        sharedPreferences.edit().putString("Position", temp.position).apply();
                         startActivity(new Intent(getApplicationContext(), menu_choose.class));
                     }else{
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));

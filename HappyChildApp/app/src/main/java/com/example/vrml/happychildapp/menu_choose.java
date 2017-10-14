@@ -58,12 +58,20 @@ public class menu_choose extends AppCompatActivity {
     }
 
     private ArrayList setData() {
+        //GET FROM SharedPreferences User
+        String Position = getSharedPreferences("User" , MODE_PRIVATE).getString("Position","ERROR");
         data = new ArrayList<>();
-        data.add("我的教學");//0
-        data.add("學習紀錄");//1
-        data.add("教材分享區");//2
-        data.add("建立新教材");//3
-
+        //CHECK REQUEST CODE
+        if(Position.equals("ERROR")) {
+            data.add("ERROR");
+        }else {
+            data.add("我的教學");//0
+            data.add("學習紀錄");//1
+            if(Position.equals("老師")){
+                data.add("教材分享區");//2
+                data.add("建立新教材");//3
+            }
+        }
         return data;
     }
 
