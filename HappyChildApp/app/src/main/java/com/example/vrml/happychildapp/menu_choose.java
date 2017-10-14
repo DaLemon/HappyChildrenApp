@@ -44,7 +44,8 @@ public class menu_choose extends AppCompatActivity {
                 if (position == 1){
                     Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
                     //intent.setClass(menu_choose.this, Unit1.class);
-                    startActivity(intent);}
+                  //  startActivity(intent);
+                    }
                 if (position == 2){
                     Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
                 }
