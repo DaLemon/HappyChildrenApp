@@ -29,9 +29,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:text="Welcome"
-            android:textSize="36sp"
 
-            />
+            android:textAlignment="center"
+            android:textSize="36sp" />
 
         <EditText
             android:layout_width="196dp"

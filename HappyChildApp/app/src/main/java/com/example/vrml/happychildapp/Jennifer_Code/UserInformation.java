@@ -13,4 +13,5 @@ public class UserInformation{
         this.name=name;
         this.position=position;
     }
+
 }

@@ -44,7 +44,8 @@ public class menu_choose extends AppCompatActivity {
                 if (position == 1){
                     Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
                     //intent.setClass(menu_choose.this, Unit1.class);
-                    startActivity(intent);}
+                  //  startActivity(intent);
+                    }
                 if (position == 2){
                     Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
                 }
@@ -58,12 +59,20 @@ public class menu_choose extends AppCompatActivity {
     }
 
     private ArrayList setData() {
+        //GET FROM SharedPreferences User
+        String Position = getSharedPreferences("User" , MODE_PRIVATE).getString("Position","ERROR");
         data = new ArrayList<>();
-        data.add("我的教學");//0
-        data.add("學習紀錄");//1
-        data.add("教材分享區");//2
-        data.add("建立新教材");//3
-
+        //CHECK REQUEST CODE
+        if(Position.equals("ERROR")) {
+            data.add("ERROR");
+        }else {
+            data.add("我的教學");//0
+            data.add("學習紀錄");//1
+            if(Position.equals("老師")){
+                data.add("教材分享區");//2
+                data.add("建立新教材");//3
+            }
+        }
         return data;
     }
 
