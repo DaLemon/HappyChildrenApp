@@ -10,6 +10,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 
 /**
  * Created by VRML on 2017/10/13.
@@ -22,5 +24,12 @@ public class FireBaseDataBaseTool {
         DatabaseReference databaseReference = mFireBaseDatabase.getReference();
         databaseReference.child(Path).setValue(message);
     }
-
+    public static void SendText(List<String> Path, Object message){
+        FirebaseDatabase mFireBaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = mFireBaseDatabase.getReference();
+        for(String temp : Path){
+            databaseReference = databaseReference.child(temp);
+        }
+        //databaseReference.setValue("TeachStruct");
+    }
 }

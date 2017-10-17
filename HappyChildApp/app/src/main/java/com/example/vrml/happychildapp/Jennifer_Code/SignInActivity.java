@@ -57,32 +57,8 @@ public class SignInActivity extends AppCompatActivity {
         if (firebaseUser != null && firebaseUser.isEmailVerified()) {
             etemail.setText(firebaseUser.getEmail());
             //start profile activity here
-            DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference();
-            reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    if(dataSnapshot.hasChild(firebaseUser.getUid())){
-                        //GET DATA Name AND Position
-                        UserInformation temp = dataSnapshot.child(firebaseUser.getUid()).getValue(UserInformation.class);
-                        //SAVE TO User
-                        SharedPreferences sharedPreferences = getSharedPreferences("User" , MODE_PRIVATE);
-                        sharedPreferences.edit().putString("Name", temp.name).apply();
-                        sharedPreferences.edit().putString("Position", temp.position).apply();
-                        startActivity(new Intent(getApplicationContext(), menu_choose.class));
-                    }else{
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                    }
-                    SignInActivity.this.finish();
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            LoginCkeckFirst();
         }
-
-
 
         buttonsignin.setOnClickListener(new OnClickListener() {
             @Override
@@ -111,19 +87,21 @@ public class SignInActivity extends AppCompatActivity {
             Toast("password can't be empty and less than six words");
             return;
         }
-        firebaseAuth.getCurrentUser().reload();
+        if(firebaseAuth.getCurrentUser() != null)
+            firebaseAuth.getCurrentUser().reload();
         progressDialog = ProgressDialog.show(SignInActivity.this, "", "登入中...", false, false);
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
+                    firebaseUser = firebaseAuth.getCurrentUser();
                     if (!firebaseUser.isEmailVerified()) {
                         new EmailVerification(firebaseAuth,SignInActivity.this).SendMail();
                         Toast("信箱未驗證，請先至信箱點及驗證信喔!!");
                     }
                     else {
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        LoginCkeckFirst();
                         SignInActivity.this.finish();
                     }
                 } else {
@@ -136,5 +114,30 @@ public class SignInActivity extends AppCompatActivity {
 
     private void Toast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    private void LoginCkeckFirst(){
+        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference();
+        reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.hasChild(firebaseUser.getUid())){
+                    //GET DATA Name AND Position
+                    UserInformation temp = dataSnapshot.child(firebaseUser.getUid()).getValue(UserInformation.class);
+                    //SAVE TO User
+                    SharedPreferences sharedPreferences = getSharedPreferences("User" , MODE_PRIVATE);
+                    sharedPreferences.edit().putString("Name", temp.name).apply();
+                    sharedPreferences.edit().putString("Position", temp.position).apply();
+                    startActivity(new Intent(getApplicationContext(), menu_choose.class));
+                }else{
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                }
+                SignInActivity.this.finish();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
