@@ -102,7 +102,7 @@ public class SignInActivity extends AppCompatActivity {
                     }
                     else {
                         LoginCkeckFirst();
-                        SignInActivity.this.finish();
+
                     }
                 } else {
                     Toast("登入失敗!請在試一次^^!!");
