@@ -40,6 +40,10 @@
             android:label="@string/TurnGameName"
             android:screenOrientation="landscape"></activity>
 
+        <activity android:name=".Homonym.Homonym"
+            android:label="@string/Homonym"
+            android:screenOrientation="landscape"></activity>
+
         <activity
             android:name=".Choose_Mode"
             android:label="@string/ChooseMode"

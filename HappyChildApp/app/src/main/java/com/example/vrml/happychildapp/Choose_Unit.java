@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vrml.happychildapp.Homonym.Homonym;
+
 import java.util.ArrayList;
 
 
@@ -38,7 +40,12 @@ public class Choose_Unit extends AppCompatActivity {
                     startActivity(intent);
                     Choose_Unit.this.finish();
                 }
-                if (i == 1 || i == 2){
+                if (i == 1){
+                    intent.setClass(Choose_Unit.this, Homonym.class);
+                    startActivity(intent);
+                    Choose_Unit.this.finish();
+                }
+                if (i == 2){
                     Toast.makeText(Choose_Unit.this,"還沒完成",Toast.LENGTH_SHORT).show();
                 }
             }
