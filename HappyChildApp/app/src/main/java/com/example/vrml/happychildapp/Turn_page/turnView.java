@@ -290,10 +290,10 @@ public class turnView extends View {
 
     private void initBitmaps() {
         mBitmaps = new ArrayList<>();
-        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.animal));
-        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.plant));
-        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.facialfeatures));
-        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.lastpage));
+        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.a));
+        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.p));
+        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.f));
+        //mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.lastpage));
         List<Bitmap> temp = new ArrayList<Bitmap>();
         for (int i = mBitmaps.size() - 1; i >= 0; i--) {
             Bitmap bitmap = Bitmap.createScaledBitmap(mBitmaps.get(i), width, height, true);
