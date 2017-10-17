@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">HappyChildApp</string>
     <string name="TurnGameName">對對碰遊戲</string>
+    <string name="MatchGame">連連看</string>
     <string name="Homonym">同音異字測驗</string>
     <string name="ChooseMode">選擇模式</string>
     <string name="UntiChoose">選擇單元</string>

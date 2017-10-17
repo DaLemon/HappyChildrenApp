@@ -36,8 +36,12 @@
             android:screenOrientation="landscape"></activity>
 
         <activity
-            android:name=".TurnCardGame.Turn_Card_Game"
-            android:label="@string/TurnGameName"
+        android:name=".TurnCardGame.Turn_Card_Game"
+        android:label="@string/TurnGameName"
+        android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".MatchGame.MatchGame"
+            android:label="@string/MatchGame"
             android:screenOrientation="landscape"></activity>
 
         <activity android:name=".Homonym.Homonym"

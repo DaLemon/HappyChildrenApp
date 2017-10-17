@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vrml.happychildapp.Homonym.Homonym;
+import com.example.vrml.happychildapp.MatchGame.MatchGame;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,9 @@ public class Choose_Unit extends AppCompatActivity {
                         Choose_Unit.this.finish();
                         break;
                     case 2:
-                        Toast.makeText(Choose_Unit.this,"還沒完成",Toast.LENGTH_SHORT).show();
+                        intent.setClass(Choose_Unit.this, MatchGame.class);
+                        startActivity(intent);
+                        Choose_Unit.this.finish();
                         break;
                 }
 
@@ -58,9 +61,9 @@ public class Choose_Unit extends AppCompatActivity {
 
     private ArrayList setData() {
         data = new ArrayList<>();
-        data.add("部首識字");
-        data.add("同音異字");
-        data.add("國字注音");
+        data.add("部首識字");//0
+        data.add("同音異字");//1
+        data.add("國字注音");//2
         return data;
     }
 
