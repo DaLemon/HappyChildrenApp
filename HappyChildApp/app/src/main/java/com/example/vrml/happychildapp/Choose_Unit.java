@@ -35,19 +35,23 @@ public class Choose_Unit extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent();
-                if (i == 0) {
-                    intent.setClass(Choose_Unit.this, Choose_Mode.class);
-                    startActivity(intent);
-                    Choose_Unit.this.finish();
+
+                switch (i){
+                    case 0:
+                        intent.setClass(Choose_Unit.this, Choose_Mode.class);
+                        startActivity(intent);
+                        Choose_Unit.this.finish();
+                        break;
+                    case 1:
+                        intent.setClass(Choose_Unit.this, Homonym.class);
+                        startActivity(intent);
+                        Choose_Unit.this.finish();
+                        break;
+                    case 2:
+                        Toast.makeText(Choose_Unit.this,"還沒完成",Toast.LENGTH_SHORT).show();
+                        break;
                 }
-                if (i == 1){
-                    intent.setClass(Choose_Unit.this, Homonym.class);
-                    startActivity(intent);
-                    Choose_Unit.this.finish();
-                }
-                if (i == 2){
-                    Toast.makeText(Choose_Unit.this,"還沒完成",Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
     }

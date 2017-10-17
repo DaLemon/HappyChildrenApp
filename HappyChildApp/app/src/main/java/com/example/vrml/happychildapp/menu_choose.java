@@ -37,23 +37,23 @@ public class menu_choose extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent();
 
-                if (position == 0){
-                    intent.setClass(menu_choose.this, Choose_Chinese_Math.class);
-                    startActivity(intent);
+                switch (position){
+                    case 0:
+                        intent.setClass(menu_choose.this, Choose_Chinese_Math.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        intent.setClass(menu_choose.this, scrollActivity.class);
+                        startActivity(intent);
+                        break;
                 }
-                if (position == 1){
-                    Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
-                    //intent.setClass(menu_choose.this, Unit1.class);
-                  //  startActivity(intent);
-                    }
-                if (position == 2){
-                    Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
-                }
-                if (position == 3){
-                    intent.setClass(menu_choose.this, scrollActivity.class);
-                    startActivity(intent);
-                }
-                //startActivity(intent);
+
             }
         });
     }
