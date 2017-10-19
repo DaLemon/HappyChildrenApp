@@ -1,15 +1,28 @@
 package com.example.vrml.happychildapp.Homonym;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vrml.happychildapp.Jennifer_Code.FireBaseDataBaseTool;
+import com.example.vrml.happychildapp.Jennifer_Code.ProfileActivity;
+import com.example.vrml.happychildapp.Jennifer_Code.SignInActivity;
+import com.example.vrml.happychildapp.Jennifer_Code.UserInformation;
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.menu_choose;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +35,8 @@ public class Homonym extends AppCompatActivity {
     DisplayMetrics metrics = new DisplayMetrics();
     List<String> title = new ArrayList<String>();
     List<String[]> answer = new ArrayList<String[]>();
+    String temp2;
+
     private int index = 0;
     private long startTime,timeup,totaltime;
 
@@ -40,6 +55,7 @@ public class Homonym extends AppCompatActivity {
         size();
         getData();
         setData();
+        getdataFromFirebase();
         startTime = System.currentTimeMillis();
     }
 
@@ -52,14 +68,39 @@ public class Homonym extends AppCompatActivity {
         option2.setTextSize(metrics.widthPixels/40);
         option3.setTextSize(metrics.widthPixels/40);
     }
+    private void getdataFromFirebase(){
+        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
+        reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int c=0;
+                dataSnapshot = dataSnapshot.child("Chinese").child("Exam").child("Homonym");
+                for(DataSnapshot temp:dataSnapshot.getChildren()){
+                    temp2=(String) temp.getValue();
+
+                    title.add(temp2.split(",")[0]);
+                    answer.add(new String[]{temp2.split(",")+""});
+                    Log.e("DEBUG",title+"");
+                    Log.e("DEBUG",answer+"");
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void getData(){
-        title.add("機");
-        answer.add(new String[]{"長","漲","掌"});
-        title.add("老");
-        answer.add(new String[]{"師","濕","詩"});
-        title.add("球");
-        answer.add(new String[]{"園","員","圓"});
+
+//        title.add("機");
+//        answer.add(new String[]{"長","漲","掌"});
+//        title.add("老");
+//        answer.add(new String[]{"師","濕","詩"});
+//        title.add("球");
+//        answer.add(new String[]{"園","員","圓"});
     }
 
     private void setData(){
