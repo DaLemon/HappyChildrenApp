@@ -53,9 +53,9 @@ public class Homonym extends AppCompatActivity {
         option2.setOnClickListener(click);
         option3.setOnClickListener(click);
         size();
-        getData();
-        setData();
         getdataFromFirebase();
+
+
         startTime = System.currentTimeMillis();
     }
 
@@ -75,15 +75,17 @@ public class Homonym extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int c=0;
                 dataSnapshot = dataSnapshot.child("Chinese").child("Exam").child("Homonym");
-                for(DataSnapshot temp:dataSnapshot.getChildren()){
-                    temp2=(String) temp.getValue();
+                for(DataSnapshot temp:dataSnapshot.getChildren()) {
 
+                    temp2 = (String) temp.getValue();
+                    Log.e("DEBUG","before"+temp2);
                     title.add(temp2.split(",")[0]);
-                    answer.add(new String[]{temp2.split(",")+""});
-                    Log.e("DEBUG",title+"");
-                    Log.e("DEBUG",answer+"");
+                    Log.e("DEBUG","title"+title+"");
+                    answer.add(new String[]{temp2.split(",")[1]+"",temp2.split(",")[2]+"",temp2.split(",")[3]+""});
+                    Log.e("DEBUG",temp2.split(",")[1]+"");
 
                 }
+                setData();
             }
 
             @Override
@@ -91,16 +93,6 @@ public class Homonym extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void getData(){
-
-//        title.add("機");
-//        answer.add(new String[]{"長","漲","掌"});
-//        title.add("老");
-//        answer.add(new String[]{"師","濕","詩"});
-//        title.add("球");
-//        answer.add(new String[]{"園","員","圓"});
     }
 
     private void setData(){
