@@ -293,6 +293,7 @@ public class turnView extends View {
         mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.a));
         mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.p));
         mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.f));
+        mBitmaps.add(BitmapFactory.decodeResource(getResources(),R.drawable.text2));
         //mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.lastpage));
         List<Bitmap> temp = new ArrayList<Bitmap>();
         for (int i = mBitmaps.size() - 1; i >= 0; i--) {
