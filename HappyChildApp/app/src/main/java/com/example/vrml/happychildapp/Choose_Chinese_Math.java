@@ -36,7 +36,7 @@ public class Choose_Chinese_Math extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent();
                 if (i == 0) {
-                    intent.setClass(Choose_Chinese_Math.this, Choose_Unit.class);
+                    intent.setClass(Choose_Chinese_Math.this, Choose_Lesson.class);
                     startActivity(intent);
                     Choose_Chinese_Math.this.finish();
                 }

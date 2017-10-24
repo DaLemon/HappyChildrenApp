@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 import com.example.vrml.happychildapp.Turn_page.turn_page_pratice;
 
@@ -49,7 +50,8 @@ public class Choose_Mode extends AppCompatActivity {
             public void onClick(View view) {
                 soundPool.play(soundID,1.0F,1.0F,0,0,1.0F);
                 Intent intent = new Intent();
-                intent.setClass(Choose_Mode.this,Turn_Card_Game.class);
+                intent.setClass(Choose_Mode.this,Homonym.class);
+                intent.putExtras(Choose_Mode.this.getIntent().getExtras());
                 startActivity(intent);
                 Choose_Mode.this.finish();
             }

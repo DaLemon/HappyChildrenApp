@@ -1,8 +1,10 @@
 package com.example.vrml.happychildapp.Homonym;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -12,11 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.vrml.happychildapp.Jennifer_Code.FireBaseDataBaseTool;
-import com.example.vrml.happychildapp.Jennifer_Code.ProfileActivity;
-import com.example.vrml.happychildapp.Jennifer_Code.SignInActivity;
-import com.example.vrml.happychildapp.Jennifer_Code.UserInformation;
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 import com.example.vrml.happychildapp.menu_choose;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,20 +24,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
 public class Homonym extends AppCompatActivity {
     TextView questiontext;
     ImageView questionImage;
-    Button option1,option2,option3;
+    Button option1, option2, option3;
     DisplayMetrics metrics = new DisplayMetrics();
     List<String> title = new ArrayList<String>();
-    List<String[]> answer = new ArrayList<String[]>();
+    List<String[]> content = new ArrayList<String[]>();
+    List<String> answer = new ArrayList<String>();
+    String Lesson="Lesson1";
     String temp2;
+    int count = 0;//答對題數
+    Integer[] array = new Integer[]{0, 1, 2};
 
     private int index = 0;
-    private long startTime,timeup,totaltime;
+    private long startTime, timeup, totaltime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,38 +59,39 @@ public class Homonym extends AppCompatActivity {
         option2.setOnClickListener(click);
         option3.setOnClickListener(click);
         size();
+        Bundle bundle = this.getIntent().getExtras();
+        Lesson = bundle.getString("Lesson");
         getdataFromFirebase();
 
-
         startTime = System.currentTimeMillis();
+
     }
 
 
-
-    private void size(){
+    private void size() {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        questiontext.setTextSize(metrics.widthPixels/40);
-        option1.setTextSize(metrics.widthPixels/40);
-        option2.setTextSize(metrics.widthPixels/40);
-        option3.setTextSize(metrics.widthPixels/40);
+        questiontext.setTextSize(metrics.widthPixels / 40);
+        option1.setTextSize(metrics.widthPixels / 40);
+        option2.setTextSize(metrics.widthPixels / 40);
+        option3.setTextSize(metrics.widthPixels / 40);
     }
-    private void getdataFromFirebase(){
+
+    private void getdataFromFirebase() {
+
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int c=0;
-                dataSnapshot = dataSnapshot.child("Chinese").child("Exam").child("Homonym");
-                for(DataSnapshot temp:dataSnapshot.getChildren()) {
+
+                dataSnapshot = dataSnapshot.child("Chinese").child("Exam").child("Homonym").child(Lesson);
+                for (DataSnapshot temp : dataSnapshot.getChildren()) {
 
                     temp2 = (String) temp.getValue();
-                    Log.e("DEBUG","before"+temp2);
                     title.add(temp2.split(",")[0]);
-                    Log.e("DEBUG","title"+title+"");
-                    answer.add(new String[]{temp2.split(",")[1]+"",temp2.split(",")[2]+"",temp2.split(",")[3]+""});
-                    Log.e("DEBUG",temp2.split(",")[1]+"");
-
+                    content.add(new String[]{temp2.split(",")[1] + "", temp2.split(",")[2] + "", temp2.split(",")[3] + ""});
+                    answer.add(temp2.split(",")[1]);
                 }
+
                 setData();
             }
 
@@ -95,24 +102,46 @@ public class Homonym extends AppCompatActivity {
         });
     }
 
-    private void setData(){
+    private void setData() {
+
+        Collections.shuffle(Arrays.asList(array));
         questiontext.setText(title.get(index));
-        option1.setText(answer.get(index)[0]);
-        option2.setText(answer.get(index)[1]);
-        option3.setText(answer.get(index++)[2]);
+        option1.setText(content.get(index)[array[0]]);
+        option2.setText(content.get(index)[array[1]]);
+        option3.setText(content.get(index++)[array[2]]);
+
     }
 
     View.OnClickListener click = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(index < title.size()) {
-                setData();
-            }else{
-                timeup = System.currentTimeMillis();
-                totaltime = (timeup-startTime)/1000;
-                Toast.makeText(Homonym.this,totaltime+"", Toast.LENGTH_LONG).show();
-                Toast.makeText(Homonym.this,"END", Toast.LENGTH_SHORT).show();
+
+
+            Button button = (Button) view;
+            String string = button.getText().toString();
+
+            if (string.equals(answer.get(index - 1))) {
+                count++;
             }
+            if (index < title.size()) {
+                setData();
+            } else {//差上傳資料
+                timeup = System.currentTimeMillis();
+                totaltime = (timeup - startTime) / 1000;
+                ShowMessage("答對了" + count + "題\n" + "共花了" + totaltime + "秒");
+            }
+
         }
     };
+
+    private void ShowMessage(String str) {
+        new AlertDialog.Builder(this).setMessage(str)
+                .setNegativeButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Homonym.this, menu_choose.class));
+                    }
+                }).setCancelable(false).show();
+
+    }
 }
