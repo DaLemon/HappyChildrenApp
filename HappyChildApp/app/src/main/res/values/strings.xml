@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">HappyChildApp</string>
     <string name="TurnGameName">對對碰遊戲</string>
-    <string name="MatchGame">連連看</string>
-    <string name="Homonym">同音異字測驗</string>
+    <string name="MatchGame">連連看遊戲</string>
+    <string name="HomonymTest">同音異字測驗</string>
     <string name="ChooseMode">選擇模式</string>
     <string name="UntiChoose">選擇單元</string>
     <string name="Menu">Menu</string>
@@ -30,4 +30,12 @@
     <string name="slide_4_desc">對教材有更多想法？自己動手吧！</string>
 
     <string name="play_again">再看一次</string>
+    
+    <string name="Hand">部首識字</string>
+    <string name="Homonym">同音異字</string>
+    <string name="Match">國字注音</string>
+    
+    <string name="AddSub">加減法</string>
+    <string name="MultiplicationTable">九九乘法</string>
+    <string name="TimeVideo">認識時間</string>
 </resources>

@@ -23,7 +23,8 @@ public class Choose_Unit extends AppCompatActivity {
     private ListView listView;
     private UnitAdapter adapter;
     private ArrayList<String> data;
-    ArrayList<String> firebaseData = new ArrayList<String>();
+    ArrayList<String> firebaseDataPath = new ArrayList<String>();
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,30 +37,9 @@ public class Choose_Unit extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
-
-                switch (i){
-                    case 0:
-                        firebaseData.add("Chinese");
-                        firebaseData.add("Exam");
-                        firebaseData.add("Hand");
-
-                        break;
-                    case 1:
-                        firebaseData.add("Chinese");
-                        firebaseData.add("Exam");
-                        firebaseData.add("Homonym");
-
-                        break;
-                    case 2:
-                        firebaseData.add("Chinese");
-                        firebaseData.add("Exam");
-                        firebaseData.add("Match");
-
-                        break;
-                }
-                intent.putExtra("path",firebaseData);
-                intent.setClass(Choose_Unit.this, Choose_Lesson.class);
+                Intent intent = new Intent(Choose_Unit.this, Choose_Lesson.class);
+                bundle.putString("Unit",data.get(i));
+                intent.putExtras(bundle);
                 startActivity(intent);
                 Choose_Unit.this.finish();
 
@@ -68,11 +48,23 @@ public class Choose_Unit extends AppCompatActivity {
     }
 
     private ArrayList setData() {
+        bundle = Choose_Unit.this.getIntent().getExtras();
         data = new ArrayList<>();
-        data.add("部首識字");//0
-        data.add("同音異字");//1
-        data.add("國字注音");//2
-        return data;
+        ArrayList<String> temp=new ArrayList<>();
+        if (bundle.get("Subject").equals("Chinese")) {
+            data.add("Hand");
+            data.add("Homonym");
+            data.add("Match");
+
+        }else if (bundle.get("Subject").equals("Math")){
+            data.add("AddSub");
+            data.add("MultiplicationTable");
+            data.add("TimeVideo");
+        }
+        for (String temp2:data){
+            temp.add(getString(getResources().getIdentifier(temp2,"string",getPackageName())));
+        }
+        return temp;
     }
 
 

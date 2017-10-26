@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
+import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
+import com.google.firebase.auth.api.model.StringList;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,12 +24,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class Choose_Lesson extends AppCompatActivity {
     private ListView listView;
     private UnitAdapter adapter;
     ArrayList<String> data;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +43,16 @@ public class Choose_Lesson extends AppCompatActivity {
         getdataFromFirebase();
     }
     private void getdataFromFirebase() {
-         Intent intent = this.getIntent();
-         final ArrayList<String> path = intent.getStringArrayListExtra("path");
-        Log.e("DEBUG","Path"+path);
+        Intent intent = this.getIntent();
+        bundle = Choose_Lesson.this.getIntent().getExtras();
+
 
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 data = new ArrayList<>();
-                dataSnapshot = dataSnapshot.child(path.get(0)).child(path.get(1)).child(path.get(2));
+                dataSnapshot = dataSnapshot.child(bundle.getString("Subject")).child(bundle.getString("Mode")).child(bundle.getString("Unit"));
                 for (DataSnapshot temp : dataSnapshot.getChildren()) {
                     data.add(temp.getKey());
 
@@ -69,10 +74,16 @@ public class Choose_Lesson extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Bundle bundle = new Bundle();
                 bundle.putString("Lesson",Choose_Lesson.this.data.get(i));
-                startActivity(new Intent(Choose_Lesson.this,Choose_Mode.class).putExtras(bundle));
+                HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
+
+                map.put("Hand",Turn_Card_Game.class);
+                map.put("Homonym",Homonym.class);
+                map.put("Match",MatchGame.class);
+                //加入數學
+                Class<?> cls=map.get(bundle.getString("Unit"));
+
+                startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
 
                 Log.e("DEBUG","LESSON"+Choose_Lesson.this.data.get(i));
             }

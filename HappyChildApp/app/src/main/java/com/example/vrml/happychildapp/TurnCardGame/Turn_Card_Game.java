@@ -19,6 +19,13 @@ import android.widget.RatingBar;
 import com.example.vrml.happychildapp.Choose_Mode;
 import com.example.vrml.happychildapp.R;
 import com.example.vrml.happychildapp.menu_choose;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Arrays;
 
 public class Turn_Card_Game extends AppCompatActivity {
     final Button[] buttons = new Button[16];
@@ -36,22 +43,50 @@ public class Turn_Card_Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trun_card_game_start);
-        GetData();
+        getdataFromFirebase();
         StartSet();
         DialogSet();
 
     }
 
-    public void GetData() {
-        //從信慈Firebase 導入 TurnCardData
-//        Bundle bundle = this.getIntent().getExtras();
-//        String Subject = bundle.getString("Subject");
-//        int Lesson = bundle.getInt("Lesson");
+//    public void GetData() {
+//        從信慈Firebase 導入 TurnCardData
+//
+//
 //        List<String> list = 信慈.GetFromFireBase(Subject,Lesson);
 //        Turn_Card_Data turn_card_data = new Turn_Card_Data(list);
-        String[] data = new String[]{"魟", "鮮", "聽", "聰", "眼", "睛", "狗", "狂", "物", "牧", "芊", "花", "樹", "柯", "吵", "嘴"};
-        Turn_Card_Data turn_card_data = new Turn_Card_Data(data);
-        str_array = turn_card_data.getData();
+//        String[] data = new String[]{"魟", "鮮", "聽", "聰", "眼", "睛", "狗", "狂", "物", "牧", "芊", "花", "樹", "柯", "吵", "嘴"};
+//        Turn_Card_Data turn_card_data = new Turn_Card_Data(data);
+//        str_array = turn_card_data.getData();
+//    }
+    private void getdataFromFirebase() {
+
+        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
+        reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Bundle bundle = Turn_Card_Game.this.getIntent().getExtras();
+                String Subject = bundle.getString("Subject");
+                String Mode = bundle.getString("Mode");
+                String Unit = bundle.getString("Unit");
+                String Lesson = bundle.getString("Lesson");
+                dataSnapshot = dataSnapshot.child(Subject).child(Mode).child(Unit).child(Lesson);
+                String temp2 = null;
+
+                for (DataSnapshot temp : dataSnapshot.getChildren()) {
+
+                    temp2 = (String) temp.getValue();
+
+                }
+                str_array = Arrays.copyOfRange(temp2.split(""),1,temp2.split("").length);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

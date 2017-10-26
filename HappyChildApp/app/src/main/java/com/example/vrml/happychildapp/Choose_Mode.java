@@ -1,5 +1,6 @@
 package com.example.vrml.happychildapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -34,28 +35,26 @@ public class Choose_Mode extends AppCompatActivity {
             to_turncard.setTextSize(metrics.widthPixels / 60);
             to_teaching.setTextSize(metrics.widthPixels / 60);
         }
-        to_teaching.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                soundPool.play(soundID,1.0F,1.0F,0,0,1.0F);
-                Intent intent = new Intent();
-                intent.setClass(Choose_Mode.this,turn_page_pratice.class);
-                startActivity(intent);
-                Choose_Mode.this.finish();
-            }
-        });
+        to_teaching.setOnClickListener(ModeChoose);
 
-        to_turncard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                soundPool.play(soundID,1.0F,1.0F,0,0,1.0F);
-                Intent intent = new Intent();
-                intent.setClass(Choose_Mode.this,Homonym.class);
-                intent.putExtras(Choose_Mode.this.getIntent().getExtras());
-                startActivity(intent);
-                Choose_Mode.this.finish();
-            }
-        });
+        to_turncard.setOnClickListener(ModeChoose);
 
     }
+
+    private View.OnClickListener ModeChoose = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            soundPool.play(soundID,1.0F,1.0F,0,0,1.0F);
+            Intent intent = new Intent();
+            Bundle bundle = Choose_Mode.this.getIntent().getExtras();
+            if (v.getId()==R.id.to_teaching)
+                bundle.putString("Mode","Teaching");
+            else
+                bundle.putString("Mode","Exam");
+            intent.putExtras(bundle);
+            intent.setClass(Choose_Mode.this,Choose_Unit.class);
+            startActivity(intent);
+            Choose_Mode.this.finish();
+        }
+    };
 }

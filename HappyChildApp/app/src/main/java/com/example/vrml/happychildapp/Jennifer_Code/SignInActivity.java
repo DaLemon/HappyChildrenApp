@@ -116,11 +116,12 @@ public class SignInActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
     private void LoginCkeckFirst(){
+        Log.e("DEBUG","Login check");
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Users");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                Log.e("DEBUG",dataSnapshot.hasChild(firebaseUser.getUid())+"");
                 if(dataSnapshot.hasChild(firebaseUser.getUid())){
                     //GET DATA Name AND Position
                     UserInformation temp = dataSnapshot.child(firebaseUser.getUid()).getValue(UserInformation.class);

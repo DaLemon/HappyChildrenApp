@@ -38,11 +38,11 @@ public class Homonym extends AppCompatActivity {
     List<String> title = new ArrayList<String>();
     List<String[]> content = new ArrayList<String[]>();
     List<String> answer = new ArrayList<String>();
-    String Lesson="Lesson1";
+
     String temp2;
     int count = 0;//答對題數
     Integer[] array = new Integer[]{0, 1, 2};
-
+    Bundle bundle;
     private int index = 0;
     private long startTime, timeup, totaltime;
 
@@ -59,8 +59,7 @@ public class Homonym extends AppCompatActivity {
         option2.setOnClickListener(click);
         option3.setOnClickListener(click);
         size();
-        Bundle bundle = this.getIntent().getExtras();
-        Lesson = bundle.getString("Lesson");
+        bundle = this.getIntent().getExtras();
         getdataFromFirebase();
 
         startTime = System.currentTimeMillis();
@@ -82,8 +81,11 @@ public class Homonym extends AppCompatActivity {
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                dataSnapshot = dataSnapshot.child("Chinese").child("Exam").child("Homonym").child(Lesson);
+                String Subject = bundle.getString("Subject");
+                String Mode = bundle.getString("Mode");
+                String Unit = bundle.getString("Unit");
+                String Lesson = bundle.getString("Lesson");
+                dataSnapshot = dataSnapshot.child(Subject).child(Mode).child(Unit).child(Lesson);
                 for (DataSnapshot temp : dataSnapshot.getChildren()) {
 
                     temp2 = (String) temp.getValue();

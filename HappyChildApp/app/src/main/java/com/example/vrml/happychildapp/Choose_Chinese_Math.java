@@ -34,15 +34,15 @@ public class Choose_Chinese_Math extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
-                if (i == 0) {
-                    intent.setClass(Choose_Chinese_Math.this, Choose_Unit.class);
-                    startActivity(intent);
-                    Choose_Chinese_Math.this.finish();
-                }
-                if (i == 1){
-                    Toast.makeText(Choose_Chinese_Math.this,"還沒完成",Toast.LENGTH_SHORT).show();
-                }
+                Intent intent = new Intent(Choose_Chinese_Math.this,Choose_Mode.class);
+                Bundle bundle = new Bundle();
+                if (i == 0)
+                    bundle.putString("Subject","Chinese");
+                else
+                    bundle.putString("Subject","Math");
+                intent.putExtras(bundle);
+                startActivity(intent);
+                Choose_Chinese_Math.this.finish();
             }
         });
     }

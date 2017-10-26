@@ -48,7 +48,7 @@
             android:screenOrientation="landscape"></activity>
 
         <activity android:name=".Homonym.Homonym"
-            android:label="@string/Homonym"
+            android:label="@string/HomonymTest"
             android:screenOrientation="landscape"></activity>
 
         <activity
