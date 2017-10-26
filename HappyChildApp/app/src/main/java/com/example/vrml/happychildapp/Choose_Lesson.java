@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class Choose_Lesson extends AppCompatActivity {
     private ListView listView;
     private UnitAdapter adapter;
-     ArrayList<String> data;
+    ArrayList<String> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +38,16 @@ public class Choose_Lesson extends AppCompatActivity {
         getdataFromFirebase();
     }
     private void getdataFromFirebase() {
+         Intent intent = this.getIntent();
+         final ArrayList<String> path = intent.getStringArrayListExtra("path");
+        Log.e("DEBUG","Path"+path);
 
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 data = new ArrayList<>();
-                dataSnapshot = dataSnapshot.child("Chinese").child("Exam").child("Homonym");
+                dataSnapshot = dataSnapshot.child(path.get(0)).child(path.get(1)).child(path.get(2));
                 for (DataSnapshot temp : dataSnapshot.getChildren()) {
                     data.add(temp.getKey());
 

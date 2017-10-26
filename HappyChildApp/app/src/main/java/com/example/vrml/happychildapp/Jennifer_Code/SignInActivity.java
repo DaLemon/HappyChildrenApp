@@ -116,7 +116,7 @@ public class SignInActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
     private void LoginCkeckFirst(){
-        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Users");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

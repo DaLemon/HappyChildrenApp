@@ -23,6 +23,7 @@ public class Choose_Unit extends AppCompatActivity {
     private ListView listView;
     private UnitAdapter adapter;
     private ArrayList<String> data;
+    ArrayList<String> firebaseData = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +40,28 @@ public class Choose_Unit extends AppCompatActivity {
 
                 switch (i){
                     case 0:
-                        intent.setClass(Choose_Unit.this, Choose_Mode.class);
-                        startActivity(intent);
-                        Choose_Unit.this.finish();
+                        firebaseData.add("Chinese");
+                        firebaseData.add("Exam");
+                        firebaseData.add("Hand");
+
                         break;
                     case 1:
-                        intent.setClass(Choose_Unit.this, Homonym.class);
-                        startActivity(intent);
-                        Choose_Unit.this.finish();
+                        firebaseData.add("Chinese");
+                        firebaseData.add("Exam");
+                        firebaseData.add("Homonym");
+
                         break;
                     case 2:
-                        intent.setClass(Choose_Unit.this, MatchGame.class);
-                        startActivity(intent);
-                        Choose_Unit.this.finish();
+                        firebaseData.add("Chinese");
+                        firebaseData.add("Exam");
+                        firebaseData.add("Match");
+
                         break;
                 }
+                intent.putExtra("path",firebaseData);
+                intent.setClass(Choose_Unit.this, Choose_Lesson.class);
+                startActivity(intent);
+                Choose_Unit.this.finish();
 
             }
         });
@@ -66,6 +74,7 @@ public class Choose_Unit extends AppCompatActivity {
         data.add("國字注音");//2
         return data;
     }
+
 
     private class UnitAdapter extends BaseAdapter {
         ArrayList<String> list;

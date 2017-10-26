@@ -30,6 +30,6 @@ public class FireBaseDataBaseTool {
         for(String temp : Path){
             databaseReference = databaseReference.child(temp);
         }
-        //databaseReference.setValue("TeachStruct");
+        databaseReference.setValue(message);
     }
 }

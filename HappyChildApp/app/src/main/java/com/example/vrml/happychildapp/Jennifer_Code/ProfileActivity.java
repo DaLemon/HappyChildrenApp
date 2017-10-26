@@ -16,6 +16,9 @@ import com.example.vrml.happychildapp.menu_choose;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView tvUserEmail;
@@ -80,7 +83,10 @@ public class ProfileActivity extends AppCompatActivity {
         }
         UserInformation userInformation = new UserInformation(name, position);
         String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        FireBaseDataBaseTool.SendText(Uid, userInformation);
+        List<String> UserPath = new ArrayList<>() ;
+        UserPath.add("Users");
+        UserPath.add(Uid);
+        FireBaseDataBaseTool.SendText(UserPath, userInformation);
         Toast.makeText(this, "儲存資料中...", Toast.LENGTH_LONG).show();
         return R.integer.OK;
     }
