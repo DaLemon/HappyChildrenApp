@@ -15,6 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vrml.happychildapp.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +35,8 @@ public class MatchGame extends AppCompatActivity {
     private boolean isWrong = false;
     private MotionEvent moveEvent;
     private int range = 0;//點的有效範圍
+    MatchGameData matchGameData ;
+
 
 
     @Override
@@ -58,7 +66,7 @@ public class MatchGame extends AppCompatActivity {
         });
         left.addView(view);
         right.addView(view2);
-
+        getdataFromFirebase();
     }
 
     private void IDSet() {
@@ -74,6 +82,40 @@ public class MatchGame extends AppCompatActivity {
             imageViews[i] = ((ImageView) findViewById(resImageID));
         }
 
+    }
+    public void setData(String[] Chinese,String[] Phonetic,String[] ImagePath){
+
+        for (int i = 0;i<5;i++){
+//            StorageReference storageReference;
+            this.Chinese[i].setText(Chinese[i]);
+            this.Phonetic[i].setText(Phonetic[i]);
+//            this.imageViews[i].setImageBitmap();
+        }
+    }
+    public void setData(MatchGameData matchGameData){
+        for (int i = 0;i<5;i++){
+            this.Chinese[i].setText(matchGameData.getChineseData()[i]);
+            this.Phonetic[i].setText(matchGameData.getPhoneticData()[i]);
+//            this.imageViews[i].setImageBitmap();
+        }
+    }
+    private void getdataFromFirebase() {
+
+        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
+        reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Bundle bundle = MatchGame.this.getIntent().getExtras();
+                matchGameData=new MatchGameData(bundle,dataSnapshot);
+
+                setData(matchGameData);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public class DrawPoint extends View {

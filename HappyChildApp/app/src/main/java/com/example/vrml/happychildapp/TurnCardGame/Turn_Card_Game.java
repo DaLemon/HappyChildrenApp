@@ -38,6 +38,7 @@ public class Turn_Card_Game extends AppCompatActivity {
     RatingBar mRatingBar;
     private static MediaPlayer music;
     DisplayMetrics metrics = new DisplayMetrics();
+    Turn_Card_Data turn_card_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,6 @@ public class Turn_Card_Game extends AppCompatActivity {
 
 //    public void GetData() {
 //        從信慈Firebase 導入 TurnCardData
-//
-//
 //        List<String> list = 信慈.GetFromFireBase(Subject,Lesson);
 //        Turn_Card_Data turn_card_data = new Turn_Card_Data(list);
 //        String[] data = new String[]{"魟", "鮮", "聽", "聰", "眼", "睛", "狗", "狂", "物", "牧", "芊", "花", "樹", "柯", "吵", "嘴"};
@@ -66,19 +65,8 @@ public class Turn_Card_Game extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Bundle bundle = Turn_Card_Game.this.getIntent().getExtras();
-                String Subject = bundle.getString("Subject");
-                String Mode = bundle.getString("Mode");
-                String Unit = bundle.getString("Unit");
-                String Lesson = bundle.getString("Lesson");
-                dataSnapshot = dataSnapshot.child(Subject).child(Mode).child(Unit).child(Lesson);
-                String temp2 = null;
-
-                for (DataSnapshot temp : dataSnapshot.getChildren()) {
-
-                    temp2 = (String) temp.getValue();
-
-                }
-                str_array = Arrays.copyOfRange(temp2.split(""),1,temp2.split("").length);
+                turn_card_data = new Turn_Card_Data(bundle,dataSnapshot);
+                str_array = turn_card_data.getData();
 
             }
 
