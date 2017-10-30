@@ -37,10 +37,13 @@ public class MatchGameData {
         }
     }
     public int compare(String string,String imagePath,String MODE){
+        String[] check=MODE.equals("Chinese")?Chinese:Phonetic;
+
         for (int i=0;i<this.ImagePath.length;i++){
             if (this.ImagePath[i].equals(imagePath)){
-                if (this.Chinese[i].equals(string)||this.Phonetic[i].equals(string))
+                if (string.equals(check[i])){
                     return -1;
+                }
                 else {
                     string = this.Chinese[i];
                     Log.e("DEBUG","Data string"+string);

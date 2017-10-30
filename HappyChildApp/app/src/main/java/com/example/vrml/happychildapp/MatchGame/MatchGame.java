@@ -92,8 +92,8 @@ public class MatchGame extends AppCompatActivity {
         OK.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                MatchGame.this.view.checkAnwser();
-                MatchGame.this.view2.checkAnwser();
+                MatchGame.this.view.checkAnswer();
+                MatchGame.this.view2.checkAnswer();
             }
         });
     }
@@ -146,7 +146,9 @@ public class MatchGame extends AppCompatActivity {
         matchGameData.setPhoneticData(temp);
 
         temp=matchGameData.getImagePathData().clone();
+        Log.e("DEBUG","149"+Arrays.asList(temp));
         Collections.shuffle(Arrays.asList(temp));
+        Log.e("DEBUG","151"+Arrays.asList(temp));
         matchGameData.setImagePathData(temp);
 
         for (int i=0;i<matchGameData.getChineseData().length;i++){
@@ -331,7 +333,7 @@ public class MatchGame extends AppCompatActivity {
         }
         int Ans=0;
 
-        public void checkAnwser(){
+        public void checkAnswer(){
             String[] str=matchGameData.getChineseData();
             String MODE = "Chinese";
             if (this.getTag().equals("2")){
