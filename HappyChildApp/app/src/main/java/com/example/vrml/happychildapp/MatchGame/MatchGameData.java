@@ -11,7 +11,7 @@ import com.google.firebase.database.DataSnapshot;
 
 public class MatchGameData {
     DataSnapshot dataSnapshot;
-    String[] chinese,phonetic,imagePath;
+    String[] Chinese,Phonetic,ImagePath;
     String[] temp2 = null;
     String[] newChinese,newPhonetic,newImagePath;
     public MatchGameData(){}
@@ -24,38 +24,47 @@ public class MatchGameData {
         this.dataSnapshot = dataSnapshot;
         int i = 0;
         int count = (int) dataSnapshot.getChildrenCount();
-        chinese = new String[count];
-        phonetic = new String[count];
-        imagePath = new String[count];
+        Chinese = new String[count];
+        Phonetic = new String[count];
+        ImagePath = new String[count];
         for (DataSnapshot temp : dataSnapshot.getChildren()) {
 
             temp2 = ((String) temp.getValue()).split(";");
-            this.chinese[i] = temp2[1].replaceAll(","," ");
-            this.phonetic[i] = temp2[0];
-            this.imagePath[i] = temp2[2];
+            this.Chinese[i] = temp2[0];
+            this.Phonetic[i] = temp2[1].replaceAll(","," ");
+            this.ImagePath[i] = temp2[2];
             i++;
         }
     }
-    public int compare(String string,String imagePath){
-        for (int i=0;i<this.imagePath.length;i++){
-            if (this.imagePath[i].equals(imagePath)){
-                if (this.chinese[i].equals(string)||this.phonetic[i].equals(string))
+    public int compare(String string,String imagePath,String MODE){
+        for (int i=0;i<this.ImagePath.length;i++){
+            if (this.ImagePath[i].equals(imagePath)){
+                if (this.Chinese[i].equals(string)||this.Phonetic[i].equals(string))
                     return -1;
                 else {
-                    string = this.chinese[i];
-                    for (int j=0;j<this.chinese.length;j++){
-                        if (this.chinese[j].equals(string)||this.phonetic[j].equals(string)) {
-                            Log.e("DEBUG", this.chinese[j] + this.phonetic[j] +j+ "");
-                            return j;
+                    string = this.Chinese[i];
+                    Log.e("DEBUG","Data string"+string);
+                    for (int j=0;j<this.Chinese.length;j++){
+                        if(MODE.equals("Chinese")){
+                            if( this.newChinese[j].equals(string))
+                                return j;
+                        }else if(MODE.equals("Phonetic")){
+                            if( this.newPhonetic[j].equals(string))
+                                return j;
                         }
                     }
                 }
             }
-        }return -1;
+        }
+        return -1;
     }
-    public String[] getChineseData(){return this.chinese;}
-    public String[] getPhoneticData(){return this.phonetic;}
-    public String[] getImagePathData(){return this.imagePath;}
+    public String[] getChineseData(){return this.Chinese;}
+    public String[] getPhoneticData(){return this.Phonetic;}
+    public String[] getImagePathData(){return this.ImagePath;}
+
+    public String[] getNewChineseData(){return this.newChinese;}
+    public String[] getNewPhoneticData(){return this.newPhonetic;}
+    public String[] getNewImagePathData(){return this.newImagePath;}
 
     public void setChineseData(String[] ChineseData){this.newChinese=ChineseData;}
     public void setPhoneticData(String[] PhoneticData){this.newPhonetic=PhoneticData;}

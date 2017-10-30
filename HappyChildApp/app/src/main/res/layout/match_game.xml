@@ -14,7 +14,7 @@
         android:weightSum="5">
 
         <TextView
-            android:id="@+id/Phonetic1"
+            android:id="@+id/Chinese1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -23,7 +23,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/Phonetic2"
+            android:id="@+id/Chinese2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -32,7 +32,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/Phonetic3"
+            android:id="@+id/Chinese3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,7 +41,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/Phonetic4"
+            android:id="@+id/Chinese4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -50,7 +50,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/Phonetic5"
+            android:id="@+id/Chinese5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -124,7 +124,7 @@
         android:weightSum="5">
 
         <TextView
-            android:id="@+id/Chinese1"
+            android:id="@+id/Phonetic1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -133,7 +133,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/Chinese2"
+            android:id="@+id/Phonetic2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -142,7 +142,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/Chinese3"
+            android:id="@+id/Phonetic3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -151,7 +151,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/Chinese4"
+            android:id="@+id/Phonetic4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -160,7 +160,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/Chinese5"
+            android:id="@+id/Phonetic5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -136,24 +136,29 @@ public class MatchGame extends AppCompatActivity {
         });
     }
     private void Rand(){
-        String[] temp=matchGameData.getChineseData();
+        String[] temp=matchGameData.getChineseData().clone();
+        Log.e("DEBUG","140"+Arrays.asList(temp));
         Collections.shuffle(Arrays.asList(temp));
         matchGameData.setChineseData(temp);
 
-        temp=matchGameData.getPhoneticData();
+        temp=matchGameData.getPhoneticData().clone();
         Collections.shuffle(Arrays.asList(temp));
         matchGameData.setPhoneticData(temp);
 
-        temp=matchGameData.getImagePathData();
+        temp=matchGameData.getImagePathData().clone();
         Collections.shuffle(Arrays.asList(temp));
         matchGameData.setImagePathData(temp);
+
+        for (int i=0;i<matchGameData.getChineseData().length;i++){
+            Log.e("DEBUG",matchGameData.getChineseData()[i]+"  "+matchGameData.getImagePathData()[i]+"  "+matchGameData.getPhoneticData()[i]);
+        }
     }
     public void setData(MatchGameData matchGameData){
         Rand();
         for (int i = 0;i<5;i++){
-            this.Chinese[i].setText(matchGameData.getChineseData()[i]);
-            this.Phonetic[i].setText(matchGameData.getPhoneticData()[i]);
-            String path = matchGameData.getImagePathData()[i];
+            this.Chinese[i].setText(matchGameData.getNewChineseData()[i]);
+            this.Phonetic[i].setText(matchGameData.getNewPhoneticData()[i]);
+            String path = matchGameData.getNewImagePathData()[i];
 
             imageViews[i].setTag(path);
         }
@@ -327,11 +332,12 @@ public class MatchGame extends AppCompatActivity {
         int Ans=0;
 
         public void checkAnwser(){
-            String[] str;
-            if (this.getTag().equals("1"))
-                str=matchGameData.getChineseData();
-            else
-                str=matchGameData.getPhoneticData();
+            String[] str=matchGameData.getChineseData();
+            String MODE = "Chinese";
+            if (this.getTag().equals("2")){
+                MODE="Phonetic";
+                str = matchGameData.getPhoneticData();
+            }
             for (int i=0;i<mPoint.size();i+=4){
                 int check1 = getdot(mPoint.get(i+0),mPoint.get(i+1));
                 int check2 = getdot(mPoint.get(i+2),mPoint.get(i+3));
@@ -341,14 +347,12 @@ public class MatchGame extends AppCompatActivity {
                     check2=temp;
                 }
                 check2=check2%5;
-                int right=matchGameData.compare(str[check1], imageViews[check2].getTag().toString());
-                Log.e("DEBUG",right+"   "+check2+"  "+imageViews[check2].getTag().toString());
+                int right=matchGameData.compare(str[check1], imageViews[check2].getTag().toString(),MODE);
                 if (right==-1){
                     Ans++;
                 }else {
                     wrong.add(right);
                     wrong.add(check2+5);
-                    Log.e("DEBUG","wrong"+wrong);
                 }
             }
             invalidate();
