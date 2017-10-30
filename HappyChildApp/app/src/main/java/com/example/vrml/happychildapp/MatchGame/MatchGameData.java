@@ -13,6 +13,7 @@ public class MatchGameData {
     DataSnapshot dataSnapshot;
     String[] chinese,phonetic,imagePath;
     String[] temp2 = null;
+    String[] newChinese,newPhonetic,newImagePath;
     public MatchGameData(){}
     public MatchGameData(Bundle bundle, DataSnapshot dataSnapshot){
         String Subject = bundle.getString("Subject");
@@ -29,22 +30,34 @@ public class MatchGameData {
         for (DataSnapshot temp : dataSnapshot.getChildren()) {
 
             temp2 = ((String) temp.getValue()).split(";");
-            this.chinese[i] = temp2[0];
-            this.phonetic[i] = temp2[1].replaceAll(","," ");
+            this.chinese[i] = temp2[1].replaceAll(","," ");
+            this.phonetic[i] = temp2[0];
             this.imagePath[i] = temp2[2];
             i++;
         }
     }
-    public boolean compare(String string,String imagePath){
-        for (int i=0;i<chinese.length;i++){
+    public int compare(String string,String imagePath){
+        for (int i=0;i<this.imagePath.length;i++){
             if (this.imagePath[i].equals(imagePath)){
                 if (this.chinese[i].equals(string)||this.phonetic[i].equals(string))
-                    return true;
-                return false;
+                    return -1;
+                else {
+                    string = this.chinese[i];
+                    for (int j=0;j<this.chinese.length;j++){
+                        if (this.chinese[j].equals(string)||this.phonetic[j].equals(string)) {
+                            Log.e("DEBUG", this.chinese[j] + this.phonetic[j] +j+ "");
+                            return j;
+                        }
+                    }
+                }
             }
-        }return false;
+        }return -1;
     }
     public String[] getChineseData(){return this.chinese;}
     public String[] getPhoneticData(){return this.phonetic;}
     public String[] getImagePathData(){return this.imagePath;}
+
+    public void setChineseData(String[] ChineseData){this.newChinese=ChineseData;}
+    public void setPhoneticData(String[] PhoneticData){this.newPhonetic=PhoneticData;}
+    public void setImagePathData(String[] ImagePathData){this.newImagePath=ImagePathData;}
 }

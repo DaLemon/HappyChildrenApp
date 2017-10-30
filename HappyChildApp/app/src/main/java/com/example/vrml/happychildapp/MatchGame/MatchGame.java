@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,8 +30,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class MatchGame extends AppCompatActivity {
@@ -46,7 +51,8 @@ public class MatchGame extends AppCompatActivity {
     MatchGameData matchGameData ;
 
     final long ONE_MEGABYTE = 1024*1024;
-
+    int[] position = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4};
+    DrawPoint view,view2;
 
 
     @Override
@@ -55,8 +61,10 @@ public class MatchGame extends AppCompatActivity {
         setContentView(R.layout.match_game);
         left = (LinearLayout) findViewById(R.id.left);
         right = (LinearLayout) findViewById(R.id.right);
+
         IDSet();
-        DrawPoint view = new DrawPoint(this);
+        view = new DrawPoint(this);
+        view.setTag("1");
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -65,7 +73,9 @@ public class MatchGame extends AppCompatActivity {
                 return false;
             }
         });
-        DrawPoint view2 = new DrawPoint(this);
+
+        view2 = new DrawPoint(this);
+        view2.setTag("2");
         view2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -77,6 +87,15 @@ public class MatchGame extends AppCompatActivity {
         left.addView(view);
         right.addView(view2);
         getdataFromFirebase();
+
+        Button OK = (Button)findViewById(R.id.OK);
+        OK.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                MatchGame.this.view.checkAnwser();
+                MatchGame.this.view2.checkAnwser();
+            }
+        });
     }
 
     private void IDSet() {
@@ -94,34 +113,15 @@ public class MatchGame extends AppCompatActivity {
 
     }
     int ImageIndex = 0;
-    public void setData(String[] Chinese,String[] Phonetic,String[] ImagePath){
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        final long ONE_MEGABYTE = 128*128;
 
-        for (int i = 0;i<5;i++){
-//            StorageReference storageReference;
-            this.Chinese[i].setText(Chinese[i]);
-            this.Phonetic[i].setText(Phonetic[i]);
-            StorageReference temp = storageRef.child(ImagePath[i]);
-            temp.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                @Override
-                public void onSuccess(byte[] bytes) {
-                    Bitmap tmep = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                    MatchGame.this.imageViews[ImageIndex++].setImageBitmap(tmep);
-                }
-            });
-//            this.imageViews[i].setImageBitmap();
-
-        }
-    }
     public void Download(ImageView imageView){
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference temp = storageRef.child(imageView.getTag().toString());
         temp.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
-                Bitmap tmep = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                MatchGame.this.imageViews[ImageIndex++].setImageBitmap(tmep);
+                Bitmap temp = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                MatchGame.this.imageViews[ImageIndex++].setImageBitmap(temp);
                 Log.e("DEBUG",""+ImageIndex+"   "+MatchGame.this.imageViews[ImageIndex-1].getTag());
                 if (ImageIndex<5) {
                     Download(imageViews[ImageIndex]);
@@ -135,8 +135,21 @@ public class MatchGame extends AppCompatActivity {
             }
         });
     }
-    public void setData(MatchGameData matchGameData){
+    private void Rand(){
+        String[] temp=matchGameData.getChineseData();
+        Collections.shuffle(Arrays.asList(temp));
+        matchGameData.setChineseData(temp);
 
+        temp=matchGameData.getPhoneticData();
+        Collections.shuffle(Arrays.asList(temp));
+        matchGameData.setPhoneticData(temp);
+
+        temp=matchGameData.getImagePathData();
+        Collections.shuffle(Arrays.asList(temp));
+        matchGameData.setImagePathData(temp);
+    }
+    public void setData(MatchGameData matchGameData){
+        Rand();
         for (int i = 0;i<5;i++){
             this.Chinese[i].setText(matchGameData.getChineseData()[i]);
             this.Phonetic[i].setText(matchGameData.getPhoneticData()[i]);
@@ -165,8 +178,10 @@ public class MatchGame extends AppCompatActivity {
         });
     }
 
+
     public class DrawPoint extends View {
         private List<Float> mPoint = new ArrayList<>();
+        private List<Integer>  wrong= new ArrayList<>();
         private Point[] dot = new Point[10];
         private boolean check = false;
 
@@ -202,7 +217,12 @@ public class MatchGame extends AppCompatActivity {
                 // canvas.drawLine((float)21.1875,(float)913.60156,(float)467.3136,(float)1184.793,line);
 //                Log.e("DEBUG", "check && isTouch" + check + " " + isTouch);
             }
-
+            line.setColor(Color.RED);
+            for (int i=0;i<wrong.size();i+=2){
+                int wrong_i=wrong.get(i);
+                int wrong_j=wrong.get(i+1);
+                canvas.drawLine(dot[wrong_i].x,dot[wrong_i].y,dot[wrong_j].x,dot[wrong_j].y,line);
+            }
 
         }
 
@@ -228,7 +248,6 @@ public class MatchGame extends AppCompatActivity {
 
         private boolean isTouch = false;//判斷是不是在dot的範圍內
         int down = 0;
-        int[] phoneticDot={0,0,0,0,0},chineseDot={0,0,0,0,0},imageDot={0,0,0,0,0};
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
@@ -246,9 +265,6 @@ public class MatchGame extends AppCompatActivity {
                         p1X = dot[checkpoint].x;
                         p1Y = dot[checkpoint].y;
 
-                        getdot(checkpoint);
-                        for (int i=0;i<5;i++)
-                            Log.e("DEBUG","down"+phoneticDot[i]+"  "+imageDot[i]);
                         invalidate();
 
                     }
@@ -263,16 +279,13 @@ public class MatchGame extends AppCompatActivity {
                         p2Y = dot[checkpoint].y;
                         //是否為同一點
                         if (p1X == p2X && p1Y == p2Y)break ;
-                        Log.d("DEBUG","check"+checkpoint);
 
                         mPoint.add(p1X);
                         mPoint.add(p1Y);
                         mPoint.add(p2X);
                         mPoint.add(p2Y);
 
-                        getdot(checkpoint);
-                        for (int i=0;i<5;i++)
-                            Log.e("DEBUG","up"+phoneticDot[i]+"  "+imageDot[i]);
+
                         invalidate();
                     }
 
@@ -311,16 +324,43 @@ public class MatchGame extends AppCompatActivity {
 
             return -1;
         }
+        int Ans=0;
 
-        public void getdot(int dot) {
-
-            if (dot < 5) {
-                phoneticDot[dot] = dot;
-
-            } else {
-                imageDot[dot%5] = dot%5;
+        public void checkAnwser(){
+            String[] str;
+            if (this.getTag().equals("1"))
+                str=matchGameData.getChineseData();
+            else
+                str=matchGameData.getPhoneticData();
+            for (int i=0;i<mPoint.size();i+=4){
+                int check1 = getdot(mPoint.get(i+0),mPoint.get(i+1));
+                int check2 = getdot(mPoint.get(i+2),mPoint.get(i+3));
+                if (check1>check2){
+                    int temp=check1;
+                    check1=check2;
+                    check2=temp;
+                }
+                check2=check2%5;
+                int right=matchGameData.compare(str[check1], imageViews[check2].getTag().toString());
+                Log.e("DEBUG",right+"   "+check2+"  "+imageViews[check2].getTag().toString());
+                if (right==-1){
+                    Ans++;
+                }else {
+                    wrong.add(right);
+                    wrong.add(check2+5);
+                    Log.e("DEBUG","wrong"+wrong);
+                }
             }
+            invalidate();
         }
+        public int getdot(float x,float y){
+            for (int i=0;i<dot.length;i++) {
+                if (x == dot[i].x && y == dot[i].y)
+                    return i;
+            }
+            return -1;
+        }
+
     }
 
 }
