@@ -1,6 +1,8 @@
 package com.example.vrml.happychildapp.MatchGame;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.menu_choose;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -49,9 +54,10 @@ public class MatchGame extends AppCompatActivity {
     private MotionEvent moveEvent;
     private int range = 0;//點的有效範圍
     MatchGameData matchGameData ;
+    private long startTime, timeup, totaltime;
 
     final long ONE_MEGABYTE = 1024*1024;
-    int[] position = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4};
+    boolean finish = false;
     DrawPoint view,view2;
 
 
@@ -61,7 +67,7 @@ public class MatchGame extends AppCompatActivity {
         setContentView(R.layout.match_game);
         left = (LinearLayout) findViewById(R.id.left);
         right = (LinearLayout) findViewById(R.id.right);
-
+        startTime = System.currentTimeMillis();
         IDSet();
         view = new DrawPoint(this);
         view.setTag("1");
@@ -91,9 +97,16 @@ public class MatchGame extends AppCompatActivity {
         Button OK = (Button)findViewById(R.id.OK);
         OK.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){
-                MatchGame.this.view.checkAnswer();
-                MatchGame.this.view2.checkAnswer();
+            public void onClick(View v){
+                if (!finish) {
+                    view.checkAnswer();
+                    view2.checkAnswer();
+                    timeup = System.currentTimeMillis();
+                    totaltime = (timeup - startTime) / 1000;
+                    finish=true;
+                }else {
+                    ShowMessage("答對了" + (view.getAns()+view2.getAns()) + "題\n" + "共花了" + totaltime + "秒");
+                }
             }
         });
     }
@@ -331,30 +344,51 @@ public class MatchGame extends AppCompatActivity {
 
             return -1;
         }
-        int Ans=0;
+        public int Ans=0;
+
+        public int getAns(){return Ans;}
 
         public void checkAnswer(){
-            String[] str=matchGameData.getChineseData();
+
+            String[] str=matchGameData.getNewChineseData();
             String MODE = "Chinese";
             if (this.getTag().equals("2")){
                 MODE="Phonetic";
-                str = matchGameData.getPhoneticData();
+                str = matchGameData.getNewPhoneticData();
             }
             for (int i=0;i<mPoint.size();i+=4){
                 int check1 = getdot(mPoint.get(i+0),mPoint.get(i+1));
                 int check2 = getdot(mPoint.get(i+2),mPoint.get(i+3));
-                if (check1>check2){
-                    int temp=check1;
-                    check1=check2;
-                    check2=temp;
+                if (this.getTag().equals("1")) {
+                    if (check1 > check2) {
+                        int temp = check1;
+                        check1 = check2;
+                        check2 = temp;
+                    }check2=check2%5;
+                }else {
+                    if (check1 < check2) {
+                        int temp = check1;
+                        check1 = check2;
+                        check2 = temp;
+                    }check1=check1%5;
                 }
-                check2=check2%5;
+
+                Log.e("DEBUG","361 1"+check1+"  2"+check2);
+                Log.e("DEBUG","352  "+str[check1]+"     "+imageViews[check2].getTag().toString());
                 int right=matchGameData.compare(str[check1], imageViews[check2].getTag().toString(),MODE);
+                Log.e("DEBUG","Match_Game353:   "+right);
                 if (right==-1){
                     Ans++;
+
                 }else {
+                    if (this.getTag().equals("2")){
+                        int temp = right;
+                        right = check2;
+                        check2 = temp;
+                    }
                     wrong.add(right);
                     wrong.add(check2+5);
+
                 }
             }
             invalidate();
@@ -366,6 +400,16 @@ public class MatchGame extends AppCompatActivity {
             }
             return -1;
         }
+
+    }
+    private void ShowMessage(String str) {
+        new AlertDialog.Builder(this).setMessage(str)
+                .setNegativeButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(MatchGame.this, menu_choose.class));
+                    }
+                }).setCancelable(false).show();
 
     }
 

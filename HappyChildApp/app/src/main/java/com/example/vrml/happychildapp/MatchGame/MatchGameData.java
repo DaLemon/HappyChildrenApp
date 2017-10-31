@@ -38,20 +38,22 @@ public class MatchGameData {
     }
     public int compare(String string,String imagePath,String MODE){
         String[] check=MODE.equals("Chinese")?Chinese:Phonetic;
-
         for (int i=0;i<this.ImagePath.length;i++){
             if (this.ImagePath[i].equals(imagePath)){
+                Log.e("DEBUG","Data44"+imagePath+"  String:"+string);
                 if (string.equals(check[i])){
                     return -1;
                 }
                 else {
-                    string = this.Chinese[i];
+                    string = check[i];
+
                     Log.e("DEBUG","Data string"+string);
                     for (int j=0;j<this.Chinese.length;j++){
                         if(MODE.equals("Chinese")){
                             if( this.newChinese[j].equals(string))
                                 return j;
                         }else if(MODE.equals("Phonetic")){
+                            Log.e("DEBUG","56 "+newPhonetic[j]+"  "+string);
                             if( this.newPhonetic[j].equals(string))
                                 return j;
                         }
