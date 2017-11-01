@@ -4,6 +4,7 @@ package com.example.vrml.happychildapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class Choose_Unit extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(Choose_Unit.this, Choose_Lesson.class);
                 bundle.putString("Unit",data.get(i));
+                Log.e("DEBUG","Line 43:"+data.get(i));
                 intent.putExtras(bundle);
                 startActivity(intent);
                 Choose_Unit.this.finish();

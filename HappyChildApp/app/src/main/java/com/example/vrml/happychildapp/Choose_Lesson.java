@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity;
+import com.example.vrml.happychildapp.HYC_Code.MultiplicationTable.MultiplicationTable;
 import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
@@ -65,6 +66,7 @@ public class Choose_Lesson extends AppCompatActivity {
 
             }
         });
+
     }
 
 
@@ -82,12 +84,14 @@ public class Choose_Lesson extends AppCompatActivity {
                 map.put("Match",MatchGame.class);
                 //加入數學
                 map.put("AddSub", AdditionSubtractActivity.class);
+                map.put("MultiplicationTable", MultiplicationTable.class);
 
                 Class<?> cls=map.get(bundle.getString("Unit"));
+                Log.e("DEBUG","Line87:"+bundle.getString("Unit"));
+
 
                 startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
 
-                Log.e("DEBUG","LESSON"+Choose_Lesson.this.data.get(i));
             }
         });
     }

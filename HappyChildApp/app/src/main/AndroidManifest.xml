@@ -136,7 +136,7 @@
             android:name=".HYC_Code.MultiplicationTable.eight"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".nine"
+            android:name=".HYC_Code.MultiplicationTable.nine"
             android:screenOrientation="landscape" />
     </application>
 
