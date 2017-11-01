@@ -73,7 +73,9 @@
             android:exported="true">
 
         </activity>
-
+        <activity android:name=".HYC_Code.VideoView.TimeVideo"
+            android:screenOrientation="landscape"
+            android:label="@string/TimeVideo"></activity>
         <activity
             android:name=".menu_choose"
             android:label="@string/Menu"

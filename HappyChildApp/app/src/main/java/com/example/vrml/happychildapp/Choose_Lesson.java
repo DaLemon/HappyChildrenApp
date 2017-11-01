@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity;
 import com.example.vrml.happychildapp.HYC_Code.MultiplicationTable.MultiplicationTable;
+import com.example.vrml.happychildapp.HYC_Code.VideoView.TimeVideo;
 import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
@@ -85,6 +86,7 @@ public class Choose_Lesson extends AppCompatActivity {
                 //加入數學
                 map.put("AddSub", AdditionSubtractActivity.class);
                 map.put("MultiplicationTable", MultiplicationTable.class);
+                map.put("TimeVideo", TimeVideo.class);
 
                 Class<?> cls=map.get(bundle.getString("Unit"));
                 Log.e("DEBUG","Line87:"+bundle.getString("Unit"));
