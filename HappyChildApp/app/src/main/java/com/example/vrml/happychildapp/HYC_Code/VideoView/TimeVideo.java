@@ -40,7 +40,6 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
         vidView = (VideoView) findViewById(R.id.videoView);
         vidView.setMediaController(vidControl);
         String path = this.getIntent().getExtras().getString("Lesson");
-        Log.e("DEBUG","Line 36 :"+path);
         getdataFromFirebase();
     }
     private void getdataFromFirebase() {
@@ -82,11 +81,9 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
         temp.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Log.e("DEBUG","Line 57:Success");
                 // Dialog miss
                 try {
                     vidView.setVideoPath(localFile.getCanonicalPath());
-                    Log.e("DEBUG","Line 89:"+localFile.getCanonicalPath());
                     vidView.start();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -95,7 +92,6 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                Log.e("DEBUG","Line 68:Failure");
                 // Dialog Error
             }
         });
