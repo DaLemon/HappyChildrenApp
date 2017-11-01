@@ -91,7 +91,53 @@
             android:name=".Jennifer_Code.ProfileActivity"
             android:screenOrientation="landscape"></activity>
 
+        <activity
+            android:name=".HYC_Code.AdditionAndSubtraction.addition1"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.AdditionAndSubtraction.addition2"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.AdditionAndSubtraction.subtraction1"
+            android:screenOrientation="landscape" />
+        <activity android:name=".HYC_Code.AdditionAndSubtraction.subtraction2"
+            android:screenOrientation="landscape"></activity>
 
+        <activity
+            android:name=".HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity"
+            android:screenOrientation="landscape">
+        </activity>
+
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.MultiplicationTable"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.one"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.two"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.three"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.four"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.five"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.six"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.seven"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".HYC_Code.MultiplicationTable.eight"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".nine"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

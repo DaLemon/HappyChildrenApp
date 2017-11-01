@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vrml.happychildapp.HYC_Code.MultiplicationTable.MultiplicationTable">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="onClick"
+                    android:text="回選單"
+                    android:textSize="40dp"
+                    android:layout_marginRight="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/x"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="=>３（個輪子）ｘ１（台三輪車）＝３（個輪子）"
+                        android:textColor="#000000"
+                        android:textSize="50dp" />
+
+                    <TextView
+                        android:id="@+id/ba"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="=>３（被乘數）ｘ１（乘數）＝３（積）"
+                        android:textColor="#000000"
+                        android:textSize="50dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/prompt"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="#ffffff"
+                    android:gravity="right"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/xx"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:weightSum="8">
+
+            <LinearLayout
+                android:id="@+id/area1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:layout_weight="2"
+                android:background="#b7fcfc"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/area2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:layout_weight="2"
+                android:background="#fef099"
+                android:orientation="horizontal"
+                ></LinearLayout>
+
+            <TextView
+                android:id="@+id/a"
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="３ｘ１＝３　　３ｘ２＝６　　３ｘ３＝９"
+                android:textSize="60dp"
+                android:layout_marginLeft="50dp"/>
+
+            <TextView
+                android:id="@+id/b"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="３ｘ４＝１２　３ｘ５＝１５　３ｘ６＝１８"
+                android:textSize="60dp"
+                android:layout_marginLeft="50dp"/>
+
+            <TextView
+                android:id="@+id/c"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="３ｘ７＝２１　３ｘ８＝２４　３ｘ９＝２７"
+                android:textSize="60dp"
+                android:layout_marginLeft="50dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+

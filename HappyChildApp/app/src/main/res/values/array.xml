@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="one">
+        <item>@drawable/one_64</item>
+        <item>@drawable/one_64</item>
+        <item>@drawable/one_64</item>
+        <item>@drawable/one_64</item>
+        <item>@drawable/one_64</item>
+        <item>@drawable/one_64</item>
+        <item>@drawable/one_64</item>
+        <item>@drawable/one_64</item>
+        <item>@drawable/one_64</item>
+    </array>
+    <array name="two">
+        <item>@drawable/two_64</item>
+        <item>@drawable/two_64</item>
+        <item>@drawable/two_64</item>
+        <item>@drawable/two_64</item>
+        <item>@drawable/two_64</item>
+        <item>@drawable/two_64</item>
+        <item>@drawable/two_64</item>
+        <item>@drawable/two_64</item>
+        <item>@drawable/two_64</item>
+    </array>
+    <array name="three">
+        <item>@drawable/three_64</item>
+        <item>@drawable/three_64</item>
+        <item>@drawable/three_64</item>
+        <item>@drawable/three_64</item>
+        <item>@drawable/three_64</item>
+        <item>@drawable/three_64</item>
+        <item>@drawable/three_64</item>
+        <item>@drawable/three_64</item>
+        <item>@drawable/three_64</item>
+    </array>
+    <array name="four">
+        <item>@drawable/four_64</item>
+        <item>@drawable/four_64</item>
+        <item>@drawable/four_64</item>
+        <item>@drawable/four_64</item>
+        <item>@drawable/four_64</item>
+        <item>@drawable/four_64</item>
+        <item>@drawable/four_64</item>
+        <item>@drawable/four_64</item>
+        <item>@drawable/four_64</item>
+    </array>
+    <array name="five">
+        <item>@drawable/five_64</item>
+        <item>@drawable/five_64</item>
+        <item>@drawable/five_64</item>
+        <item>@drawable/five_64</item>
+        <item>@drawable/five_64</item>
+        <item>@drawable/five_64</item>
+        <item>@drawable/five_64</item>
+        <item>@drawable/five_64</item>
+        <item>@drawable/five_64</item>
+    </array>
+    <array name="six">
+        <item>@drawable/six_64</item>
+        <item>@drawable/six_64</item>
+        <item>@drawable/six_64</item>
+        <item>@drawable/six_64</item>
+        <item>@drawable/six_64</item>
+        <item>@drawable/six_64</item>
+        <item>@drawable/six_64</item>
+        <item>@drawable/six_64</item>
+        <item>@drawable/six_64</item>
+    </array>
+    <array name="seven">
+        <item>@drawable/seven_64</item>
+        <item>@drawable/seven_64</item>
+        <item>@drawable/seven_64</item>
+        <item>@drawable/seven_64</item>
+        <item>@drawable/seven_64</item>
+        <item>@drawable/seven_64</item>
+        <item>@drawable/seven_64</item>
+        <item>@drawable/seven_64</item>
+        <item>@drawable/seven_64</item>
+    </array>
+    <array name="eight">
+        <item>@drawable/eight_64</item>
+        <item>@drawable/eight_64</item>
+        <item>@drawable/eight_64</item>
+        <item>@drawable/eight_64</item>
+        <item>@drawable/eight_64</item>
+        <item>@drawable/eight_64</item>
+        <item>@drawable/eight_64</item>
+        <item>@drawable/eight_64</item>
+        <item>@drawable/eight_64</item>
+    </array>
+    <array name="nine">
+        <item>@drawable/nine_64</item>
+        <item>@drawable/nine_64</item>
+        <item>@drawable/nine_64</item>
+        <item>@drawable/nine_64</item>
+        <item>@drawable/nine_64</item>
+        <item>@drawable/nine_64</item>
+        <item>@drawable/nine_64</item>
+        <item>@drawable/nine_64</item>
+        <item>@drawable/nine_64</item>
+    </array>
+</resources>

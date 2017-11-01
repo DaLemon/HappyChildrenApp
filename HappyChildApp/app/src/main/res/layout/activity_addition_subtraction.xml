@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_Addition_Subtraction"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:text="加法範例-1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/add1"
+                android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:textSize="50dp"
+                android:background="#ecd1ff"/>
+
+            <Button
+                android:id="@+id/minus1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:background="#d1edff"
+                android:text="減法範例-1"
+                android:textSize="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="加法範例-2"
+                android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:textSize="50dp"
+                android:background="#ecd1ff"/>
+
+            <Button
+                android:id="@+id/minus2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:background="#d1edff"
+                android:text="減法範例-2"
+                android:textSize="50dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    </LinearLayout>
+</LinearLayout>

@@ -38,4 +38,7 @@
     <string name="AddSub">加減法</string>
     <string name="MultiplicationTable">九九乘法</string>
     <string name="TimeVideo">認識時間</string>
+
+    <string name="draggable_text">Draggable Text</string>
+    <string name="draggable_button">Draggable Button</string>
 </resources>

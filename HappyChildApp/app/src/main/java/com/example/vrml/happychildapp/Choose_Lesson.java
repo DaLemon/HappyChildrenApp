@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity;
 import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
@@ -25,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class Choose_Lesson extends AppCompatActivity {
@@ -81,6 +81,8 @@ public class Choose_Lesson extends AppCompatActivity {
                 map.put("Homonym",Homonym.class);
                 map.put("Match",MatchGame.class);
                 //加入數學
+                map.put("AddSub", AdditionSubtractActivity.class);
+
                 Class<?> cls=map.get(bundle.getString("Unit"));
 
                 startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
