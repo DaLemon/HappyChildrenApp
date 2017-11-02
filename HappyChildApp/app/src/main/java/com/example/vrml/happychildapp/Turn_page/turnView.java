@@ -9,12 +9,27 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Region;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.example.vrml.happychildapp.MatchGame.MatchGame;
+import com.example.vrml.happychildapp.MatchGame.MatchGameData;
 import com.example.vrml.happychildapp.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +71,35 @@ public class turnView extends View {
     private SlideHandler mSlideHandler = new SlideHandler();
     private Ratio mRatio;
 
+    public turnView(Context context,turn_page_data data){
+        super(context);
+        mRegionShortSize = new Region();
+        mRegionCurrent = new Region();
+        mBitmaps = data.getImageData();
+    }
+
     public turnView(Context context) {
         super(context);
         mRegionShortSize = new Region();
         mRegionCurrent = new Region();
+        mBitmaps = new ArrayList<>();
+        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.error));
+    }
+    public turnView(Context context,List<Bitmap> bitmaps){
+        super(context);
+        mRegionShortSize = new Region();
+        mRegionCurrent = new Region();
+        mBitmaps = bitmaps;
+        Log.e("DEBUG","Line 93:"+bitmaps.size());
+    }
+
+    private void initBitmaps() {
+        List<Bitmap> temp = new ArrayList<Bitmap>();
+        for (int i = mBitmaps.size() - 1; i >= 0; i--) {
+            Bitmap bitmap = Bitmap.createScaledBitmap(mBitmaps.get(i), width, height, true);
+            temp.add(bitmap);
+        }
+        mBitmaps = temp;
     }
 
     @Override
@@ -288,20 +328,6 @@ public class turnView extends View {
         drawBitmaps(canvas);
     }
 
-    private void initBitmaps() {
-        mBitmaps = new ArrayList<>();
-        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.a));
-        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.p));
-        mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.f));
-        mBitmaps.add(BitmapFactory.decodeResource(getResources(),R.drawable.text2));
-        //mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.lastpage));
-        List<Bitmap> temp = new ArrayList<Bitmap>();
-        for (int i = mBitmaps.size() - 1; i >= 0; i--) {
-            Bitmap bitmap = Bitmap.createScaledBitmap(mBitmaps.get(i), width, height, true);
-            temp.add(bitmap);
-        }
-        mBitmaps = temp;
-    }
 
 
     private enum Ratio {
@@ -414,9 +440,7 @@ public class turnView extends View {
         height = getRootView().getHeight();
         mPathFoldAndNext = new Path();
         mValueAdded = height * VALUE_ADDED;
-        if (null == mBitmaps) {//初始那個圖片
-            initBitmaps();
-        }
+        initBitmaps();
 
         mBuffArea = height * BUFF_AREA;
         mAutoAreaButton = height * Auto_Area_Button_Right;//計算自動滑入位置

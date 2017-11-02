@@ -20,6 +20,7 @@ import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 
+import com.example.vrml.happychildapp.Turn_page.turn_page_pratice;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -79,14 +80,20 @@ public class Choose_Lesson extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 bundle.putString("Lesson",Choose_Lesson.this.data.get(i));
                 HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
-
-                map.put("Hand",Turn_Card_Game.class);
-                map.put("Homonym",Homonym.class);
-                map.put("Match",MatchGame.class);
-                //加入數學
-                map.put("AddSub", AdditionSubtractActivity.class);
-                map.put("MultiplicationTable", MultiplicationTable.class);
-                map.put("TimeVideo", TimeVideo.class);
+                if (bundle.getString("Mode").equals("Exam")){
+                    map.put("Hand",Turn_Card_Game.class);
+                    map.put("Homonym",Homonym.class);
+                    map.put("Match",MatchGame.class);
+                    Log.e("DEBUG","Lesson Line 87");
+                }else {
+                    map.put("AddSub", AdditionSubtractActivity.class);
+                    map.put("MultiplicationTable", MultiplicationTable.class);
+                    map.put("TimeVideo", TimeVideo.class);
+                    map.put("Hand", turn_page_pratice.class);
+                    map.put("Homonym",turn_page_pratice.class);
+                    map.put("Match",turn_page_pratice.class);
+                    Log.e("DEBUG","Lesson Line 95");
+                }
 
                 Class<?> cls=map.get(bundle.getString("Unit"));
                 Log.e("DEBUG","Line87:"+bundle.getString("Unit"));

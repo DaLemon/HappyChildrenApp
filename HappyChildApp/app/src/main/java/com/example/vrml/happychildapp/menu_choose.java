@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vrml.happychildapp.Jennifer_Code.SignInActivity;
+import com.example.vrml.happychildapp.Jennifer_Code.SignOut;
 import com.example.vrml.happychildapp.Scoll.scrollActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -36,20 +40,25 @@ public class menu_choose extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent();
-
-                switch (position){
-                    case 0:
+                Log.e("DEBUG","Line 40 ::"+view.getTag().toString());
+                switch (view.getTag().toString()){
+                    case "我的教學":
                         intent.setClass(menu_choose.this, Choose_Chinese_Math.class);
                         startActivity(intent);
                         break;
-                    case 1:
+                    case "學習紀錄":
                         Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
                         break;
-                    case 2:
+                    case "教材分享區":
                         Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
                         break;
-                    case 3:
+                    case "建立新教材":
                         intent.setClass(menu_choose.this, scrollActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "登出":
+                        new SignOut();
+                        intent.setClass(menu_choose.this, SignInActivity.class);
                         startActivity(intent);
                         break;
                 }
@@ -72,6 +81,7 @@ public class menu_choose extends AppCompatActivity {
                 data.add("教材分享區");//2
                 data.add("建立新教材");//3
             }
+            data.add("登出");
         }
         return data;
     }
@@ -102,6 +112,7 @@ public class menu_choose extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup viewGroup) {
             View view1 = LayoutInflater.from(menu_choose.this).inflate(R.layout.menu_item, null);
             TextView textView = (TextView) view1.findViewById(R.id.menu_textView);
+            view1.setTag(list.get(i));
             textView.setText(list.get(i));
             textView.setTextSize(metrics.widthPixels/60);
             return view1;
