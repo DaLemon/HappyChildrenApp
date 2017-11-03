@@ -51,6 +51,9 @@
             android:label="@string/HomonymTest"
             android:screenOrientation="landscape"></activity>
 
+        <activity android:name=".TimeGame.TimeGame"
+            android:label="@string/TimeGame"
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".Choose_Mode"
             android:label="@string/ChooseMode"

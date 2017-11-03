@@ -18,6 +18,7 @@ import com.example.vrml.happychildapp.HYC_Code.MultiplicationTable.Multiplicatio
 import com.example.vrml.happychildapp.HYC_Code.VideoView.TimeVideo;
 import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
+import com.example.vrml.happychildapp.TimeGame.TimeGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 
 import com.example.vrml.happychildapp.Turn_page.turn_page_pratice;
@@ -84,6 +85,7 @@ public class Choose_Lesson extends AppCompatActivity {
                     map.put("Hand",Turn_Card_Game.class);
                     map.put("Homonym",Homonym.class);
                     map.put("Match",MatchGame.class);
+                    map.put("TimeVideo",TimeGame.class);
                     Log.e("DEBUG","Lesson Line 87");
                 }else {
                     map.put("AddSub", AdditionSubtractActivity.class);
