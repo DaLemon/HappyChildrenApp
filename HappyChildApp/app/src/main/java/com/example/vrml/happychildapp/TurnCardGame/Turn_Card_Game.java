@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -35,6 +36,7 @@ public class Turn_Card_Game extends AppCompatActivity {
     Button temp = null;
     AlertDialog isExit;
     int count = 0;
+    int size;
     RatingBar mRatingBar;
     private static MediaPlayer music;
     DisplayMetrics metrics = new DisplayMetrics();
@@ -67,7 +69,7 @@ public class Turn_Card_Game extends AppCompatActivity {
                 Bundle bundle = Turn_Card_Game.this.getIntent().getExtras();
                 turn_card_data = new Turn_Card_Data(bundle,dataSnapshot);
                 str_array = turn_card_data.getData();
-
+                size = turn_card_data.getSize();
             }
 
             @Override
@@ -142,22 +144,26 @@ public class Turn_Card_Game extends AppCompatActivity {
             String btn = "button" + (i + 1);
             int resID = getResources().getIdentifier(btn, "id", getPackageName());
             buttons[i] = ((Button) findViewById(resID));
-            buttons[i].setText(str_array[i]);
-            //隨著螢幕寬去縮放文字尺寸
-            if(metrics.widthPixels > 2000) {
-                buttons[i].setTextSize(metrics.widthPixels / 60);
-                if (buttons[i].getText().length() > 9) {
-                    buttons[i].setTextSize(metrics.widthPixels / 80);
+            if(TextUtils.isEmpty(str_array[i]))
+                buttons[i].setVisibility(View.INVISIBLE);
+            else{
+                buttons[i].setText(str_array[i]);
+                //隨著螢幕寬去縮放文字尺寸
+                if(metrics.widthPixels > 2000) {
+                    buttons[i].setTextSize(metrics.widthPixels / 60);
+                    if (buttons[i].getText().length() > 9) {
+                        buttons[i].setTextSize(metrics.widthPixels / 80);
+                    }
+                }else {
+                    buttons[i].setTextSize(metrics.widthPixels / 90);
+                    if (buttons[i].getText().length() > 9) {
+                        buttons[i].setTextSize(metrics.widthPixels / 120);
+                    }
                 }
-            }else {
-                buttons[i].setTextSize(metrics.widthPixels / 90);
-                if (buttons[i].getText().length() > 9) {
-                    buttons[i].setTextSize(metrics.widthPixels / 120);
-                }
+                buttons[i].setTextColor(Color.BLUE);
+                buttons[i].setOnClickListener(onClickListener);
+                buttons[i].setBackgroundResource(R.drawable.tt);
             }
-            buttons[i].setTextColor(Color.BLUE);
-            buttons[i].setOnClickListener(onClickListener);
-            buttons[i].setBackgroundResource(R.drawable.tt);
         }
     }
 
@@ -285,7 +291,7 @@ public class Turn_Card_Game extends AppCompatActivity {
                 button.setOnClickListener(null);
                 count++;
                 //完成後顯示成功
-                if (count == 8) {
+                if (count == size) {
                     ShowMessang("Successful");
                     mRatingBar.setRating(3);
                     music.stop();

@@ -33,6 +33,11 @@
             android:label="@string/Choose_Chinese_Math"
             android:screenOrientation="landscape"></activity>
 
+        <activity android:name=".Upload.HandUpload"
+            android:label="@string/HandUpload"
+            android:screenOrientation="landscape"></activity>
+
+
         <activity
             android:name=".Unit1"
             android:label="@string/Unit1"

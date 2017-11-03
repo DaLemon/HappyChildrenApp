@@ -1,9 +1,11 @@
 package com.example.vrml.happychildapp.TurnCardGame;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -12,8 +14,9 @@ import java.util.Arrays;
 
 public class Turn_Card_Data {
     //List<String> array = new ArrayList<String>();
-    String[] array;
+    String[] array = new String[16];
     DataSnapshot dataSnapshot;
+    private int size;
     public Turn_Card_Data get() {
         return new Turn_Card_Data();
     }
@@ -35,8 +38,14 @@ public class Turn_Card_Data {
             temp2 = (String) temp.getValue();
 
         }
-        array = Arrays.copyOfRange(temp2.split(""),1,temp2.split("").length);
-
+        String[] temp = temp2.split("");
+        size=temp.length/2;
+        for (int i=0 ; i<array.length;i++) {
+            array[i]  ="";
+        }
+        for (int i=1;i<temp.length;i++) {
+            array[i-1] = temp[i];
+        }
 
     }
 
@@ -48,5 +57,6 @@ public class Turn_Card_Data {
     public String[] getData(){
         return this.array;
     }
+    public int getSize(){return size;}
     public DataSnapshot getDataSnapshot() {return this.dataSnapshot;}
 }

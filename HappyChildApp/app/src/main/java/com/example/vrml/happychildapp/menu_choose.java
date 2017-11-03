@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.vrml.happychildapp.Jennifer_Code.SignInActivity;
 import com.example.vrml.happychildapp.Jennifer_Code.SignOut;
 import com.example.vrml.happychildapp.Scoll.scrollActivity;
+import com.example.vrml.happychildapp.Upload.HandUpload;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -56,6 +57,10 @@ public class menu_choose extends AppCompatActivity {
                         intent.setClass(menu_choose.this, scrollActivity.class);
                         startActivity(intent);
                         break;
+                    case "新增題庫":
+                        intent.setClass(menu_choose.this, HandUpload.class);
+                        startActivity(intent);
+                        break;
                     case "登出":
                         new SignOut();
                         intent.setClass(menu_choose.this, SignInActivity.class);
@@ -80,6 +85,7 @@ public class menu_choose extends AppCompatActivity {
             if(Position.equals("老師")){
                 data.add("教材分享區");//2
                 data.add("建立新教材");//3
+                data.add("新增題庫");
             }
             data.add("登出");
         }
