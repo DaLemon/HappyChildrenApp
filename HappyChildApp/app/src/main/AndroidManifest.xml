@@ -37,6 +37,10 @@
             android:label="@string/HandUpload"
             android:screenOrientation="landscape"></activity>
 
+        <activity android:name=".Upload.HomonymUpload"
+            android:label="@string/HomonymUpload"
+            android:screenOrientation="landscape"></activity>
+
 
         <activity
             android:name=".Unit1"

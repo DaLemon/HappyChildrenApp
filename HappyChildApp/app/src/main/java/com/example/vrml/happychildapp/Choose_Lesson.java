@@ -22,6 +22,8 @@ import com.example.vrml.happychildapp.TimeGame.TimeGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 
 import com.example.vrml.happychildapp.Turn_page.turn_page_pratice;
+import com.example.vrml.happychildapp.Upload.HandUpload;
+import com.example.vrml.happychildapp.Upload.HomonymUpload;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,13 +46,19 @@ public class Choose_Lesson extends AppCompatActivity {
         setContentView(R.layout.unit_choose);
 
         listView = (ListView) this.findViewById(R.id.unit_list_veiw);
-        getdataFromFirebase();
+        bundle = Choose_Lesson.this.getIntent().getExtras();
+        if(bundle.getString("Modify","").equals("Y")){
+            HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
+            map.put("Hand", HandUpload.class);
+            map.put("Homonym", HomonymUpload.class);
+            Class<?> cls=map.get(bundle.getString("Unit"));
+            startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
+        }else {
+            getdataFromFirebase();
+        }
     }
     private void getdataFromFirebase() {
         Intent intent = this.getIntent();
-        bundle = Choose_Lesson.this.getIntent().getExtras();
-
-
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -81,13 +89,14 @@ public class Choose_Lesson extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 bundle.putString("Lesson",Choose_Lesson.this.data.get(i));
                 HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
-                if (bundle.getString("Mode").equals("Exam")){
+
+                if(bundle.getString("Mode").equals("Exam")){
                     map.put("Hand",Turn_Card_Game.class);
                     map.put("Homonym",Homonym.class);
                     map.put("Match",MatchGame.class);
                     map.put("TimeVideo",TimeGame.class);
                     Log.e("DEBUG","Lesson Line 87");
-                }else {
+                }else if (bundle.getString("Mode").equals("Teaching")){
                     map.put("AddSub", AdditionSubtractActivity.class);
                     map.put("MultiplicationTable", MultiplicationTable.class);
                     map.put("TimeVideo", TimeVideo.class);
@@ -96,7 +105,6 @@ public class Choose_Lesson extends AppCompatActivity {
                     map.put("Match",turn_page_pratice.class);
                     Log.e("DEBUG","Lesson Line 95");
                 }
-
                 Class<?> cls=map.get(bundle.getString("Unit"));
                 Log.e("DEBUG","Line87:"+bundle.getString("Unit"));
 

@@ -19,7 +19,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText2"
@@ -28,7 +28,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -46,7 +46,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText4"
@@ -55,7 +55,7 @@
             android:ems="1"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -73,7 +73,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText6"
@@ -82,7 +82,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -100,7 +100,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText8"
@@ -109,7 +109,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -127,7 +127,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText10"
@@ -136,7 +136,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -154,7 +154,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText12"
@@ -163,7 +163,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -181,7 +181,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText14"
@@ -190,7 +190,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -208,7 +208,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText16"
@@ -217,12 +217,20 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
-            android:text="Name" />
+            android:text="" />
+
+        <EditText
+            android:id="@+id/handTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="" />
 
         <Button
             android:id="@+id/summit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="確定送出" />
     </LinearLayout>
 </LinearLayout>

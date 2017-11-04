@@ -35,7 +35,7 @@ public class Choose_Chinese_Math extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(Choose_Chinese_Math.this,Choose_Mode.class);
-                Bundle bundle = new Bundle();
+                Bundle bundle = Choose_Chinese_Math.this.getIntent().getExtras();
                 if (i == 0)
                     bundle.putString("Subject","Chinese");
                 else

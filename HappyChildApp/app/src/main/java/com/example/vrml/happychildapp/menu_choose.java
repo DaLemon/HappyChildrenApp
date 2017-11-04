@@ -41,11 +41,13 @@ public class menu_choose extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent();
+                Bundle bundle = new Bundle();
                 Log.e("DEBUG","Line 40 ::"+view.getTag().toString());
+
                 switch (view.getTag().toString()){
                     case "我的教學":
                         intent.setClass(menu_choose.this, Choose_Chinese_Math.class);
-                        startActivity(intent);
+
                         break;
                     case "學習紀錄":
                         Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
@@ -55,19 +57,20 @@ public class menu_choose extends AppCompatActivity {
                         break;
                     case "建立新教材":
                         intent.setClass(menu_choose.this, scrollActivity.class);
-                        startActivity(intent);
+
                         break;
                     case "新增題庫":
-                        intent.setClass(menu_choose.this, HandUpload.class);
-                        startActivity(intent);
+                        intent.setClass(menu_choose.this, Choose_Chinese_Math.class);
+                        bundle.putString("Modify","Y");
                         break;
                     case "登出":
                         new SignOut();
                         intent.setClass(menu_choose.this, SignInActivity.class);
-                        startActivity(intent);
+
                         break;
                 }
-
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }
