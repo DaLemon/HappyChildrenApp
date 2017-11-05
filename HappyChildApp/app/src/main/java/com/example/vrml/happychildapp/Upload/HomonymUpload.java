@@ -46,11 +46,12 @@ public class HomonymUpload extends AppCompatActivity {
                 path.add(bundle.getString("Subject"));
                 path.add(bundle.getString("Mode"));
                 path.add(bundle.getString("Unit"));
-                path.add(homonymTitle.getText().toString());//Lesson3 Lesson4??
+                path.add(homonymTitle.getText().toString());
                 path.add("content");
                 FireBaseDataBaseTool.SendText(path,result);
                 Intent intent = new Intent(HomonymUpload.this,menu_choose.class);
-                startActivity(intent);            }
+                startActivity(intent);
+            }
         });
     }
 

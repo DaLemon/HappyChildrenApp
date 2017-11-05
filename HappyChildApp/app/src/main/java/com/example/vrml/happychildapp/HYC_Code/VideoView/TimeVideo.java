@@ -71,7 +71,7 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
         Pattern pattern = Pattern.compile("[./]");
         String[] PathSplit = pattern.split(path);
         int size = PathSplit.length;
-        String FileName = PathSplit[size-2];
+        String FileName = PathSplit[size-2];//裁切檔名
         String TypeName = PathSplit[size-1];
         try {
             localFile = File.createTempFile(FileName, TypeName);
@@ -83,7 +83,7 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 // Dialog miss
                 try {
-                    vidView.setVideoPath(localFile.getCanonicalPath());
+                    vidView.setVideoPath(localFile.getCanonicalPath());//取得路徑
                     vidView.start();
                 } catch (IOException e) {
                     e.printStackTrace();

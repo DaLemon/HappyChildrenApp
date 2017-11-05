@@ -24,6 +24,7 @@ import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 import com.example.vrml.happychildapp.Turn_page.turn_page_pratice;
 import com.example.vrml.happychildapp.Upload.HandUpload;
 import com.example.vrml.happychildapp.Upload.HomonymUpload;
+import com.example.vrml.happychildapp.Upload.MatchUpload;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,7 +52,10 @@ public class Choose_Lesson extends AppCompatActivity {
             HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
             map.put("Hand", HandUpload.class);
             map.put("Homonym", HomonymUpload.class);
+            map.put("Match", MatchUpload.class);
+
             Class<?> cls=map.get(bundle.getString("Unit"));
+//            Log.e("DEBUG","58  "+bundle.getString("Unit"));
             startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
         }else {
             getdataFromFirebase();

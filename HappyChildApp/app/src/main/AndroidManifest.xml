@@ -41,6 +41,10 @@
             android:label="@string/HomonymUpload"
             android:screenOrientation="landscape"></activity>
 
+        <activity android:name=".Upload.MatchUpload"
+            android:label="@string/MatchUpload"
+            android:screenOrientation="landscape"></activity>
+
 
         <activity
             android:name=".Unit1"

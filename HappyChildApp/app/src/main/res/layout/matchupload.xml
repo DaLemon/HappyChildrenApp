@@ -1,38 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="6">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="3"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ChineseEditText1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入國字＿1" />
+
+        <EditText
+            android:id="@+id/PhoneticEditText1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入注音＿1" />
+
+        <ImageView
+            android:id="@+id/matchImageView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:srcCompat="@drawable/tt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="3"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ChineseEditText2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入國字＿2"  />
+
+        <EditText
+            android:id="@+id/PhoneticEditText2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入注音＿2" />
+
+        <ImageView
+            android:id="@+id/matchImageView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:srcCompat="@drawable/tt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="3"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ChineseEditText3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入注音＿3"  />
+
+        <EditText
+            android:id="@+id/PhoneticEditText3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入注音＿3"/>
+        <ImageView
+            android:id="@+id/matchImageView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:srcCompat="@drawable/tt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="3"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ChineseEditText4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入國字＿4"  />
+
+        <EditText
+            android:id="@+id/PhoneticEditText4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入注音＿4" />
+
+        <ImageView
+            android:id="@+id/matchImageView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:srcCompat="@drawable/tt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <EditText
-            android:id="@+id/matcheditText1"
+            android:id="@+id/ChineseEditText5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="輸入國字＿5"  />
 
         <EditText
-            android:id="@+id/matcheditText2"
+            android:id="@+id/PhoneticEditText5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:inputType="textPersonName"
-            android:text="Name" />
-
-        <Button
-            android:id="@+id/matchbutton"
+            android:hint="輸入注音＿5" />
+        <ImageView
+            android:id="@+id/matchImageView5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:srcCompat="@drawable/tt" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="3"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/matchTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:hint="輸入單元標題"  />
+
+        <Button
+            android:id="@+id/matchSubmit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="確定送出" />
+
     </LinearLayout>
 
 </LinearLayout>

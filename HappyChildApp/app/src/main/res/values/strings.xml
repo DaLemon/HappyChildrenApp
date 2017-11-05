@@ -6,8 +6,8 @@
     <string name="ChooseMode">選擇模式</string>
     <string name="UntiChoose">選擇單元</string>
     <string name="HandUpload">部首題庫上傳</string>
-    <string name="HomonymUpload">同音異字上傳</string>
-    <string name="MatchUpload">國字注音上傳</string>
+    <string name="HomonymUpload">同音異字題庫上傳</string>
+    <string name="MatchUpload">國字注音題庫上傳</string>
     <string name="Menu">Menu</string>
     <string name="Unit1">Unit1</string>
     <string name="Make_Teaching_materials">建立教材</string>
