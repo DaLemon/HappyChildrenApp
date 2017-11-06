@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.vrml.happychildapp.AddSub.AddSub;
 import com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity;
 import com.example.vrml.happychildapp.HYC_Code.MultiplicationTable.MultiplicationTable;
 import com.example.vrml.happychildapp.HYC_Code.VideoView.TimeVideo;
@@ -98,6 +99,7 @@ public class Choose_Lesson extends AppCompatActivity {
                     map.put("Hand",Turn_Card_Game.class);
                     map.put("Homonym",Homonym.class);
                     map.put("Match",MatchGame.class);
+                    map.put("AddSub", AddSub.class);
                     map.put("TimeVideo",TimeGame.class);
                     Log.e("DEBUG","Lesson Line 87");
                 }else if (bundle.getString("Mode").equals("Teaching")){

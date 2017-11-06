@@ -123,6 +123,7 @@ public class MatchUpload extends AppCompatActivity {
     }
     private void fileupload(){
         index = 0;
+
         progressDialog.show();
         FireBaseDataBaseTool.SendStorage("MatchGame",imagepath[index],filepath[index],successListener,failureListener);
     }

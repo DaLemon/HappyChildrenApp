@@ -109,6 +109,11 @@
             android:name=".Jennifer_Code.ProfileActivity"
             android:screenOrientation="landscape"></activity>
 
+        <activity android:name=".AddSub.AddSub"
+            android:screenOrientation="landscape"
+            android:label="@string/AddSub">
+        </activity>
+
         <activity
             android:name=".HYC_Code.AdditionAndSubtraction.addition1"
             android:screenOrientation="landscape" />
