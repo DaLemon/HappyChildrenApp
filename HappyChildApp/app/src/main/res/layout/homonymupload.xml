@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:hint="輸入單元名稱"
             android:text="" />
 
         <EditText
@@ -22,6 +23,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:hint="輸入題目"
             android:text="" />
 
         <EditText
@@ -30,6 +32,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:hint="輸入正確答案"
             android:text="" />
 
         <EditText
@@ -38,6 +41,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:hint="輸入選項"
             android:text="" />
 
         <EditText
@@ -46,7 +50,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="" />
+            android:hint="輸入選項"
+            android:text=""/>
 
         <Button
             android:id="@+id/homonymsubmit"

@@ -23,6 +23,7 @@ import com.example.vrml.happychildapp.TimeGame.TimeGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 
 import com.example.vrml.happychildapp.Turn_page.turn_page_pratice;
+import com.example.vrml.happychildapp.Upload.AddSubUpload;
 import com.example.vrml.happychildapp.Upload.HandUpload;
 import com.example.vrml.happychildapp.Upload.HomonymUpload;
 import com.example.vrml.happychildapp.Upload.MatchUpload;
@@ -54,6 +55,7 @@ public class Choose_Lesson extends AppCompatActivity {
             map.put("Hand", HandUpload.class);
             map.put("Homonym", HomonymUpload.class);
             map.put("Match", MatchUpload.class);
+            map.put("AddSub", AddSubUpload.class);
 
             Class<?> cls=map.get(bundle.getString("Unit"));
 //            Log.e("DEBUG","58  "+bundle.getString("Unit"));
