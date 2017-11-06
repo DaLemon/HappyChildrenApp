@@ -9,6 +9,8 @@
     <string name="HomonymUpload">同音異字題庫上傳</string>
     <string name="MatchUpload">國字注音題庫上傳</string>
     <string name="AddSubUpload">加減法題庫上傳</string>
+    <string name="TimeUpload">認識時間上傳</string>
+    <string name="MultiplicationTableUpload">九九乘法表上傳</string>
     <string name="Menu">Menu</string>
     <string name="Unit1">Unit1</string>
     <string name="Make_Teaching_materials">建立教材</string>
@@ -16,7 +18,7 @@
     <string name="Choose_Chinese_Math">選擇國文或數學</string>
     <string name="Choose_Lesson">選擇單元</string>
     <string name="TimeGame">時間測驗</string>
-
+    <string name="StudyRecordView">學習紀錄</string>
     <string name="title_activity_welcome">Home Screen</string>
     <string name="next">下一頁</string>
     <string name="skip">跳過</string>

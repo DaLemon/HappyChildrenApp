@@ -50,7 +50,7 @@ public class menu_choose extends AppCompatActivity {
 
                         break;
                     case "學習紀錄":
-                        Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
+                        intent.setClass(menu_choose.this,StudyRecordView.class);
                         break;
                     case "教材分享區":
                         Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();

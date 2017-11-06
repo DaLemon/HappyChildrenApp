@@ -96,11 +96,22 @@
         <activity android:name=".Upload.AddSubUpload"
             android:label="@string/AddSubUpload"
             android:screenOrientation="landscape"></activity>
+
+        <activity android:name=".Upload.MultiplicationTableUpload"
+            android:label="@string/MultiplicationTableUpload"
+            android:screenOrientation="landscape"></activity>
+
+        <activity android:name=".Upload.TimeUpload"
+            android:label="@string/TimeUpload"
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".menu_choose"
             android:label="@string/Menu"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".StudyRecordView"
+            android:screenOrientation="landscape"
+            android:label="@string/StudyRecordView"></activity>
 
         <activity
             android:name=".Jennifer_Code.SignUpActivity"

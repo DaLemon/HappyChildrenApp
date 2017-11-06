@@ -2,6 +2,7 @@ package com.example.vrml.happychildapp;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,7 +22,6 @@ import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
 import com.example.vrml.happychildapp.TimeGame.TimeGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
-
 import com.example.vrml.happychildapp.Turn_page.turn_page_pratice;
 import com.example.vrml.happychildapp.Upload.AddSubUpload;
 import com.example.vrml.happychildapp.Upload.HandUpload;
@@ -36,51 +36,53 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 
-public class Choose_Lesson extends AppCompatActivity {
+public class StudyRecordView extends AppCompatActivity {
     private ListView listView;
     private UnitAdapter adapter;
     ArrayList<String> data;
     Bundle bundle;
+    boolean isTeacher=false;
+    HashMap<String,DataSnapshot> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.unit_choose);
-
+        map = new HashMap<String, DataSnapshot>();
         listView = (ListView) this.findViewById(R.id.unit_list_veiw);
-        bundle = Choose_Lesson.this.getIntent().getExtras();
-        if(bundle.getString("Modify","").equals("Y")){
-            HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
-            map.put("Hand", HandUpload.class);
-            map.put("Homonym", HomonymUpload.class);
-            map.put("Match", MatchUpload.class);
-            map.put("AddSub", AddSubUpload.class);
-            map.put("MultiplicationTable",MultiplicationTableUpload.class);
-            map.put("TimeVideo", TimeUpload.class);
-
-            Class<?> cls=map.get(bundle.getString("Unit"));
-//            Log.e("DEBUG","58  "+bundle.getString("Unit"));
-            startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
-        }else {
-            getdataFromFirebase();
+        SharedPreferences Position =getSharedPreferences("Position",MODE_PRIVATE);
+        if (Position.equals(isTeacher)){
+            isTeacher=true;
         }
+
+        data = new ArrayList<>();
+        getdataFromFirebase();
     }
     private void getdataFromFirebase() {
         Intent intent = this.getIntent();
-        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
+        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("StudyRecord");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                data = new ArrayList<>();
-                dataSnapshot = dataSnapshot.child(bundle.getString("Subject")).child(bundle.getString("Mode")).child(bundle.getString("Unit"));
-                for (DataSnapshot temp : dataSnapshot.getChildren()) {
-                    data.add(temp.getKey());
 
+                for (DataSnapshot temp : dataSnapshot.getChildren()) {
+                    String result = "";
+                    for (DataSnapshot temp2 : temp.getChildren()){
+                        result+=temp2.getKey()+":";
+                        for (DataSnapshot temp3:temp2.getChildren()){
+//                            Log.e("DEBUG",temp3.getChildren().toString());
+                             map.put(temp2.getKey().toString(),temp3);
+                            Log.e("DEBUG",temp3+"");
+                        }
+                    }
                 }
-                setListView(data);
+               ;
+                setListView(new ArrayList<String>(map.keySet()));
             }
 
             @Override
@@ -91,38 +93,28 @@ public class Choose_Lesson extends AppCompatActivity {
 
     }
 
-
+    boolean first = true;
     private void setListView( ArrayList data){
         adapter = new UnitAdapter(data);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                bundle.putString("Lesson",Choose_Lesson.this.data.get(i));
-                HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
-
-                if(bundle.getString("Mode").equals("Exam")){
-                    map.put("Hand",Turn_Card_Game.class);
-                    map.put("Homonym",Homonym.class);
-                    map.put("Match",MatchGame.class);
-                    map.put("AddSub", AddSub.class);
-                    map.put("TimeVideo",TimeGame.class);
-                    Log.e("DEBUG","Lesson Line 87");
-                }else if (bundle.getString("Mode").equals("Teaching")){
-                    map.put("AddSub", AdditionSubtractActivity.class);
-                    map.put("MultiplicationTable", MultiplicationTable.class);
-                    map.put("TimeVideo", TimeVideo.class);
-                    map.put("Hand", turn_page_pratice.class);
-                    map.put("Homonym",turn_page_pratice.class);
-                    map.put("Match",turn_page_pratice.class);
-                    Log.e("DEBUG","Lesson Line 95");
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (first){
+                    first=false;
+                }else {
+                    return;//應跳轉回menuChoose
                 }
-                Class<?> cls=map.get(bundle.getString("Unit"));
-                Log.e("DEBUG","Line87:"+bundle.getString("Unit"));
-
-
-                startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
-
+//                View view1 = LayoutInflater.from(StudyRecordView.this).inflate(R.layout.unit_choose_item, null);
+                TextView textView = (TextView) view.findViewById(R.id.textView2);
+                Log.e("DEBUG",textView.getText().toString());
+                ArrayList<String> data = new ArrayList<String>();
+                DataSnapshot result = map.get(textView.getText().toString());
+                for(DataSnapshot temp:result.getChildren()){
+                    Log.e("DEBUG",temp+"");
+                    data.add(result.getKey()+":"+temp.getValue());
+                }
+                setListView(data);
             }
         });
     }
@@ -151,7 +143,7 @@ public class Choose_Lesson extends AppCompatActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            View view1 = LayoutInflater.from(Choose_Lesson.this).inflate(R.layout.unit_choose_item, null);
+            View view1 = LayoutInflater.from(StudyRecordView.this).inflate(R.layout.unit_choose_item, null);
             TextView textView = (TextView) view1.findViewById(R.id.textView2);
             textView.setText(list.get(i));
             return view1;
