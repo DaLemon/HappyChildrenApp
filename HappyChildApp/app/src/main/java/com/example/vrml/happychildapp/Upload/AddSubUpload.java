@@ -22,32 +22,39 @@ import java.util.List;
 
 public class AddSubUpload extends AppCompatActivity {
     Bundle bundle;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addsubupload);
         bundle = AddSubUpload.this.getIntent().getExtras();
         Button submit = (Button)findViewById(R.id.addsubsubmit);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText n1 = (EditText)findViewById(R.id.addsubNum1);
-                EditText n2 = (EditText)findViewById(R.id.addsubNum2);
-                EditText ans = (EditText)findViewById(R.id.addsubAns);
                 EditText title = (EditText)findViewById(R.id.addsubLesson);
-                String result = "";
-                result = n1.getText()+",";
-                result+= n2.getText()+",";
-                result+= ans.getText();
-                Log.e("DEBUG",""+result);
                 List<String> path= new ArrayList<String>();
                 path.add("Teach");
                 path.add(bundle.getString("Subject"));
                 path.add(bundle.getString("Mode"));
                 path.add(bundle.getString("Unit"));
                 path.add(title.getText().toString());
-                path.add("content1");//要改
-                FireBaseDataBaseTool.SendText(path,result);
+                for (int i=0;i<5;i++){
+                    String n1 = "Num1_"+(i+1);
+                    String n2 = "Num2_"+(i+1);
+                    String ans = "Ans_"+(i+1);
+                    String result = "";
+                    path.add("content"+(i+1));
+                    int res1 = getResources().getIdentifier(n1 ,"id",getPackageName());
+                    int res2 = getResources().getIdentifier(n2 ,"id",getPackageName());
+                    int res3 = getResources().getIdentifier(ans ,"id",getPackageName());
+                    result+=((EditText)findViewById(res1)).getText().toString()+",";
+                    result+=((EditText)findViewById(res2)).getText().toString()+",";
+                    result+=((EditText)findViewById(res3)).getText().toString();
+                    FireBaseDataBaseTool.SendText(path,result);
+                    path.remove("content"+(i+1));
+                }
                 Intent intent = new Intent(AddSubUpload.this,menu_choose.class);
                 startActivity(intent);
             }
