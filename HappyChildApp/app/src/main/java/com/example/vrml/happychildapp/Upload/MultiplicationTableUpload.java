@@ -49,7 +49,11 @@ public class MultiplicationTableUpload extends AppCompatActivity {
                     String btn = "editText"+(i+1);
                     int resID = getResources().getIdentifier(btn, "id", getPackageName());
                     editText1 = (EditText)findViewById(resID);
-                    result+= editText1.getText();
+                    if (i<15) {
+                        result += editText1.getText() + ",";
+                    }else {
+                        result += editText1.getText();
+                    }
                 }
                 Log.e("DEBUG",result+"");
                 List<String> path= new ArrayList<String>();

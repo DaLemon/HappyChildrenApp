@@ -160,12 +160,12 @@ public class Turn_Card_Game extends AppCompatActivity {
                 buttons[i].setText(str_array[i]);
                 //隨著螢幕寬去縮放文字尺寸
                 if(metrics.widthPixels > 2000) {
-                    buttons[i].setTextSize(metrics.widthPixels / 60);
+                    buttons[i].setTextSize(metrics.widthPixels / 50);
                     if (buttons[i].getText().length() > 9) {
                         buttons[i].setTextSize(metrics.widthPixels / 80);
                     }
                 }else {
-                    buttons[i].setTextSize(metrics.widthPixels / 90);
+                    buttons[i].setTextSize(metrics.widthPixels / 50);
                     if (buttons[i].getText().length() > 9) {
                         buttons[i].setTextSize(metrics.widthPixels / 120);
                     }

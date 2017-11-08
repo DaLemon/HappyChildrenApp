@@ -82,9 +82,24 @@ public class MultiplicationTableExam extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 bundle = MultiplicationTableExam.this.getIntent().getExtras();
-                turn_card_data = new Turn_Card_Data(bundle,dataSnapshot);
-                str_array = turn_card_data.getData();
-                size = turn_card_data.getSize();
+                String Subject = bundle.getString("Subject");
+                String Mode = bundle.getString("Mode");
+                String Unit = bundle.getString("Unit");
+                String Lesson = bundle.getString("Lesson");
+                dataSnapshot = dataSnapshot.child(Subject).child(Mode).child(Unit).child(Lesson);
+                String temp2 = null;
+                str_array = new String[16];
+                for (DataSnapshot temp : dataSnapshot.getChildren()) {
+                    temp2 = (String) temp.getValue();
+                }
+                String[] temp = temp2.split(",");
+                size=temp.length/2;
+                for (int i=0 ; i<str_array.length;i++) {
+                    str_array[i]  ="";
+                }
+                for (int i=0;i<temp.length;i++) {
+                    str_array[i] = temp[i];
+                }
             }
 
             @Override
@@ -165,12 +180,12 @@ public class MultiplicationTableExam extends AppCompatActivity {
                 buttons[i].setText(str_array[i]);
                 //隨著螢幕寬去縮放文字尺寸
                 if(metrics.widthPixels > 2000) {
-                    buttons[i].setTextSize(metrics.widthPixels / 60);
+                    buttons[i].setTextSize(metrics.widthPixels / 50);
                     if (buttons[i].getText().length() > 9) {
                         buttons[i].setTextSize(metrics.widthPixels / 80);
                     }
                 }else {
-                    buttons[i].setTextSize(metrics.widthPixels / 90);
+                    buttons[i].setTextSize(metrics.widthPixels / 50);
                     if (buttons[i].getText().length() > 9) {
                         buttons[i].setTextSize(metrics.widthPixels / 120);
                     }
