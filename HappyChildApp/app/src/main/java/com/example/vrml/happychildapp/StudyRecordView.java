@@ -57,6 +57,9 @@ public class StudyRecordView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.unit_choose);
+
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         map = new HashMap<String, DataSnapshot>();
         listView = (ListView) this.findViewById(R.id.unit_list_veiw);
         SharedPreferences Position = getSharedPreferences("Position", MODE_PRIVATE);

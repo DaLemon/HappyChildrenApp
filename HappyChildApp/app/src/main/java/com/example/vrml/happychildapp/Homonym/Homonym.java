@@ -53,6 +53,10 @@ public class Homonym extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homonym);
+
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         questiontext = (TextView) findViewById(R.id.question);
         questionImage = (ImageView) findViewById(R.id.questionImage);
         option1 = (Button) findViewById(R.id.option1);

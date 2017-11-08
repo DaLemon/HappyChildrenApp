@@ -50,6 +50,10 @@ public class AddSub extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_sub);
+
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         ImageView imageView = (ImageView)findViewById(R.id.equalsimage);
 
         num1 = (TextView)findViewById(R.id.Num1);

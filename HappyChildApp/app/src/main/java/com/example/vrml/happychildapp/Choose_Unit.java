@@ -32,6 +32,9 @@ public class Choose_Unit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.unit_choose);
 
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         listView = (ListView) this.findViewById(R.id.unit_list_veiw);
         adapter = new UnitAdapter(setData());
         listView.setAdapter(adapter);

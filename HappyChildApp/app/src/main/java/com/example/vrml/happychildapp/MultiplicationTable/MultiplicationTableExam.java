@@ -56,6 +56,10 @@ public class MultiplicationTableExam extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trun_card_game_start);
+
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         getdataFromFirebase();
         StartSet();
         DialogSet();

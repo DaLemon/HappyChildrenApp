@@ -69,6 +69,9 @@ public class MatchGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.match_game);
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         left = (LinearLayout) findViewById(R.id.left);
         right = (LinearLayout) findViewById(R.id.right);
         startTime = System.currentTimeMillis();

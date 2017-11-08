@@ -51,6 +51,10 @@ public class TimeGame extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_game);
+
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         question = (TextView) findViewById(R.id.timequestion);
         option1 = (Button) findViewById(R.id.timeoption1);
         option2 = (Button) findViewById(R.id.timeoption2);

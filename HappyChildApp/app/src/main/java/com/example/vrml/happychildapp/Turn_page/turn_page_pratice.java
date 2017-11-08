@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.example.vrml.happychildapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,6 +36,8 @@ public class turn_page_pratice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wait_layout);
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         dialog = ProgressDialog.show(turn_page_pratice.this, "讀取中", "資料下載中...",true);
         mBitmaps = new ArrayList<>();
         getdataFromFirebase();
