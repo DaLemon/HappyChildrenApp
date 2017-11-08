@@ -32,6 +32,9 @@ public class menu_choose extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_choose);
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         listView = (ListView) findViewById(R.id.menu_listview);
@@ -123,7 +126,7 @@ public class menu_choose extends AppCompatActivity {
             TextView textView = (TextView) view1.findViewById(R.id.menu_textView);
             view1.setTag(list.get(i));
             textView.setText(list.get(i));
-            textView.setTextSize(metrics.widthPixels/60);
+            textView.setTextSize(metrics.widthPixels/50);
             return view1;
         }
     }

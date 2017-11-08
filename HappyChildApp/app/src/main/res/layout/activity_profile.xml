@@ -12,6 +12,7 @@
     android:layout_gravity="center"
     tools:context="com.example.vrml.happychildapp.Jennifer_Code.ProfileActivity"
     android:focusable="true"
+    android:background="@color/loginBG"
     android:focusableInTouchMode="true">
 
 
@@ -29,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:text="Welcome"
-
+            android:textColor="@color/loginText"
             android:textAlignment="center"
             android:textSize="36sp" />
 

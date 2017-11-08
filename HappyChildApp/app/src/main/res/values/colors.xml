@@ -35,4 +35,13 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
+    <!-- 登入-->
+    <color name="loginBG">#c9e8ea</color>
+    <color name="loginEdit">#faebe4</color>
+    <color name="loginText">#2a7391</color>
+
+    <!-- menu_choose-->
+    <color name="menu_choose">#faebe4</color>
+    <color name="menu_text">#1a5379</color>
 </resources>

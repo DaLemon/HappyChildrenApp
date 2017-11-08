@@ -3,6 +3,7 @@ package com.example.vrml.happychildapp.MatchGame;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -22,7 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vrml.happychildapp.Homonym.Homonym;
+import com.example.vrml.happychildapp.Jennifer_Code.FireBaseDataBaseTool;
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.StarGrading.StarGrading;
 import com.example.vrml.happychildapp.menu_choose;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -59,6 +62,7 @@ public class MatchGame extends AppCompatActivity {
     final long ONE_MEGABYTE = 1024*1024;
     boolean finish = false;
     DrawPoint view,view2;
+    Bundle bundle;
 
 
     @Override
@@ -105,7 +109,15 @@ public class MatchGame extends AppCompatActivity {
                     totaltime = (timeup - startTime) / 1000;
                     finish=true;
                 }else {
+                    SharedPreferences sharedPreferences = getSharedPreferences("User" , MODE_PRIVATE);
+                    String User = sharedPreferences.getString("Name","");
+                    timeup = System.currentTimeMillis();
+                    totaltime = (timeup - startTime) / 1000;
+
+                    int star= StarGrading.getStar(bundle.getString("Unit"),10,(view.getAns()+view2.getAns()));
                     ShowMessage("答對了" + (view.getAns()+view2.getAns()) + "題\n" + "共花了" + totaltime + "秒");
+                    FireBaseDataBaseTool.SendStudyRecord(bundle.getString("Unit"),User,"答對了" + (view.getAns()+view2.getAns()) + "題," + "共花了" + totaltime + "秒,Star:"+star);
+
                 }
             }
         });
@@ -185,7 +197,7 @@ public class MatchGame extends AppCompatActivity {
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Bundle bundle = MatchGame.this.getIntent().getExtras();
+                bundle = MatchGame.this.getIntent().getExtras();
                 matchGameData=new MatchGameData(bundle,dataSnapshot);
 
                 setData(matchGameData);
@@ -293,17 +305,27 @@ public class MatchGame extends AppCompatActivity {
                 case MotionEvent.ACTION_UP:
                     moveEvent = null;
                     check = false;
-                    //只能左右連（左邊0~4，右邊5~9） （！！！！判斷是否有重複）ㄋㄋ
+                    //只能左右連（左邊0~4，右邊5~9）
                     if (checkpoint != -1 && Math.abs(down/5-checkpoint/5)==1 ) {
                         p2X = dot[checkpoint].x;
                         p2Y = dot[checkpoint].y;
                         //是否為同一點
-                        if (p1X == p2X && p1Y == p2Y)break ;
+                        if (p1X == p2X && p1Y == p2Y)break;
+                        boolean mPointCheck=true;
 
-                        mPoint.add(p1X);
-                        mPoint.add(p1Y);
-                        mPoint.add(p2X);
-                        mPoint.add(p2Y);
+                        for (int i=0;i<mPoint.size();i+=2){
+                            if(mPoint.get(i)==p1X&&mPoint.get(i+1)==p1Y){
+                                mPointCheck=false;
+                            }else if (mPoint.get(i)==p2X&&mPoint.get(i+1)==p2Y){
+                                mPointCheck=false;
+                            }
+                        }
+                        if (mPointCheck) {
+                            mPoint.add(p1X);
+                            mPoint.add(p1Y);
+                            mPoint.add(p2X);
+                            mPoint.add(p2Y);
+                        }
 
 
                         invalidate();
@@ -373,8 +395,6 @@ public class MatchGame extends AppCompatActivity {
                     }check1=check1%5;
                 }
 
-                Log.e("DEBUG","361 1"+check1+"  2"+check2);
-                Log.e("DEBUG","352  "+str[check1]+"     "+imageViews[check2].getTag().toString());
                 int right=matchGameData.compare(str[check1], imageViews[check2].getTag().toString(),MODE);
                 Log.e("DEBUG","Match_Game353:   "+right);
                 if (right==-1){

@@ -12,17 +12,19 @@
         >
 
         <ImageView
+            android:id="@+id/menu_imageView"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
-            app:srcCompat="@android:drawable/ic_menu_send"
-            android:id="@+id/menu_imageView"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_send" />
 
         <TextView
-            android:text="TextView"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:id="@+id/menu_textView"
-            android:layout_weight="6" />
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_weight="6"
+            android:text="TextView"
+            android:gravity="center_vertical"
+            android:textColor="@color/menu_text" />
     </LinearLayout>
 </LinearLayout>

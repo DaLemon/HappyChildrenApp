@@ -2,6 +2,7 @@ package com.example.vrml.happychildapp.AddSub;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -14,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vrml.happychildapp.Homonym.Homonym;
+import com.example.vrml.happychildapp.Jennifer_Code.FireBaseDataBaseTool;
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.StarGrading.StarGrading;
 import com.example.vrml.happychildapp.menu_choose;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -125,10 +128,14 @@ public class AddSub extends AppCompatActivity {
 
             if (index < count) {
                 setData();
-            }else {//差上傳資料
+            }else {
+                SharedPreferences sharedPreferences = getSharedPreferences("User" , MODE_PRIVATE);
+                String User = sharedPreferences.getString("Name","");
                 timeup = System.currentTimeMillis();
                 totaltime = (timeup - startTime) / 1000;
                 ShowMessage("答對了" + bingo + "題\n" + "共花了" + totaltime + "秒");
+                int star= StarGrading.getStar(bundle.getString("Unit"),count,bingo);
+                FireBaseDataBaseTool.SendStudyRecord(bundle.getString("Unit"),User,"答對了" + bingo + "題," + "共花了" + totaltime + "秒,Star:"+star);
             }
         }
     };

@@ -46,6 +46,9 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         progressDialog = new ProgressDialog(this);
         buttonsignin = (Button) findViewById(R.id.buttonsignin);
         etemail = (EditText) findViewById(R.id.etemail);

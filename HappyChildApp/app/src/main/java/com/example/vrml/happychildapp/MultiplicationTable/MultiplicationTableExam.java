@@ -2,6 +2,7 @@ package com.example.vrml.happychildapp.MultiplicationTable;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -18,7 +19,9 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 
 import com.example.vrml.happychildapp.Choose_Mode;
+import com.example.vrml.happychildapp.Jennifer_Code.FireBaseDataBaseTool;
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.StarGrading.StarGrading;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Data;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 import com.example.vrml.happychildapp.menu_choose;
@@ -46,6 +49,8 @@ public class MultiplicationTableExam extends AppCompatActivity {
     private static MediaPlayer music;
     DisplayMetrics metrics = new DisplayMetrics();
     Turn_Card_Data turn_card_data;
+    private long startTime, timeup, totaltime;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
         getdataFromFirebase();
         StartSet();
         DialogSet();
+        startTime = System.currentTimeMillis();
 
     }
 
@@ -71,7 +77,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Bundle bundle = MultiplicationTableExam.this.getIntent().getExtras();
+                bundle = MultiplicationTableExam.this.getIntent().getExtras();
                 turn_card_data = new Turn_Card_Data(bundle,dataSnapshot);
                 str_array = turn_card_data.getData();
                 size = turn_card_data.getSize();
@@ -297,7 +303,17 @@ public class MultiplicationTableExam extends AppCompatActivity {
                 count++;
                 //完成後顯示成功
                 if (count == size) {
-                    ShowMessang("Successful");
+                    SharedPreferences sharedPreferences = getSharedPreferences("User" , MODE_PRIVATE);
+                    String User = sharedPreferences.getString("Name","");
+                    Log.e("DEBUG","Line302  name "+User);
+                    timeup = System.currentTimeMillis();
+                    totaltime = (timeup - startTime) / 1000;
+                    int star= StarGrading.getStar(bundle.getString("Unit"),size,count);
+                    Log.e("DEBUG","Line305 Unit"+bundle.getString("Unit"));
+                    FireBaseDataBaseTool.SendStudyRecord(bundle.getString("Unit")
+                            ,User
+                            ,"答對了" + count + "題," + "共花了" + totaltime + "秒,Star:"+star);
+                    ShowMessang("答對了" + count + "題," + "共花了" + totaltime + "秒,Star:"+star);
                     mRatingBar.setRating(3);
                     music.stop();
                 }

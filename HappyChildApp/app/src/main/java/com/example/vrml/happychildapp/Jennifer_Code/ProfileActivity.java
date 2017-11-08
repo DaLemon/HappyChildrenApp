@@ -34,6 +34,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         //一般登出畫面
         tvUserEmail = (TextView) findViewById(R.id.tvUserEmail);
         buttonLogout = (Button) findViewById(R.id.buttonlogout);

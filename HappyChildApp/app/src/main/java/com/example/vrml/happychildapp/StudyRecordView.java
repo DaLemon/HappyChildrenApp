@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +36,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,8 +49,9 @@ public class StudyRecordView extends AppCompatActivity {
     private UnitAdapter adapter;
     ArrayList<String> data;
     Bundle bundle;
-    boolean isTeacher=false;
-    HashMap<String,DataSnapshot> map;
+    boolean isTeacher = false;
+    DisplayMetrics metrics = new DisplayMetrics();
+    HashMap<String, DataSnapshot> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +59,15 @@ public class StudyRecordView extends AppCompatActivity {
         setContentView(R.layout.unit_choose);
         map = new HashMap<String, DataSnapshot>();
         listView = (ListView) this.findViewById(R.id.unit_list_veiw);
-        SharedPreferences Position =getSharedPreferences("Position",MODE_PRIVATE);
-        if (Position.equals(isTeacher)){
-            isTeacher=true;
+        SharedPreferences Position = getSharedPreferences("Position", MODE_PRIVATE);
+        if (Position.equals(isTeacher)) {
+            isTeacher = true;
         }
 
         data = new ArrayList<>();
         getdataFromFirebase();
     }
+
     private void getdataFromFirebase() {
         Intent intent = this.getIntent();
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("StudyRecord");
@@ -70,18 +75,14 @@ public class StudyRecordView extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot temp : dataSnapshot.getChildren()) {
-                    String result = "";
-                    for (DataSnapshot temp2 : temp.getChildren()){
-                        result+=temp2.getKey()+":";
-                        for (DataSnapshot temp3:temp2.getChildren()){
-//                            Log.e("DEBUG",temp3.getChildren().toString());
-                             map.put(temp2.getKey().toString(),temp3);
-                            Log.e("DEBUG",temp3+"");
-                        }
+                for (DataSnapshot temp : dataSnapshot.getChildren()) {//getUid
+                    Log.e("DEBUG", "Line 75 " + temp + "");
+                    for (DataSnapshot temp2 : temp.getChildren()) {
+                        map.put(temp2.getKey().toString(), temp2);
+                        Log.e("DEBUG", "Map  " + map);
                     }
                 }
-               ;
+
                 setListView(new ArrayList<String>(map.keySet()));
             }
 
@@ -94,25 +95,34 @@ public class StudyRecordView extends AppCompatActivity {
     }
 
     boolean first = true;
-    private void setListView( ArrayList data){
+
+    private void setListView(ArrayList data) {
         adapter = new UnitAdapter(data);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (first){
-                    first=false;
-                }else {
+                if (first) {
+                    first = false;
+                } else {
                     return;//應跳轉回menuChoose
                 }
-//                View view1 = LayoutInflater.from(StudyRecordView.this).inflate(R.layout.unit_choose_item, null);
                 TextView textView = (TextView) view.findViewById(R.id.textView2);
-                Log.e("DEBUG",textView.getText().toString());
                 ArrayList<String> data = new ArrayList<String>();
                 DataSnapshot result = map.get(textView.getText().toString());
-                for(DataSnapshot temp:result.getChildren()){
-                    Log.e("DEBUG",temp+"");
-                    data.add(result.getKey()+":"+temp.getValue());
+                Log.e("DEBUG", "ON item result : " + result);
+                for (DataSnapshot temp : result.getChildren()) {
+                    String UnitName = getString(getResources().getIdentifier(temp.getKey(),"string",getPackageName()));
+                    Log.e("DEBUG","UnitName  "+UnitName);
+                    for (DataSnapshot temp2 : temp.getChildren()) {
+                        long time = Long.parseLong(temp2.getKey());
+                        SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd HH:mm:ss");
+                        GregorianCalendar gc = new GregorianCalendar();
+                        gc.setTimeInMillis(time);
+                        String dateStr = dateformat.format(gc.getTime());
+                        Log.e("DEBUG","Time "+dateStr);
+                        data.add(UnitName + ":" + temp2.getValue()+":"+dateStr);
+                    }
                 }
                 setListView(data);
             }
@@ -143,11 +153,12 @@ public class StudyRecordView extends AppCompatActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
             View view1 = LayoutInflater.from(StudyRecordView.this).inflate(R.layout.unit_choose_item, null);
             TextView textView = (TextView) view1.findViewById(R.id.textView2);
             textView.setText(list.get(i));
+            textView.setTextSize(metrics.widthPixels/60);
             return view1;
         }
     }
 }
-
