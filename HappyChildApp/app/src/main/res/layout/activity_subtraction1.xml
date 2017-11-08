@@ -10,191 +10,103 @@
     android:layout_weight="4"
     tools:context="com.example.asus.math1.subtraction1">
 
-    <Button
-        android:text="回選單"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/back"
-        android:onClick="onClick"/>
-
     <LinearLayout
-        android:id="@+id/top_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#ffffff"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:weightSum="2">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="小花的書櫃裡原有32本書，被好朋友芬芬借走6本，請問：現在書櫃裡還有幾本書？ (小提示:把6本書移到黃色區塊!)"
-            android:textSize="35dp"
-            android:gravity="top"
-            android:textColor="#444"/>
-        <TextView
-            android:id="@+id/formula"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="=> 算式：32 - 6 = 26 (本)"
-            android:textSize="45dp"
-            android:gravity="top"
-            android:textColor="#3751e4"/>
-
-        <LinearLayout
-            android:id="@+id/nbk_1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/nbk1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook_10" />
-
-            <ImageView
-                android:id="@+id/nbk2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook_10" />
-
-            <ImageView
-                android:id="@+id/nbk3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/nbk_2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/nbk7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-
-            <ImageView
-                android:id="@+id/nbk13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/notebook64" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/yellowLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:weightSum="3">
 
         <LinearLayout
-            android:id="@+id/left_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#fbff94"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:id="@+id/top"
+            android:background="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="onClick"
+                    android:text="回選單"
+                    android:textSize="30dp"
+                    android:layout_marginRight="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ba"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="小花的書櫃裡原有16本書，被好朋友芬芬借走5本，請問：現在書櫃裡還有幾本書？"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:textSize="35dp" />
+
+                    <TextView
+                        android:id="@+id/x"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="=> 算式：16 - 5 = 11 (本)"
+                        android:textColor="#000000"
+                        android:textSize="35dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/prompt"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="#ffffff"
+                    android:gravity="right"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/xx"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/area1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#b7fcfc"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/area2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#fef099"
+                android:orientation="horizontal"
+                ></LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

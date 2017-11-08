@@ -100,4 +100,36 @@
         <item>@drawable/nine_64</item>
         <item>@drawable/nine_64</item>
     </array>
+
+    <array name="addArray1">
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+
+    </array>
+    <array name="addArray2">
+        <item>@drawable/maple128</item>
+        <item>@drawable/maple128</item>
+        <item>@drawable/maple128</item>
+        <item>@drawable/maple128</item>
+        <item>@drawable/maple128</item>
+        <item>@drawable/maple128</item>
+    </array>
+    <array name="minusArray1">
+        <item>@drawable/notebook128_10</item>
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+        <item>@drawable/notebook128</item>
+    </array>
+    <array name="minusArray2">
+        <item>@drawable/maple128_10</item>
+        <item>@drawable/maple128_5</item>
+        <item>@drawable/maple128_5</item>
+        <item>@drawable/maple128</item>
+    </array>
 </resources>

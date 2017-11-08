@@ -16,6 +16,8 @@ public class AdditionSubtractActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addition_subtraction);
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         DisplayMetrics metrics = getResources().getDisplayMetrics();

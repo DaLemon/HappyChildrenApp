@@ -1,5 +1,6 @@
 package com.example.vrml.happychildapp.Turn_page;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.example.vrml.happychildapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +45,6 @@ public class turn_page_data {
         int size = temp2.length;
         StorageReference storageRef = FirebaseStorage.getInstance().getReference(temp2[size-2]);
         StorageReference temp = storageRef.child(temp2[size-1]);
-//        Log.e("DEBUG","turnData line 46 : "+temp.toString());
         temp.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {

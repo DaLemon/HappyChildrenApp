@@ -48,7 +48,6 @@ public class MultiplicationTableExam extends AppCompatActivity {
     RatingBar mRatingBar;
     private static MediaPlayer music;
     DisplayMetrics metrics = new DisplayMetrics();
-    Turn_Card_Data turn_card_data;
     private long startTime, timeup, totaltime;
     Bundle bundle;
 
@@ -66,15 +65,6 @@ public class MultiplicationTableExam extends AppCompatActivity {
         startTime = System.currentTimeMillis();
 
     }
-
-    //    public void GetData() {
-//        從信慈Firebase 導入 TurnCardData
-//        List<String> list = 信慈.GetFromFireBase(Subject,Lesson);
-//        Turn_Card_Data turn_card_data = new Turn_Card_Data(list);
-//        String[] data = new String[]{"魟", "鮮", "聽", "聰", "眼", "睛", "狗", "狂", "物", "牧", "芊", "花", "樹", "柯", "吵", "嘴"};
-//        Turn_Card_Data turn_card_data = new Turn_Card_Data(data);
-//        str_array = turn_card_data.getData();
-//    }
     private void getdataFromFirebase() {
 
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
@@ -114,10 +104,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mHandler = new Handler();
-        if (progressThread != null) {
-            progressThread = new Thread(ProgressRunnable);
-            progressThread.start();
-        }
+
         if (!music.isPlaying()) {
             try {
 
@@ -158,7 +145,6 @@ public class MultiplicationTableExam extends AppCompatActivity {
                     ShowExit();
                 }
             });
-            ProgressBarSetting();
             count = 0;
             Rand();
             StarSet();
@@ -268,11 +254,6 @@ public class MultiplicationTableExam extends AppCompatActivity {
                     break;
                 case AlertDialog.BUTTON_NEGATIVE:
                     mHandler = new Handler();
-                    if (progressThread != null) {
-                        progressThread = new Thread(ProgressRunnable);
-                        progressThread.start();
-                    }
-
                     break;
                 default:
                     break;
@@ -349,46 +330,6 @@ public class MultiplicationTableExam extends AppCompatActivity {
         }
     };
     Handler mHandler;
-    Thread progressThread;
-    ProgressBar progressBar = null;
-
-    //ProgressBar初始值設定
-    private void ProgressBarSetting() {
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setScaleY(4f);
-        progressBar.setMax(600);
-        progressBar.setProgress(600);
-        mHandler = new Handler();
-        progressThread = new Thread(ProgressRunnable);
-        progressThread.start();
-    }
-
-    //ProgressBar的Runnable
-    Runnable ProgressRunnable = new Runnable() {
-        @Override
-        public void run() {
-
-            while (progressBar.getProgress() > 0 && mHandler != null) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressBar.incrementProgressBy(-1);
-                    }
-                });
-                android.os.SystemClock.sleep(100);
-            }
-            if (progressBar.getProgress() == 0) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        ShowMessang("Time Out ~~");
-                        music.stop();
-                    }
-                });
-            }
-            Log.e("DEBUG", "TurnGame LINE207");
-        }
-    };
 
     //音樂暫停
     @Override

@@ -94,10 +94,7 @@ public class Turn_Card_Game extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mHandler = new Handler();
-        if (progressThread != null) {
-            progressThread = new Thread(ProgressRunnable);
-            progressThread.start();
-        }
+
         if (!music.isPlaying()) {
             try {
 
@@ -138,7 +135,7 @@ public class Turn_Card_Game extends AppCompatActivity {
                     ShowExit();
                 }
             });
-            ProgressBarSetting();
+//            ProgressBarSetting();
             count = 0;
             Rand();
             StarSet();
@@ -248,10 +245,6 @@ public class Turn_Card_Game extends AppCompatActivity {
                     break;
                 case AlertDialog.BUTTON_NEGATIVE:
                     mHandler = new Handler();
-                    if (progressThread != null) {
-                        progressThread = new Thread(ProgressRunnable);
-                        progressThread.start();
-                    }
 
                     break;
                 default:
@@ -328,46 +321,6 @@ public class Turn_Card_Game extends AppCompatActivity {
         }
     };
     Handler mHandler;
-    Thread progressThread;
-    ProgressBar progressBar = null;
-
-    //ProgressBar初始值設定
-    private void ProgressBarSetting() {
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setScaleY(4f);
-        progressBar.setMax(600);
-        progressBar.setProgress(600);
-        mHandler = new Handler();
-        progressThread = new Thread(ProgressRunnable);
-        progressThread.start();
-    }
-
-    //ProgressBar的Runnable
-    Runnable ProgressRunnable = new Runnable() {
-        @Override
-        public void run() {
-
-            while (progressBar.getProgress() > 0 && mHandler != null) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressBar.incrementProgressBy(-1);
-                    }
-                });
-                android.os.SystemClock.sleep(100);
-            }
-            if (progressBar.getProgress() == 0) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        ShowMessang("Time Out ~~");
-                        music.stop();
-                    }
-                });
-            }
-            Log.e("DEBUG", "TurnGame LINE207");
-        }
-    };
 
     //音樂暫停
     @Override

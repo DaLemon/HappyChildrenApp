@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
 import com.example.vrml.happychildapp.MatchGame.MatchGameData;
@@ -345,8 +346,6 @@ public class turnView extends View {
 
         if (start < 0) {//表示小於兩張圖 因此只需要目前到最後一張就好
             isLastPage = true;
-            //代入下面的for迴圈印出最後一張
-
             start = 0;
             end = 1;
         }

@@ -36,14 +36,11 @@ public class turn_page_pratice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wait_layout);
-        getSupportActionBar().hide(); //隱藏標題
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         dialog = ProgressDialog.show(turn_page_pratice.this, "讀取中", "資料下載中...",true);
         mBitmaps = new ArrayList<>();
         getdataFromFirebase();
     }
     long size;
-    turn_page_data turn_page_data;
     private void getdataFromFirebase() {
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -68,7 +65,7 @@ public class turn_page_pratice extends AppCompatActivity {
                         public void onSuccess(byte[] bytes) {
                             Bitmap temp = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
                             mBitmaps.add(temp);
-                            Log.e("DEBUG","turnPratice Line 67 size: "+mBitmaps.size());
+                            Log.e("DEBUG","Fuckkkkk "+mBitmaps.size());
                             if(mBitmaps.size() == turn_page_pratice.this.size){
                                 setContentView(new turnView(turn_page_pratice.this,mBitmaps));
                                 dialog.dismiss();
