@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vrml.happychildapp.Jennifer_Code.TeacherName_Menu;
+
 import java.util.ArrayList;
 
 /**
@@ -37,14 +39,25 @@ public class Choose_Chinese_Math extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(Choose_Chinese_Math.this,Choose_Mode.class);
+                Intent intent = new Intent(Choose_Chinese_Math.this, Choose_Mode.class);
                 Bundle bundle = Choose_Chinese_Math.this.getIntent().getExtras();
-                if (i == 0)
-                    bundle.putString("Subject","Chinese");
-                else
-                    bundle.putString("Subject","Math");
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if (i == 0) {
+                    bundle.putString("Subject", "Chinese");
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+
+                if (i == 1) {
+                    bundle.putString("Subject", "Math");
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                if (i == 2) {
+                    Intent intent1 = new Intent(Choose_Chinese_Math.this, TeacherName_Menu.class);
+                    bundle.putString("Subject", "Share");
+                    intent1.putExtras(bundle);
+                    startActivity(intent1);
+                }
                 Choose_Chinese_Math.this.finish();
             }
         });
@@ -54,6 +67,7 @@ public class Choose_Chinese_Math extends AppCompatActivity {
         data = new ArrayList<>();
         data.add("國文");
         data.add("數學");
+        data.add("共享區");
         return data;
     }
 

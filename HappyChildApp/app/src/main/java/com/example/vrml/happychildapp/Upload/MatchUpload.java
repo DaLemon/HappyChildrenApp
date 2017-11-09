@@ -119,11 +119,10 @@ public class MatchUpload extends AppCompatActivity {
     private void showfilechooser(){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
-        startActivityForResult(intent.createChooser(intent,"Select the PPT"),PICKFILE_RESULT_CODE);
+        startActivityForResult(intent.createChooser(intent,"Select the image"),PICKFILE_RESULT_CODE);
     }
     private void fileupload(){
         index = 0;
-
         progressDialog.show();
         FireBaseDataBaseTool.SendStorage("MatchGame",imagepath[index],filepath[index],successListener,failureListener);
     }

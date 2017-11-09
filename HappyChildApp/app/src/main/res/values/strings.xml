@@ -11,6 +11,8 @@
     <string name="AddSubUpload">加減法題庫上傳</string>
     <string name="TimeUpload">認識時間上傳</string>
     <string name="MultiplicationTableUpload">九九乘法表上傳</string>
+
+    <string name="TeacherName_Menu">共享的教材</string>
     <string name="Menu">Menu</string>
     <string name="Unit1">Unit1</string>
     <string name="Make_Teaching_materials">建立教材</string>

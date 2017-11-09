@@ -1,5 +1,4 @@
-package com.example.vrml.happychildapp;
-
+package com.example.vrml.happychildapp.Jennifer_Code;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,36 +14,17 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.vrml.happychildapp.AddSub.AddSub;
-import com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity;
-import com.example.vrml.happychildapp.HYC_Code.MultiplicationTable.MultiplicationTable;
-import com.example.vrml.happychildapp.HYC_Code.VideoView.TimeVideo;
-import com.example.vrml.happychildapp.Homonym.Homonym;
-import com.example.vrml.happychildapp.MatchGame.MatchGame;
-import com.example.vrml.happychildapp.TimeGame.TimeGame;
-import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
-import com.example.vrml.happychildapp.Turn_page.turn_page_pratice;
-import com.example.vrml.happychildapp.Upload.AddSubUpload;
-import com.example.vrml.happychildapp.Upload.HandUpload;
-import com.example.vrml.happychildapp.Upload.HomonymUpload;
-import com.example.vrml.happychildapp.Upload.MatchUpload;
-import com.example.vrml.happychildapp.Upload.MultiplicationTableUpload;
-import com.example.vrml.happychildapp.Upload.TimeUpload;
+import com.example.vrml.happychildapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
 
-
-public class StudyRecordView extends AppCompatActivity {
+public class TeacherName_Menu extends AppCompatActivity {
     private ListView listView;
     private UnitAdapter adapter;
     ArrayList<String> data;
@@ -73,17 +53,15 @@ public class StudyRecordView extends AppCompatActivity {
 
     private void getdataFromFirebase() {
         Intent intent = this.getIntent();
-        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("StudyRecord");
+        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach").child("Share");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot temp : dataSnapshot.getChildren()) {
-                    Log.e("DEBUG", "Line 75 " + temp + "");
-                    for (DataSnapshot temp2 : temp.getChildren()) {
-                        map.put(temp2.getKey().toString(), temp2);
-                        Log.e("DEBUG", "Map  " + map);
-                    }
+                    map.put(temp.getKey().toString(), temp);
+                    Log.e("DEBUG", "Line 62 map " + temp + "");
+//
                 }
 
                 setListView(new ArrayList<String>(map.keySet()));
@@ -105,28 +83,29 @@ public class StudyRecordView extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 if (first) {
                     first = false;
                 } else {
-                    return;//應跳轉回menuChoose
+                    return;
                 }
                 TextView textView = (TextView) view.findViewById(R.id.textView2);
                 ArrayList<String> data = new ArrayList<String>();
                 DataSnapshot result = map.get(textView.getText().toString());
                 Log.e("DEBUG", "ON item result : " + result);
                 for (DataSnapshot temp : result.getChildren()) {
-                    String UnitName = getString(getResources().getIdentifier(temp.getKey(),"string",getPackageName()));
-                    Log.e("DEBUG","UnitName  "+UnitName);
-                    for (DataSnapshot temp2 : temp.getChildren()) {
-                        long time = Long.parseLong(temp2.getKey());
-                        SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd HH:mm:ss");
-                        GregorianCalendar gc = new GregorianCalendar();
-                        gc.setTimeInMillis(time);
-                        String dateStr = dateformat.format(gc.getTime());
-                        Log.e("DEBUG","Time "+dateStr);
-                        data.add(UnitName + ":" + temp2.getValue()+":"+dateStr);
-                    }
+                    data.add(temp.getKey().toString());
+                    Log.e("DEBUG", "UnitName  " + temp);
                 }
+
+
+//                String UserName=listView.getItemAtPosition(position).toString();
+//                Log.e("DEBUG","Filename  "+UserName);
+//                Intent intent = new Intent();
+//                intent.setClass(TeacherName_Menu.this,showPPTview.class);
+//                intent.putExtra("UserName",UserName);
+//                startActivity(intent);
+
                 setListView(data);
             }
         });
@@ -154,14 +133,18 @@ public class StudyRecordView extends AppCompatActivity {
             return i;
         }
 
+
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             getWindowManager().getDefaultDisplay().getMetrics(metrics);
-            View view1 = LayoutInflater.from(StudyRecordView.this).inflate(R.layout.unit_choose_item, null);
+            View view1 = LayoutInflater.from(TeacherName_Menu.this).inflate(R.layout.unit_choose_item, null);
             TextView textView = (TextView) view1.findViewById(R.id.textView2);
             textView.setText(list.get(i));
-            textView.setTextSize(metrics.widthPixels/60);
+            textView.setTextSize(metrics.widthPixels / 60);
             return view1;
         }
+
+
     }
+
 }

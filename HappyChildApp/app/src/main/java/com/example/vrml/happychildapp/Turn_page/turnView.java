@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
 import com.example.vrml.happychildapp.MatchGame.MatchGameData;
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.menu_choose;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -346,6 +347,7 @@ public class turnView extends View {
 
         if (start < 0) {//表示小於兩張圖 因此只需要目前到最後一張就好
             isLastPage = true;
+//            Toast.makeText(getContext(),"最後一頁～",Toast.LENGTH_SHORT).show();不會消失...
             start = 0;
             end = 1;
         }
