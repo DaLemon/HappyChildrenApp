@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/loginBG"
     android:weightSum="10"
     >
     <LinearLayout
@@ -41,6 +42,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -48,6 +50,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -55,6 +58,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -62,6 +66,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:elevation="0dp"
                     android:text="Button" />
             </TableRow>
@@ -77,6 +82,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -84,6 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -91,6 +98,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -98,6 +106,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
             </TableRow>
 
@@ -112,6 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -119,6 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -126,6 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -133,6 +145,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
             </TableRow>
 
@@ -148,6 +161,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -155,6 +169,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -162,6 +177,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                    android:background="@color/loginEdit"
                     android:text="Button" />
 
                 <Button
@@ -169,15 +185,21 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/tt"
-                    android:text="Button" />
+                    android:background="@color/loginEdit"
+                    />
             </TableRow>
         </TableLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"></LinearLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1.4">
 
             <RatingBar
                 android:id="@+id/ratingBar1"
@@ -190,15 +212,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
+                android:background="@color/loginEdit"
                 android:gravity="center"
-                android:text="Back" />
+                android:text="Back"
+                android:textColor="@color/loginText" />
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.3"
             android:orientation="horizontal"></LinearLayout>
 
     </LinearLayout>

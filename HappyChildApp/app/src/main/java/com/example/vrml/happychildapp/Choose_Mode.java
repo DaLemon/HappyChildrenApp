@@ -33,11 +33,11 @@ public class Choose_Mode extends AppCompatActivity {
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,0);
         soundID = soundPool.load(this,R.raw.dong,0);
         if(metrics.widthPixels > 2000) {
-            to_turncard.setTextSize(metrics.widthPixels / 30);
-            to_teaching.setTextSize(metrics.widthPixels / 30);
+            to_turncard.setTextSize(metrics.widthPixels / 20);
+            to_teaching.setTextSize(metrics.widthPixels / 20);
         }else {
-            to_turncard.setTextSize(metrics.widthPixels / 60);
-            to_teaching.setTextSize(metrics.widthPixels / 60);
+            to_turncard.setTextSize(metrics.widthPixels / 40);
+            to_teaching.setTextSize(metrics.widthPixels / 40);
         }
         to_teaching.setOnClickListener(ModeChoose);
 

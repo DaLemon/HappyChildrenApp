@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.vrml.myapplication.TurnCardGame.Turn_Card_Game">
+    tools:context="com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game">
 
     <Button
         android:text="start"

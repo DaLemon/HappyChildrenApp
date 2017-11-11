@@ -167,9 +167,10 @@ public class Turn_Card_Game extends AppCompatActivity {
                         buttons[i].setTextSize(metrics.widthPixels / 120);
                     }
                 }
-                buttons[i].setTextColor(Color.BLUE);
+                buttons[i].setTextColor(Color.parseColor("#2a7391"));
                 buttons[i].setOnClickListener(onClickListener);
-                buttons[i].setBackgroundResource(R.drawable.tt);
+//                temp.setBackgroundResource(R.drawable.tt);
+
             }
         }
     }
@@ -229,6 +230,7 @@ public class Turn_Card_Game extends AppCompatActivity {
                         setContentView(R.layout.trun_card_game_start);
                         StartSet();
                         startActivity(new Intent(Turn_Card_Game.this, menu_choose.class));
+                        Turn_Card_Game.this.finish();
                     }
                 }).setCancelable(false).show();
 
@@ -314,7 +316,8 @@ public class Turn_Card_Game extends AppCompatActivity {
             }
             //不同則恢復
 
-            temp.setBackgroundResource(R.drawable.tt);
+//            temp.setBackgroundResource(R.drawable.tt);
+            temp.setBackgroundColor(Color.parseColor("#faebe4"));
             temp = null;
             text1 = "";
 
