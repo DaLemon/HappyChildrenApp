@@ -99,6 +99,12 @@
             android:screenOrientation="landscape">
         </activity>
 
+        <activity android:name=".Jennifer_Code.DownloadView"
+            android:screenOrientation="landscape"></activity>
+
+        <activity android:name=".Jennifer_Code.pptShow"
+            android:screenOrientation="landscape"></activity>
+
         <activity android:name=".Jennifer_Code.TeacherName_Menu"
             android:label="@string/TeacherName_Menu"
             android:screenOrientation="landscape"></activity>

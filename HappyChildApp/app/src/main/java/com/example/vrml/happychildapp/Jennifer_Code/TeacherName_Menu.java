@@ -32,6 +32,8 @@ public class TeacherName_Menu extends AppCompatActivity {
     boolean isTeacher = false;
     DisplayMetrics metrics = new DisplayMetrics();
     HashMap<String, DataSnapshot> map;
+    String User,FileName;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class TeacherName_Menu extends AppCompatActivity {
     }
 
     private void getdataFromFirebase() {
-        Intent intent = this.getIntent();
+
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach").child("Share");
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -83,16 +85,29 @@ public class TeacherName_Menu extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView textView = (TextView) view.findViewById(R.id.textView2);
 
                 if (first) {
                     first = false;
                 } else {
+                    FileName = textView.getText().toString();
+                    String TypeName = map.get(User).child(FileName).getValue().toString();
+                    bundle = new Bundle();
+                    bundle.putString("Subject","Share");
+                    bundle.putString("User",User);
+                    bundle.putString("FileName",FileName);
+                    bundle.putString("TypeName",TypeName);
+                    startActivity(new Intent(TeacherName_Menu.this,DownloadView.class).putExtras(bundle));
+                    TeacherName_Menu.this.finish();
+
                     return;
                 }
-                TextView textView = (TextView) view.findViewById(R.id.textView2);
+
                 ArrayList<String> data = new ArrayList<String>();
                 DataSnapshot result = map.get(textView.getText().toString());
-                Log.e("DEBUG", "ON item result : " + result);
+                User = textView.getText().toString();
+
+                Log.e("DEBUG", "User : " + textView.getText().toString());
                 for (DataSnapshot temp : result.getChildren()) {
                     data.add(temp.getKey().toString());
                     Log.e("DEBUG", "UnitName  " + temp);

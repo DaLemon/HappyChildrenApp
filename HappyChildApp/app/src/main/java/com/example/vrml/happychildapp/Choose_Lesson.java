@@ -68,6 +68,7 @@ public class Choose_Lesson extends AppCompatActivity {
             Class<?> cls=map.get(bundle.getString("Unit"));
 //            Log.e("DEBUG","58  "+bundle.getString("Unit"));
             startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
+            Choose_Lesson.this.finish();
         }else {
             getdataFromFirebase();
         }
@@ -127,7 +128,7 @@ public class Choose_Lesson extends AppCompatActivity {
 
 
                 startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
-
+                Choose_Lesson.this.finish();
             }
         });
     }

@@ -71,8 +71,8 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
     }
     private void filechooser(){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("application/vnd.ms-powerpoint");ppt
-        intent.setType("application/vnd.openxmlformats-officedocument.presentationml.presentation");//pptx
+        intent.setType("application/vnd.ms-powerpoint");//ppt
+//        intent.setType("application/vnd.openxmlformats-officedocument.presentationml.presentation");//pptx
         startActivityForResult(intent.createChooser(intent,"請選擇一項要上傳的檔案"),PICKFILE_RESULT_CODE);
     }
     private void fileupload() {
@@ -88,11 +88,13 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
         if (filepath != null && !isEmpty ) {
             Log.e("DEBUG","有進來");
             Log.e("DEBUG","     "+NameText.getText().toString().matches(""));
-//            Pattern pattern = Pattern.compile("[.]");
-//            String[] PathSplit = pattern.split(filepath.toString());
-//            int size = PathSplit.length;
-//            String FileName = PathSplit[size-2];//裁切檔名
+            Pattern pattern = Pattern.compile("[.]");
+            String[] PathSplit = pattern.split(filepath.toString());
+            int size = PathSplit.length;
 //            String TypeName = PathSplit[size-1];
+            String TypeName = ".ppt";
+            Log.e("DEBUG","filepath     "+filepath);
+//            Log.e("DEBUG","Type "+TypeName);
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("上傳中......");
             progressDialog.show();
@@ -107,7 +109,7 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
             } else {
                 Filename = "Private/";
             }
-            myRef.child(choosePath[0]).child(choosePath[1]).child(User).child(choosePath[2]).child("PPT'sName").setValue(choosePath[2]);
+            myRef.child(choosePath[0]).child(choosePath[1]).child(User).child(choosePath[2]).setValue(TypeName);
             StorageReference riversRef = StorageRef.getStorage().getReference().child(Filename).child(User).child(NameText.getText().toString());
             Log.e("DEBUG","Line 84 riversRef "+riversRef);
             riversRef.putFile(filepath)
@@ -149,12 +151,12 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
         if(requestCode== PICKFILE_RESULT_CODE && resultCode==RESULT_OK && data!=null && data.getData()!=null){
             filepath=data.getData();
 
-            try {
-                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),filepath);
-                image.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),filepath);
+//                image.setImageBitmap(bitmap);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 

@@ -148,7 +148,8 @@ public class AddSub extends AppCompatActivity {
                 .setNegativeButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(AddSub.this, menu_choose.class));
+//                        startActivity(new Intent(AddSub.this, menu_choose.class));
+                        AddSub.this.finish();
                     }
                 }).setCancelable(false).show();
 

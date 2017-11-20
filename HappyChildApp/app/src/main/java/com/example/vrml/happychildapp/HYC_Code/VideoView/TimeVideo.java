@@ -66,6 +66,7 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
 
     File localFile;
     public void DownloadFile(String path){
+        Log.e("DEBUG","Path "+path);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference temp = storageRef.child(path);
         Pattern pattern = Pattern.compile("[./]");
