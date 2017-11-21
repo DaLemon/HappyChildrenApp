@@ -27,4 +27,5 @@ public class DownloadView extends AppCompatActivity {
             //VideoView
         }
     }
+
 }

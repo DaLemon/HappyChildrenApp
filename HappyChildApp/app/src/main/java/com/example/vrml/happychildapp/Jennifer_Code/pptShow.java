@@ -26,12 +26,13 @@ import java.util.regex.Pattern;
 public class pptShow extends AppCompatActivity {
     PPTViewer pptViewer;
     String FileName,TypeName;
+    Bundle bundle;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pptshow);
 
-        Bundle bundle = getIntent().getExtras();
+        bundle = getIntent().getExtras();
         pptViewer = (PPTViewer) findViewById(R.id.pptViewer);
         pptViewer.setNext_img(R.drawable.next)
                 .setPrev_img(R.drawable.prev)
@@ -45,14 +46,19 @@ public class pptShow extends AppCompatActivity {
         DownloadFile(test);
     }
     File localFile;
-
     public void DownloadFile(String path){
         Log.e("DEBUG","Path "+path);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference temp = storageRef.child(path);
+        File rootPath = new File(Environment.getExternalStorageDirectory(), "/Download");
+        Log.e("DEBUG","54 rootPath "+rootPath);
+        if(!rootPath.exists()) {
+            rootPath.mkdirs();
+        }
         try {
-            localFile = File.createTempFile(FileName, TypeName);
-        } catch (IOException e) {
+            localFile = new File(rootPath,bundle.getString("FileName"));
+            Log.e("DEBUG","60 localFile"+localFile);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         temp.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
@@ -60,9 +66,9 @@ public class pptShow extends AppCompatActivity {
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 // Dialog miss
                 try {
-                    String filepath = Environment.getExternalStorageDirectory().getPath();
-                    filepath += "/Download/a.ppt";
-
+//                    String filepath = Environment.getExternalStorageDirectory().getPath();
+//                    filepath += "/Download/a.ppt";
+                    String filepath = localFile+".ppt";
                     pptViewer.loadPPT(pptShow.this,filepath);
                     Log.e("DEBUG","LocalFile    "+filepath);
 
