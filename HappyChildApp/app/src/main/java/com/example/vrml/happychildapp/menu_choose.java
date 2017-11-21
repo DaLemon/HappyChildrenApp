@@ -53,10 +53,10 @@ public class menu_choose extends AppCompatActivity {
                     case "學習紀錄":
                         intent.setClass(menu_choose.this,StudyRecordView.class);
                         break;
-                    case "教材分享區":
+                    case "非共享教材區":
                         Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
                         break;
-                    case "建立新教材":
+                    case "新增教材":
                         intent.setClass(menu_choose.this, StorageActivity.class);
 
                         break;
@@ -87,8 +87,8 @@ public class menu_choose extends AppCompatActivity {
             data.add("我的教學");//0
             data.add("學習紀錄");//1
             if(Position.equals("老師")){
-                data.add("教材分享區");//2
-                data.add("建立新教材");//3
+                data.add("非共享教材區");//2
+                data.add("新增教材");//3
                 data.add("新增題庫");
             }
             data.add("登出");

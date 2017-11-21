@@ -48,7 +48,10 @@
             android:id="@+id/addsubsubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="確定送出"
+
+            android:background="@color/loginBG"
+            android:textColor="@color/loginText"/>
 
     </LinearLayout>
 
@@ -56,7 +59,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/loginEdit">
 
         <EditText
             android:id="@+id/Num1_2"
@@ -126,7 +130,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/loginEdit">
 
         <EditText
             android:id="@+id/Num1_4"

@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -178,7 +179,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
                 }
                 buttons[i].setTextColor(Color.BLUE);
                 buttons[i].setOnClickListener(onClickListener);
-                buttons[i].setBackgroundResource(R.drawable.tt);
+//                buttons[i].setBackgroundResource(R.drawable.tt);
             }
         }
     }
@@ -238,6 +239,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
                         setContentView(R.layout.trun_card_game_start);
                         StartSet();
                         startActivity(new Intent(MultiplicationTableExam.this, menu_choose.class));
+                        MultiplicationTableExam.this.finish();
                     }
                 }).setCancelable(false).show();
 
@@ -282,7 +284,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
 
                 text1 = text;
                 temp = button;
-                temp.setBackgroundColor(Color.parseColor("#00FFFF"));
+                temp.setBackgroundResource(R.drawable.turn_card_change);
                 return;
             }
             for (i = 0; i < str_array.length; i++) {
@@ -305,11 +307,9 @@ public class MultiplicationTableExam extends AppCompatActivity {
                 if (count == size) {
                     SharedPreferences sharedPreferences = getSharedPreferences("User" , MODE_PRIVATE);
                     String User = sharedPreferences.getString("Name","");
-                    Log.e("DEBUG","Line302  name "+User);
                     timeup = System.currentTimeMillis();
                     totaltime = (timeup - startTime) / 1000;
                     int star= StarGrading.getStar(bundle.getString("Unit"),size,count);
-                    Log.e("DEBUG","Line305 Unit"+bundle.getString("Unit"));
                     FireBaseDataBaseTool.SendStudyRecord(bundle.getString("Unit")
                             ,User
                             ,"答對了" + count + "題," + "共花了" + totaltime + "秒,Star:"+star);
@@ -323,7 +323,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
             }
             //不同則恢復
 
-            temp.setBackgroundResource(R.drawable.tt);
+            temp.setBackgroundResource(R.drawable.buttonshape);
             temp = null;
             text1 = "";
 

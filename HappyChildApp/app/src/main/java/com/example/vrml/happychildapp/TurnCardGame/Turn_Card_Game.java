@@ -169,7 +169,6 @@ public class Turn_Card_Game extends AppCompatActivity {
                 }
                 buttons[i].setTextColor(Color.parseColor("#2a7391"));
                 buttons[i].setOnClickListener(onClickListener);
-//                temp.setBackgroundResource(R.drawable.tt);
 
             }
         }
@@ -276,7 +275,7 @@ public class Turn_Card_Game extends AppCompatActivity {
 
                 text1 = text;
                 temp = button;
-                temp.setBackgroundColor(Color.parseColor("#00FFFF"));
+                temp.setBackgroundResource(R.drawable.turn_card_change);
                 return;
             }
             for (i = 0; i < str_array.length; i++) {
@@ -316,8 +315,7 @@ public class Turn_Card_Game extends AppCompatActivity {
             }
             //不同則恢復
 
-//            temp.setBackgroundResource(R.drawable.tt);
-            temp.setBackgroundColor(Color.parseColor("#faebe4"));
+            temp.setBackgroundResource(R.drawable.buttonshape);
             temp = null;
             text1 = "";
 

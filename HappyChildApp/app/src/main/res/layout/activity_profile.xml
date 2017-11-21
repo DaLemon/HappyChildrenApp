@@ -8,9 +8,9 @@
     android:background="@color/loginBG"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical"
     android:weightSum="6"
-    tools:context="com.example.vrml.happychildapp.Jennifer_Code.ProfileActivity">
+    tools:context="com.example.vrml.happychildapp.Jennifer_Code.ProfileActivity"
+    android:orientation="vertical">
 
 
     <LinearLayout

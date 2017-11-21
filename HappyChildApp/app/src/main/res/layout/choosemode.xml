@@ -1,33 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="2"
+    android:weightSum="6"
     >
 
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        >
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="4"
+        android:weightSum="11">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
 
         <Button
-            android:text="教學"
-            android:layout_width="fill_parent"
+            android:id="@+id/to_teaching"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:id="@+id/to_teaching" />
-    </RelativeLayout>
+            android:layout_weight="4"
+            android:background="@drawable/buttonshape"
+            android:textColor="@color/loginText"
+            android:text="教學" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
 
         <Button
-            android:id="@+id/to_turncard"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="測驗" />
-    </RelativeLayout>
+                android:id="@+id/to_turncard"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/loginText"
+                android:text="測驗" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"></LinearLayout>
+
 </LinearLayout>

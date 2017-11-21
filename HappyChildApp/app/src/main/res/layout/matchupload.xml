@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:weightSum="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/loginEdit">
 
         <EditText
             android:id="@+id/ChineseEditText1"
@@ -88,7 +89,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:weightSum="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/loginEdit">
 
         <EditText
             android:id="@+id/ChineseEditText3"
@@ -165,7 +167,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:background="@color/loginEdit">
 
         <EditText
             android:id="@+id/ChineseEditText5"
@@ -222,7 +225,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="確定送出" />
+            android:text="確定送出"
+
+            android:background="@color/loginBG"
+            android:textColor="@color/loginText"/>
 
     </LinearLayout>
 

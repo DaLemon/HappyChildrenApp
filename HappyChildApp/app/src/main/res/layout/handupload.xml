@@ -8,8 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-
-        android:background="@color/dot_light_screen3"
         android:orientation="vertical">
 
         <EditText
@@ -19,6 +17,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對1-1"
             android:text="" />
 
         <EditText
@@ -28,6 +27,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對1-2"
             android:text="" />
 
     </LinearLayout>
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/dot_light_screen2"
+        android:background="@color/loginEdit"
         android:orientation="vertical">
 
         <EditText
@@ -46,6 +46,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對2-1"
             android:text="" />
 
         <EditText
@@ -55,6 +56,7 @@
             android:ems="1"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對2-2"
             android:text="" />
 
     </LinearLayout>
@@ -63,7 +65,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/dot_light_screen3"
         android:layout_weight="1">
 
         <EditText
@@ -73,6 +74,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對3-1"
             android:text="" />
 
         <EditText
@@ -82,6 +84,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對3-2"
             android:text="" />
 
     </LinearLayout>
@@ -90,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/dot_light_screen2"
+        android:background="@color/loginEdit"
         android:layout_weight="1">
 
         <EditText
@@ -100,6 +103,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對4-1"
             android:text="" />
 
         <EditText
@@ -109,6 +113,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對4-2"
             android:text="" />
 
     </LinearLayout>
@@ -117,7 +122,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/dot_light_screen3"
         android:layout_weight="1">
 
         <EditText
@@ -127,6 +131,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對5-1"
             android:text="" />
 
         <EditText
@@ -136,6 +141,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對5-2"
             android:text="" />
 
     </LinearLayout>
@@ -144,7 +150,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/dot_light_screen2"
+        android:background="@color/loginEdit"
         android:layout_weight="1">
 
         <EditText
@@ -154,6 +160,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對6-1"
             android:text="" />
 
         <EditText
@@ -163,6 +170,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對6-2"
             android:text="" />
 
     </LinearLayout>
@@ -171,7 +179,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/dot_light_screen3"
         android:layout_weight="1">
 
         <EditText
@@ -181,6 +188,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對7-1"
             android:text="" />
 
         <EditText
@@ -190,6 +198,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對7-2"
             android:text="" />
 
     </LinearLayout>
@@ -198,7 +207,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/dot_light_screen2"
+        android:background="@color/loginEdit"
         android:orientation="vertical">
 
         <EditText
@@ -208,6 +217,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對8-1"
             android:text="" />
 
         <EditText
@@ -217,6 +227,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="1"
+            android:hint="輸入配對8-2"
             android:text="" />
 
         <EditText
@@ -225,12 +236,16 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:hint="輸入單元名稱"
             android:text="" />
 
         <Button
             android:id="@+id/summit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="確定送出" />
+            android:text="確定送出"
+
+            android:background="@color/loginBG"
+            android:textColor="@color/loginText"/>
     </LinearLayout>
 </LinearLayout>

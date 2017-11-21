@@ -42,7 +42,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -50,7 +50,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -58,7 +58,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -66,7 +66,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:elevation="0dp"
                     android:text="Button" />
             </TableRow>
@@ -82,7 +82,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -90,7 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -98,7 +98,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -106,7 +106,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
             </TableRow>
 
@@ -121,7 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -137,7 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -145,7 +145,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
             </TableRow>
 
@@ -161,7 +161,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -169,7 +169,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -177,7 +177,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:background="@drawable/buttonshape"
                     android:text="Button" />
 
                 <Button
@@ -185,7 +185,8 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/loginEdit"
+                    android:text="Button"
+                    android:background="@drawable/buttonshape"
                     />
             </TableRow>
         </TableLayout>
@@ -212,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:background="@color/loginEdit"
+                android:background="@drawable/buttonshape"
                 android:gravity="center"
                 android:text="Back"
                 android:textColor="@color/loginText" />
