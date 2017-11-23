@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.vrml.happychildapp.Jennifer_Code.SignInActivity;
 import com.example.vrml.happychildapp.Jennifer_Code.SignOut;
 import com.example.vrml.happychildapp.Jennifer_Code.StorageActivity;
+import com.example.vrml.happychildapp.Jennifer_Code.TeacherName_Menu;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,9 @@ public class menu_choose extends AppCompatActivity {
                         intent.setClass(menu_choose.this,StudyRecordView.class);
                         break;
                     case "非共享教材區":
-                        Toast.makeText(menu_choose.this,"還沒完成",Toast.LENGTH_SHORT).show();
+                        intent.setClass(menu_choose.this,TeacherName_Menu.class);
+                        bundle.putString("Heading","Upload");
+                        bundle.putString("Subject","Private");
                         break;
                     case "新增教材":
                         intent.setClass(menu_choose.this, StorageActivity.class);

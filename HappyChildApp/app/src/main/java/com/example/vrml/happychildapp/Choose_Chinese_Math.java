@@ -54,6 +54,7 @@ public class Choose_Chinese_Math extends AppCompatActivity {
                 }
                 if (i == 2) {
                     Intent intent1 = new Intent(Choose_Chinese_Math.this, TeacherName_Menu.class);
+                    bundle.putString("Heading","Teach");
                     bundle.putString("Subject", "Share");
                     intent1.putExtras(bundle);
                     startActivity(intent1);

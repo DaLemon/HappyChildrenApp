@@ -48,7 +48,9 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/etpassword"
-            android:hint="輸入密碼" />
+            android:hint="輸入密碼"
+            android:maxLength="12"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345678_"/>
 
         <TextView
             android:layout_width="match_parent"

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -34,6 +35,9 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
     private MediaController vidControl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_view);
         vidControl = new MediaController(this);

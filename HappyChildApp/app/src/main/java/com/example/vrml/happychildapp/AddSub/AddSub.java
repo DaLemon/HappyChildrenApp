@@ -98,11 +98,11 @@ public class AddSub extends AppCompatActivity {
     }
     private void size() {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        num1.setTextSize(metrics.widthPixels / 40);
-        num2.setTextSize(metrics.widthPixels / 40);
-        ans.setTextSize(metrics.widthPixels / 40);
-        add.setTextSize(metrics.widthPixels / 40);
-        sub.setTextSize(metrics.widthPixels / 40);
+        num1.setTextSize(metrics.widthPixels / 30);
+        num2.setTextSize(metrics.widthPixels / 30);
+        ans.setTextSize(metrics.widthPixels / 30);
+        add.setTextSize(metrics.widthPixels / 30);
+        sub.setTextSize(metrics.widthPixels / 30);
     }
     private void setData() {
         num1.setText(content.get(index)[array[0]]);

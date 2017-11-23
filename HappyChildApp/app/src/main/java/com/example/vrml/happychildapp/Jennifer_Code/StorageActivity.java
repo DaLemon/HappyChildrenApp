@@ -107,6 +107,9 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
                 choosePath[2]=NameText.getText().toString();
                 Filename = "Public/";
             } else {
+                choosePath[0]="Upload";
+                choosePath[1]="Private";
+                choosePath[2]=NameText.getText().toString();
                 Filename = "Private/";
             }
             myRef.child(choosePath[0]).child(choosePath[1]).child(User).child(choosePath[2]).setValue(TypeName);

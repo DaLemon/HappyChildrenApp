@@ -34,6 +34,7 @@ public class TeacherName_Menu extends AppCompatActivity {
     HashMap<String, DataSnapshot> map;
     String User,FileName;
     Intent intent;
+    String subject,heading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,13 @@ public class TeacherName_Menu extends AppCompatActivity {
     }
 
     private void getdataFromFirebase() {
+        bundle = getIntent().getExtras();
+        heading = bundle.getString("Heading");
+        subject=bundle.getString("Subject");
+        Log.e("DEBUG","Heading  "+heading);
+        Log.e("DEBUG","subject  "+subject);
 
-        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach").child("Share");
+        DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference(heading).child(subject);
         reference_contacts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -92,8 +98,8 @@ public class TeacherName_Menu extends AppCompatActivity {
                 } else {
                     FileName = textView.getText().toString();
                     String TypeName = map.get(User).child(FileName).getValue().toString();
-                    bundle = new Bundle();
-                    bundle.putString("Subject","Share");
+                    bundle.putString("Heading",heading);
+                    bundle.putString("Subject",subject);
                     bundle.putString("User",User);
                     bundle.putString("FileName",FileName);
                     bundle.putString("TypeName",TypeName);

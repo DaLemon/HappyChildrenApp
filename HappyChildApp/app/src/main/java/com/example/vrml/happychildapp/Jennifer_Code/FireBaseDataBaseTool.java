@@ -29,7 +29,7 @@ public class FireBaseDataBaseTool {
         DatabaseReference databaseReference = mFireBaseDatabase.getReference();
         databaseReference.child(Path).setValue(message);
     }
-
+    //上傳文字至Firebase Database
     public static void SendText(List<String> Path, Object message) {
         FirebaseDatabase mFireBaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = mFireBaseDatabase.getReference();
@@ -38,7 +38,14 @@ public class FireBaseDataBaseTool {
         }
         databaseReference.setValue(message);
     }
-
+    //上傳檔案至Firebase Storage
+    public static void SendStorage(String path, String filename, Uri filepath,
+                                   OnSuccessListener<UploadTask.TaskSnapshot> success,
+                                   OnFailureListener fail) {
+        databaseReference = FirebaseStorage.getInstance().getReference();
+        databaseReference = databaseReference.child(path).child(filename);
+        databaseReference.putFile(filepath).addOnSuccessListener(success).addOnFailureListener(fail);
+    }
     static StorageReference databaseReference;
     public static void SendStorage(String path, String filename, Uri filepath) {
 
@@ -47,12 +54,7 @@ public class FireBaseDataBaseTool {
         databaseReference.putFile(filepath);
     }
 
-    public static void SendStorage(String path, String filename, Uri filepath,
-                                   OnSuccessListener<UploadTask.TaskSnapshot> success, OnFailureListener fail) {
-        databaseReference = FirebaseStorage.getInstance().getReference();
-        databaseReference = databaseReference.child(path).child(filename);
-        databaseReference.putFile(filepath).addOnSuccessListener(success).addOnFailureListener(fail);
-    }
+
 
     public static StorageReference GetDatabaseReference() {
         return databaseReference;
@@ -67,7 +69,6 @@ public class FireBaseDataBaseTool {
     }
     public static void SendStudyRecord(String Unit,String user, Object message ){
         String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         List<String> UserPath = new ArrayList<>() ;
         UserPath.add("StudyRecord");
         UserPath.add(Uid);
