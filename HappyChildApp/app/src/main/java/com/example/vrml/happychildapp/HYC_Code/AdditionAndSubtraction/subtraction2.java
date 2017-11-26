@@ -71,7 +71,8 @@ public class subtraction2 extends AppCompatActivity {
     }
 
     public void onClick(View v){
-        Intent i = new Intent(this,subtraction2.class);
+        Intent i = new Intent(this,AdditionSubtractActivity.class);
+        subtraction2.this.finish();
         startActivity(i);
     }
 

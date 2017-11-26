@@ -23,8 +23,7 @@ public class AdditionSubtractActivity extends AppCompatActivity {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
 
         int DeviceTotalWidth = metrics.widthPixels;
-        int DeviceTotalHeight = metrics.heightPixels;
-        Button add = (Button)findViewById(R.id.add1);
+        final Button add = (Button)findViewById(R.id.add1);
         Button add2 = (Button)findViewById(R.id.add2);
         Button minus1 = (Button)findViewById(R.id.minus1);
         Button minus2 = (Button)findViewById(R.id.minus2);
@@ -40,7 +39,8 @@ public class AdditionSubtractActivity extends AppCompatActivity {
                     public void onClick(View v)
                     {
                         Intent myIntent1 = new Intent(v.getContext(), addition1.class);
-                        startActivity(myIntent1);;
+                        startActivity(myIntent1);
+                        AdditionSubtractActivity.this.finish();
                     }
                 }
         );
@@ -51,6 +51,7 @@ public class AdditionSubtractActivity extends AppCompatActivity {
                     {
                         Intent myIntent2 = new Intent(v.getContext(), addition2.class);
                         startActivity(myIntent2);
+                        AdditionSubtractActivity.this.finish();
                     }
                 }
         );
@@ -61,6 +62,7 @@ public class AdditionSubtractActivity extends AppCompatActivity {
                     {
                         Intent myIntent3 = new Intent(v.getContext(), subtraction1.class);
                         startActivity(myIntent3);
+                        AdditionSubtractActivity.this.finish();
                     }
                 }
         );
@@ -71,6 +73,7 @@ public class AdditionSubtractActivity extends AppCompatActivity {
                     {
                         Intent myIntent4 = new Intent(v.getContext(), subtraction2.class);
                         startActivity(myIntent4);
+                        AdditionSubtractActivity.this.finish();
                     }
                 }
         );

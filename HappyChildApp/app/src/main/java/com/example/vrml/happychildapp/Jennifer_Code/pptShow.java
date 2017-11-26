@@ -85,7 +85,6 @@ public class pptShow extends AppCompatActivity {
                     pptViewer.loadPPT(pptShow.this,filepath);
                     Log.e("DEBUG","LocalFile    "+filepath);
 
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

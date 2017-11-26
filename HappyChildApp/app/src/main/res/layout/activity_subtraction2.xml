@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_weight="4"
-    tools:context="com.example.asus.math1.subtraction2"
+    tools:context="com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.subtraction2"
     android:background="#ffffff">
 
 
@@ -37,6 +37,8 @@
                     android:onClick="onClick"
                     android:text="回選單"
                     android:textSize="30dp"
+                    android:background="@drawable/buttonshape"
+                    android:textColor="@color/loginText"
                     android:layout_marginRight="10dp"/>
 
                 <LinearLayout

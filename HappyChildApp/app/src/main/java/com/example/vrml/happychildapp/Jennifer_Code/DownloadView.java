@@ -23,6 +23,7 @@ public class DownloadView extends AppCompatActivity {
         if (bundle.getString("TypeName","").equals(".ppt")){
 
             startActivity(new Intent(DownloadView.this,pptShow.class).putExtras(bundle));
+            DownloadView.this.finish();
         }else {
             //VideoView
         }
