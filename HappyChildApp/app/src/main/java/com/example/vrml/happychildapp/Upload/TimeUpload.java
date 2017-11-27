@@ -29,7 +29,8 @@ public class TimeUpload extends AppCompatActivity {
         Button submit = (Button)findViewById(R.id.homonymsubmit);
         homonymTitle = (EditText)findViewById(R.id.Title_1);
         bundle = TimeUpload.this.getIntent().getExtras();
-
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

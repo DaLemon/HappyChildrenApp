@@ -29,6 +29,8 @@ public class AddSubUpload extends AppCompatActivity {
         setContentView(R.layout.addsubupload);
         bundle = AddSubUpload.this.getIntent().getExtras();
         Button submit = (Button)findViewById(R.id.addsubsubmit);
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -38,7 +38,6 @@ import java.util.List;
 public class MatchUpload extends AppCompatActivity {
     private static final int PICKFILE_RESULT_CODE = 1;
     Button submit;
-    EditText NameText;
     ImageView[] imageView;
     int index=0;
     private Uri[] filepath = new Uri[5];
@@ -49,15 +48,19 @@ public class MatchUpload extends AppCompatActivity {
     Bundle bundle;
     EditText title;
     List<String> path;
+    Boolean check;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matchupload);
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         submit = (Button)findViewById(R.id.matchSubmit);
         title = (EditText) findViewById(R.id.matchTitle);
+
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Uploading...");
-        setImageView();
 
         StorageRef = FirebaseStorage.getInstance().getReference();
         bundle = getIntent().getExtras();
@@ -66,6 +69,8 @@ public class MatchUpload extends AppCompatActivity {
         path.add(bundle.getString("Subject"));
         path.add(bundle.getString("Mode"));
         path.add(bundle.getString("Unit"));
+
+        setImageView();
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,15 +101,6 @@ public class MatchUpload extends AppCompatActivity {
             }
         });
     }
-    View.OnClickListener onClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            ImageView image = (ImageView) v;
-            Log.e("DEBUG","MatchUpload 78:"+image.getTag().toString());
-            index=Integer.parseInt(image.getTag().toString());
-            showfilechooser();
-        }
-    };
     public void setImageView(){
         imageView = new ImageView[5];
         for (int i=0;i<5;i++){
@@ -116,11 +112,22 @@ public class MatchUpload extends AppCompatActivity {
             imageView[i].setTag(i+"");
         }
     }
+    View.OnClickListener onClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ImageView image = (ImageView) v;
+            index=Integer.parseInt(image.getTag().toString());
+            Log.e("DEBUG","onClick Index:"+index);
+            showfilechooser();
+        }
+    };
+
     private void showfilechooser(){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent.createChooser(intent,"Select the image"),PICKFILE_RESULT_CODE);
     }
+
     private void fileupload(){
         index = 0;
         progressDialog.show();
@@ -136,6 +143,7 @@ public class MatchUpload extends AppCompatActivity {
                 progressDialog.dismiss();
                 Intent intent = new Intent(MatchUpload.this,menu_choose.class);
                 startActivity(intent);
+                MatchUpload.this.finish();
             }
         }
     };
@@ -150,12 +158,15 @@ public class MatchUpload extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode== PICKFILE_RESULT_CODE && resultCode==RESULT_OK && data!=null && data.getData()!=null){
+
             filepath[index]=data.getData();
+
+            Log.e("DEBUG","onResult Index:"+index);
 
             String temp = filepath[index].toString();
             temp = temp.substring(temp.lastIndexOf("."));
             imagepath[index] = temp;
-            Log.e("DEBUG","Matchupload 149 : "+temp);
+            Log.e("DEBUG","MatchUpload Temp : "+temp);
             try {
                 Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),filepath[index]);
                 imageView[index].setImageBitmap(bitmap);
@@ -164,4 +175,5 @@ public class MatchUpload extends AppCompatActivity {
             }
         }
     }
+
 }

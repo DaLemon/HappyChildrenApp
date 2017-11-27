@@ -31,6 +31,8 @@ public class HandUpload extends AppCompatActivity {
         button = (Button) findViewById(R.id.summit);
         handTitle = (EditText)findViewById(R.id.handTitle);
         bundle = HandUpload.this.getIntent().getExtras();
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

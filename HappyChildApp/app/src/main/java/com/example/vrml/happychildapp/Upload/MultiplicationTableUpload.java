@@ -30,6 +30,8 @@ public class MultiplicationTableUpload extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.handupload);
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         for (int i = 0; i < 16; i++) {
             String btn = "editText"+(i+1);
             int resID = getResources().getIdentifier(btn, "id", getPackageName());

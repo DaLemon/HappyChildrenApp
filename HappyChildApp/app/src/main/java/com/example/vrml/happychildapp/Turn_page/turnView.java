@@ -67,13 +67,13 @@ public class turnView extends View {
     private Region mRegionShortSize;//短邊的有效區域
     private Region mRegionCurrent;//當前頁區域(矩形的大小)
 
-    private Region regionFold ;
-    private Region regionNext ;
+    private Region regionFold;
+    private Region regionNext;
 
     private SlideHandler mSlideHandler = new SlideHandler();
     private Ratio mRatio;
 
-    public turnView(Context context,turn_page_data data){
+    public turnView(Context context, turn_page_data data) {
         super(context);
         mRegionShortSize = new Region();
         mRegionCurrent = new Region();
@@ -87,12 +87,13 @@ public class turnView extends View {
         mBitmaps = new ArrayList<>();
         mBitmaps.add(BitmapFactory.decodeResource(getResources(), R.drawable.error));
     }
-    public turnView(Context context,List<Bitmap> bitmaps){
+
+    public turnView(Context context, List<Bitmap> bitmaps) {
         super(context);
         mRegionShortSize = new Region();
         mRegionCurrent = new Region();
         mBitmaps = bitmaps;
-        Log.e("DEBUG","Line 93:"+bitmaps.size());
+        Log.e("DEBUG", "Line 93:" + bitmaps.size());
     }
 
     private void initBitmaps() {
@@ -132,7 +133,7 @@ public class turnView extends View {
         if (!mRegionShortSize.contains((int) mCurPointX, (int) mCurPointY)) {
 
             mCurPointY = (float) (Math.sqrt((Math.pow(width, 2) - Math.pow(mCurPointX, 2))) - height);
-            mCurPointY = Math.abs(mCurPointY)+ mValueAdded;
+            mCurPointY = Math.abs(mCurPointY) + mValueAdded;
 
         }
         float area = height - mBuffArea;//緩衝區判斷
@@ -199,12 +200,12 @@ public class turnView extends View {
             mPathSemicircleBtm.quadTo(controlXBtm, controlYBtm, endXBtm, endYBtm);
             mPathSemicircleBtm.close();
 
-            mPathFoldAndNext.moveTo(startXBtm,startYBtm);
-            mPathFoldAndNext.quadTo(controlXBtm,controlYBtm,endXBtm,endYBtm);
-            mPathFoldAndNext.lineTo(mCurPointX,mCurPointY);
+            mPathFoldAndNext.moveTo(startXBtm, startYBtm);
+            mPathFoldAndNext.quadTo(controlXBtm, controlYBtm, endXBtm, endYBtm);
+            mPathFoldAndNext.lineTo(mCurPointX, mCurPointY);
             mPathFoldAndNext.lineTo(topX1, 0);
-            mPathFoldAndNext.lineTo(width,0);
-            mPathFoldAndNext.lineTo(width,height);
+            mPathFoldAndNext.lineTo(width, 0);
+            mPathFoldAndNext.lineTo(width, height);
             mPathFoldAndNext.close();
 
             //計算半圓區域
@@ -296,12 +297,12 @@ public class turnView extends View {
 
             //生成下摺疊和下頁的路徑
 
-            mPathFoldAndNext.moveTo(startXBtm,startYBtm);
-            mPathFoldAndNext.quadTo(controlXBtm,controlYBtm,endXBtm,endYBtm);
-            mPathFoldAndNext.lineTo(mCurPointX,mCurPointY);
-            mPathFoldAndNext.lineTo(endXLeft,endYLeft);
-            mPathFoldAndNext.quadTo(controlXLeft,controlYLeft,startXLeft,startYLeft);
-            mPathFoldAndNext.lineTo(width,height);
+            mPathFoldAndNext.moveTo(startXBtm, startYBtm);
+            mPathFoldAndNext.quadTo(controlXBtm, controlYBtm, endXBtm, endYBtm);
+            mPathFoldAndNext.lineTo(mCurPointX, mCurPointY);
+            mPathFoldAndNext.lineTo(endXLeft, endYLeft);
+            mPathFoldAndNext.quadTo(controlXLeft, controlYLeft, startXLeft, startYLeft);
+            mPathFoldAndNext.lineTo(width, height);
             mPathFoldAndNext.close();
 
             //計算底部和右側兩月半圓區域
@@ -324,12 +325,11 @@ public class turnView extends View {
         regionFold.op(mRegionSemicircle, Region.Op.DIFFERENCE);
 
         regionNext = computeRegion(mPathFoldAndNext);
-        regionNext.op(regionFold,Region.Op.DIFFERENCE);
+        regionNext.op(regionFold, Region.Op.DIFFERENCE);
 
         //canvas.drawPath(mPath, mPaint);
         drawBitmaps(canvas);
     }
-
 
 
     private enum Ratio {
@@ -416,8 +416,8 @@ public class turnView extends View {
             pageIndex++;
             invalidate();
         }
-
         if (mslide == Slide.RIGHT_BUTTON && mCurPointX < width) {
+            Log.e("DEBUG", "421");
             mCurPointX += mAutoSlideV_BR;
             mCurPointY = startY + ((mCurPointX - startX) * (height - startY)) / (width - startX);
             mSlideHandler.sleep(5);
@@ -482,15 +482,16 @@ public class turnView extends View {
         isNextPage = true;
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
-                isSlide = false;
 
-                if (mCurPointX < mAutoAreaLeft)//判斷觸點起始位置是否在左邊 左往右滑為上一頁
-                {
-                    isNextPage = false;
-                    pageIndex--;
-                    invalidate();
-                }
-                downAndMove(event);
+                    isSlide = false;
+                    if (mCurPointX < mAutoAreaLeft)//判斷觸點起始位置是否在左邊 左往右滑為上一頁
+                    {
+                        isNextPage = false;
+                        pageIndex--;
+                        invalidate();
+                    }
+                    downAndMove(event);
+                
                 break;
             case MotionEvent.ACTION_MOVE:
 
@@ -500,6 +501,8 @@ public class turnView extends View {
                 if (isNextPage) {
 
                     float x = event.getX(), y = event.getY();
+
+
                     if (mCurPointX > mAutoAreaRight && mCurPointY > mAutoAreaButton) {
 
                         mslide = Slide.RIGHT_BUTTON;//當為右下滑
@@ -512,6 +515,7 @@ public class turnView extends View {
                         justSlide(x, y);
                     }
                 }
+
                 break;
         }
         invalidate();
