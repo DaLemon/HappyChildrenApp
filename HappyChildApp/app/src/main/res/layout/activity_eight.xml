@@ -32,6 +32,8 @@
                     android:onClick="onClick"
                     android:text="回選單"
                     android:textSize="40dp"
+                    android:background="@drawable/buttonshape"
+                    android:textColor="@color/loginText"
                     android:layout_marginRight="20dp"/>
 
                 <LinearLayout

@@ -29,6 +29,8 @@
                     android:layout_height="match_parent"
                     android:onClick="onClick"
                     android:text="回選單"
+                    android:background="@drawable/buttonshape"
+                    android:textColor="@color/loginText"
                     android:textSize="24dp"
                     android:layout_marginRight="20dp"/>
 

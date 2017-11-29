@@ -28,7 +28,8 @@ public class five extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_five);
-
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int DeviceTotalWidth = metrics.widthPixels;
@@ -80,6 +81,7 @@ public class five extends AppCompatActivity {
     public void onClick(View v){
         Intent i = new Intent(this,MultiplicationTable.class);
         startActivity(i);
+        five.this.finish();
     }
 
     View.OnLongClickListener myOnLongClickListener = new View.OnLongClickListener() {

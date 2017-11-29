@@ -539,5 +539,4 @@ public class turnView extends View {
         slide();
     }
 
-
 }

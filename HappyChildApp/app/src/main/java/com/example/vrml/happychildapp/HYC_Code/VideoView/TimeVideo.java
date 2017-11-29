@@ -1,16 +1,22 @@
 package com.example.vrml.happychildapp.HYC_Code.VideoView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity;
 import com.example.vrml.happychildapp.MatchGame.MatchGame;
 import com.example.vrml.happychildapp.MatchGame.MatchGameData;
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.menu_choose;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +39,7 @@ import java.util.regex.Pattern;
 public class TimeVideo extends AppCompatActivity implements MediaController.MediaPlayerControl{
     private VideoView vidView;
     private MediaController vidControl;
+    AlertDialog isExit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,6 +50,7 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
         vidControl = new MediaController(this);
         vidView = (VideoView) findViewById(R.id.videoView);
         vidView.setMediaController(vidControl);
+        DialogSet();
         String path = this.getIntent().getExtras().getString("Lesson");
         getdataFromFirebase();
     }
@@ -100,6 +108,37 @@ public class TimeVideo extends AppCompatActivity implements MediaController.Medi
                 // Dialog Error
             }
         });
+    }
+
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case AlertDialog.BUTTON_POSITIVE:
+                    startActivity(new Intent(TimeVideo.this, menu_choose.class));
+                    TimeVideo.this.finish();
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    private void DialogSet() {
+        isExit = new AlertDialog.Builder(this)
+                .setTitle("離開")
+                .setMessage("確定要退出嗎?")
+                .setPositiveButton("Yes", listener)
+                .setNegativeButton("No", listener)
+                .setCancelable(false)
+                .create();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            isExit.show();
+        }
+        return true;
     }
 
     @Override

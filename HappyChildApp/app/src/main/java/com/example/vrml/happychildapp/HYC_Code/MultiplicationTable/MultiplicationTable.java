@@ -1,19 +1,29 @@
 package com.example.vrml.happychildapp.HYC_Code.MultiplicationTable;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.vrml.happychildapp.R;
+import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
+import com.example.vrml.happychildapp.menu_choose;
 
 public class MultiplicationTable extends AppCompatActivity {
+    AlertDialog isExit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplicationtable);
 
+        getSupportActionBar().hide(); //隱藏標題
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        DialogSet();
         Button one = (Button)findViewById(R.id.one);
         one.setOnClickListener(
                 new Button.OnClickListener()
@@ -116,4 +126,35 @@ public class MultiplicationTable extends AppCompatActivity {
         );
 
     }
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case AlertDialog.BUTTON_POSITIVE:
+                    startActivity(new Intent(MultiplicationTable.this, menu_choose.class));
+                    MultiplicationTable.this.finish();
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    private void DialogSet() {
+        isExit = new AlertDialog.Builder(this)
+                .setTitle("離開")
+                .setMessage("確定要退出嗎?")
+                .setPositiveButton("Yes", listener)
+                .setNegativeButton("No", listener)
+                .setCancelable(false)
+                .create();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            isExit.show();
+        }
+        return true;
+    }
+
 }
