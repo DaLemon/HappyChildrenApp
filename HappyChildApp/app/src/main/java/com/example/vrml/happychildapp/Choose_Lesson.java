@@ -56,23 +56,11 @@ public class Choose_Lesson extends AppCompatActivity {
 
         listView = (ListView) this.findViewById(R.id.unit_list_veiw);
         bundle = Choose_Lesson.this.getIntent().getExtras();
-        if(bundle.getString("Modify","").equals("Y")){
-            HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
-            map.put("Hand", HandUpload.class);
-            map.put("Homonym", HomonymUpload.class);
-            map.put("Match", MatchUpload.class);
-            map.put("AddSub", AddSubUpload.class);
-            map.put("MultiplicationTable",MultiplicationTableUpload.class);
-            map.put("TimeVideo", TimeUpload.class);
 
-            Class<?> cls=map.get(bundle.getString("Unit"));
-//            Log.e("DEBUG","58  "+bundle.getString("Unit"));
-            startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
-            Choose_Lesson.this.finish();
-        }else {
-            getdataFromFirebase();
-        }
+        getdataFromFirebase();
+
     }
+
     private void getdataFromFirebase() {
         Intent intent = this.getIntent();
         DatabaseReference reference_contacts = FirebaseDatabase.getInstance().getReference("Teach");
@@ -97,37 +85,37 @@ public class Choose_Lesson extends AppCompatActivity {
     }
 
 
-    private void setListView( ArrayList data){
+    private void setListView(ArrayList data) {
         adapter = new UnitAdapter(data);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                bundle.putString("Lesson",Choose_Lesson.this.data.get(i));
-                HashMap<String,Class<?>> map = new HashMap<String, Class<?>>();
+                bundle.putString("Lesson", Choose_Lesson.this.data.get(i));
+                HashMap<String, Class<?>> map = new HashMap<String, Class<?>>();
 
-                if(bundle.getString("Mode").equals("Exam")){
-                    map.put("Hand",Turn_Card_Game.class);
-                    map.put("Homonym",Homonym.class);
-                    map.put("Match",MatchGame.class);
+                if (bundle.getString("Mode").equals("Exam")) {
+                    map.put("Hand", Turn_Card_Game.class);
+                    map.put("Homonym", Homonym.class);
+                    map.put("Match", MatchGame.class);
                     map.put("AddSub", AddSub.class);
                     map.put("MultiplicationTable", MultiplicationTableExam.class);
-                    map.put("TimeVideo",TimeGame.class);
-                    Log.e("DEBUG","Lesson Line 87");
-                }else if (bundle.getString("Mode").equals("Teaching")){
+                    map.put("TimeVideo", TimeGame.class);
+                    Log.e("DEBUG", "Lesson Line 87");
+                } else if (bundle.getString("Mode").equals("Teaching")) {
                     map.put("AddSub", AdditionSubtractActivity.class);
                     map.put("MultiplicationTable", MultiplicationTable.class);
                     map.put("TimeVideo", TimeVideo.class);
                     map.put("Hand", turn_page_pratice.class);
-                    map.put("Homonym",turn_page_pratice.class);
-                    map.put("Match",turn_page_pratice.class);
-                    Log.e("DEBUG","Lesson Line 95");
+                    map.put("Homonym", turn_page_pratice.class);
+                    map.put("Match", turn_page_pratice.class);
+                    Log.e("DEBUG", "Lesson Line 95");
                 }
-                Class<?> cls=map.get(bundle.getString("Unit"));
-                Log.e("DEBUG","Line87:"+bundle.getString("Unit"));
+                Class<?> cls = map.get(bundle.getString("Unit"));
+                Log.e("DEBUG", "Line87:" + bundle.getString("Unit"));
 
 
-                startActivity(new Intent(Choose_Lesson.this,cls).putExtras(bundle));
+                startActivity(new Intent(Choose_Lesson.this, cls).putExtras(bundle));
                 Choose_Lesson.this.finish();
             }
         });

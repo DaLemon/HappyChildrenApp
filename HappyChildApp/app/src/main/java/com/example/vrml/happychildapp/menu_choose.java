@@ -19,6 +19,7 @@ import com.example.vrml.happychildapp.Jennifer_Code.SignInActivity;
 import com.example.vrml.happychildapp.Jennifer_Code.SignOut;
 import com.example.vrml.happychildapp.Jennifer_Code.StorageActivity;
 import com.example.vrml.happychildapp.Jennifer_Code.TeacherName_Menu;
+import com.example.vrml.happychildapp.Upload.Choose_Upload;
 
 import java.util.ArrayList;
 
@@ -64,8 +65,7 @@ public class menu_choose extends AppCompatActivity {
 
                         break;
                     case "新增題庫":
-                        intent.setClass(menu_choose.this, Choose_Chinese_Math.class);
-                        bundle.putString("Modify","Y");
+                        intent.setClass(menu_choose.this, Choose_Upload.class);
                         break;
                     case "登出":
                         new SignOut();

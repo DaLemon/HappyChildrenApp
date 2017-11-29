@@ -77,6 +77,8 @@
             android:theme="@style/StartPageTheme"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".Upload.Choose_Upload"
+            android:screenOrientation="landscape"></activity>
 
         <activity android:name=".HYC_Code.VideoView.TimeVideo"
             android:screenOrientation="landscape"
