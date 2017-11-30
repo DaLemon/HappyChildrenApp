@@ -64,13 +64,13 @@ public class Choose_Upload extends AppCompatActivity {
                         intent.setClass(Choose_Upload.this, HomonymUpload.class);
                         bundle.putString("Subject", "Chinese");
                         bundle.putString("Mode","Exam");
-                        bundle.putString("Unit","Hand");
+                        bundle.putString("Unit","Homonym");
                         break;
                     case "國字注音":
                         intent.setClass(Choose_Upload.this, MatchUpload.class);
                         bundle.putString("Subject", "Chinese");
                         bundle.putString("Mode","Exam");
-                        bundle.putString("Unit","Hand");
+                        bundle.putString("Unit","Match");
                         break;
                     case "加減法":
                         intent.setClass(Choose_Upload.this, AddSubUpload.class);

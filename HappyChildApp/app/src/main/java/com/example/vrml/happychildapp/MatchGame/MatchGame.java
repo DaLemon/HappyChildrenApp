@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.Jennifer_Code.FireBaseDataBaseTool;
 import com.example.vrml.happychildapp.R;
 import com.example.vrml.happychildapp.StarGrading.StarGrading;
+import com.example.vrml.happychildapp.TimeGame.TimeGame;
 import com.example.vrml.happychildapp.menu_choose;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -63,7 +65,7 @@ public class MatchGame extends AppCompatActivity {
     boolean finish = false;
     DrawPoint view,view2;
     Bundle bundle;
-
+    AlertDialog isExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class MatchGame extends AppCompatActivity {
         setContentView(R.layout.match_game);
         getSupportActionBar().hide(); //隱藏標題
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-
+        DialogSet();
         left = (LinearLayout) findViewById(R.id.left);
         right = (LinearLayout) findViewById(R.id.right);
         startTime = System.currentTimeMillis();
@@ -434,6 +436,37 @@ public class MatchGame extends AppCompatActivity {
                     }
                 }).setCancelable(false).show();
 
+    }
+
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case AlertDialog.BUTTON_POSITIVE:
+                    startActivity(new Intent(MatchGame.this, menu_choose.class));
+                    MatchGame.this.finish();
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    private void DialogSet() {
+        isExit = new AlertDialog.Builder(this)
+                .setTitle("離開")
+                .setMessage("確定要退出嗎?")
+                .setPositiveButton("Yes", listener)
+                .setNegativeButton("No", listener)
+                .setCancelable(false)
+                .create();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            isExit.show();
+        }
+        return true;
     }
 
 }

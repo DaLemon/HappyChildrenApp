@@ -83,11 +83,11 @@ public class SignInActivity extends AppCompatActivity {
         String password = etpassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            Toast("信箱格式有錯");
+            Toast("信箱格式有錯！");
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            Toast("password can't be empty and less than six words");
+            Toast("密碼不能為空或少於6個字元！");
             return;
         }
         if(firebaseAuth.getCurrentUser() != null)

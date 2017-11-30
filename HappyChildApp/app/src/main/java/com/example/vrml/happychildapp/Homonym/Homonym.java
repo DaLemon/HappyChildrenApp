@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.vrml.happychildapp.Jennifer_Code.FireBaseDataBaseTool;
 import com.example.vrml.happychildapp.R;
 import com.example.vrml.happychildapp.StarGrading.StarGrading;
+import com.example.vrml.happychildapp.TimeGame.TimeGame;
 import com.example.vrml.happychildapp.TurnCardGame.Turn_Card_Game;
 import com.example.vrml.happychildapp.menu_choose;
 import com.google.firebase.database.DataSnapshot;
@@ -48,6 +50,7 @@ public class Homonym extends AppCompatActivity {
     Bundle bundle;
     private int index = 0;
     private long startTime, timeup, totaltime;
+    AlertDialog isExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class Homonym extends AppCompatActivity {
 
         getSupportActionBar().hide(); //隱藏標題
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-
+        DialogSet();
         questiontext = (TextView) findViewById(R.id.question);
         questionImage = (ImageView) findViewById(R.id.questionImage);
         option1 = (Button) findViewById(R.id.option1);
@@ -135,13 +138,13 @@ public class Homonym extends AppCompatActivity {
             if (index < title.size()) {
                 setData();
             } else {//差上傳資料
-                SharedPreferences sharedPreferences = getSharedPreferences("User" , MODE_PRIVATE);
-                String User = sharedPreferences.getString("Name","");
+                SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
+                String User = sharedPreferences.getString("Name", "");
                 timeup = System.currentTimeMillis();
                 totaltime = (timeup - startTime) / 1000;
                 ShowMessage("答對了" + count + "題\n" + "共花了" + totaltime + "秒");
-                int star= StarGrading.getStar(bundle.getString("Unit"),title.size(),count);
-                FireBaseDataBaseTool.SendStudyRecord(bundle.getString("Unit"),User,"答對了" + count + "題," + "共花了" + totaltime + "秒,Star:"+star);
+                int star = StarGrading.getStar(bundle.getString("Unit"), title.size(), count);
+                FireBaseDataBaseTool.SendStudyRecord(bundle.getString("Unit"), User, "答對了" + count + "題," + "共花了" + totaltime + "秒,Star:" + star);
             }
 
         }
@@ -156,5 +159,38 @@ public class Homonym extends AppCompatActivity {
                     }
                 }).setCancelable(false).show();
 
+    }
+
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case AlertDialog.BUTTON_POSITIVE:
+                    startActivity(new Intent(Homonym.this, menu_choose.class));
+                    Homonym.this.finish();
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void DialogSet() {
+        isExit = new AlertDialog.Builder(this)
+                .setTitle("離開")
+                .setMessage("確定要退出嗎?")
+                .setPositiveButton("Yes", listener)
+                .setNegativeButton("No", listener)
+                .setCancelable(false)
+                .create();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            isExit.show();
+        }
+        return true;
     }
 }

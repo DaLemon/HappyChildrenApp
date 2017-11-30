@@ -8,10 +8,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.vrml.happychildapp.HYC_Code.AdditionAndSubtraction.AdditionSubtractActivity;
 import com.example.vrml.happychildapp.Homonym.Homonym;
 import com.example.vrml.happychildapp.Jennifer_Code.FireBaseDataBaseTool;
 import com.example.vrml.happychildapp.R;
@@ -46,7 +48,7 @@ public class TimeGame extends AppCompatActivity {
     Bundle bundle;
     private int index = 0;
     private long startTime, timeup, totaltime;
-
+    AlertDialog isExit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +67,7 @@ public class TimeGame extends AppCompatActivity {
         size();
         bundle = this.getIntent().getExtras();
         getdataFromFirebase();
-
+        DialogSet();
         startTime = System.currentTimeMillis();
     }
 
@@ -151,5 +153,35 @@ public class TimeGame extends AppCompatActivity {
                     }
                 }).setCancelable(false).show();
 
+    }
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case AlertDialog.BUTTON_POSITIVE:
+                    startActivity(new Intent(TimeGame.this, menu_choose.class));
+                    TimeGame.this.finish();
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    private void DialogSet() {
+        isExit = new AlertDialog.Builder(this)
+                .setTitle("離開")
+                .setMessage("確定要退出嗎?")
+                .setPositiveButton("Yes", listener)
+                .setNegativeButton("No", listener)
+                .setCancelable(false)
+                .create();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            isExit.show();
+        }
+        return true;
     }
 }
