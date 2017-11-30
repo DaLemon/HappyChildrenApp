@@ -1,5 +1,6 @@
 package com.example.vrml.happychildapp.Jennifer_Code;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -77,13 +78,13 @@ public class pptShow extends AppCompatActivity {
         temp.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                // Dialog miss
+
                 try {
 //                    String filepath = Environment.getExternalStorageDirectory().getPath();
 //                    filepath += "/Download/a.ppt";
                     String filepath = localFile+"";
                     pptViewer.loadPPT(pptShow.this,filepath);
-                    Log.e("DEBUG","LocalFile    "+filepath);
+                    Log.e("DEBUG","86 LocalFile    "+localFile.toString());
 
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -70,8 +70,11 @@
             android:name=".Choose_Unit"
             android:label="@string/UntiChoose"
             android:screenOrientation="landscape">
-
         </activity>
+
+        <activity android:name=".HYC_Code.WritingPractice.WritingPractice"
+            android:screenOrientation="landscape"></activity>
+
         <activity
             android:name=".Turn_page.turn_page_pratice"
             android:theme="@style/StartPageTheme"

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vrml.happychildapp.HYC_Code.WritingPractice.WritingPractice;
 import com.example.vrml.happychildapp.Jennifer_Code.TeacherName_Menu;
 
 import java.util.ArrayList;
@@ -52,12 +53,17 @@ public class Choose_Chinese_Math extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
-                if (i == 2) {
-                    Intent intent1 = new Intent(Choose_Chinese_Math.this, TeacherName_Menu.class);
+                if (i ==2){
+                    Intent intent1 = new Intent(Choose_Chinese_Math.this, WritingPractice.class);
+                    startActivity(intent1);
+                }
+
+                if (i == 3) {
+                    Intent intent2 = new Intent(Choose_Chinese_Math.this, TeacherName_Menu.class);
                     bundle.putString("Heading","Teach");
                     bundle.putString("Subject", "Share");
-                    intent1.putExtras(bundle);
-                    startActivity(intent1);
+                    intent2.putExtras(bundle);
+                    startActivity(intent2);
                 }
                 Choose_Chinese_Math.this.finish();
             }
@@ -66,9 +72,10 @@ public class Choose_Chinese_Math extends AppCompatActivity {
 
     private ArrayList setData() {
         data = new ArrayList<>();
-        data.add("國文");
-        data.add("數學");
-        data.add("共享區");
+        data.add("國文");//0
+        data.add("數學");//1
+        data.add("練習寫字");//2
+        data.add("共享區");//3
         return data;
     }
 
