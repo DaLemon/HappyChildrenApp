@@ -238,7 +238,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         setContentView(R.layout.trun_card_game_start);
                         StartSet();
-                        startActivity(new Intent(MultiplicationTableExam.this, menu_choose.class));
+//                        startActivity(new Intent(MultiplicationTableExam.this, menu_choose.class));
                         MultiplicationTableExam.this.finish();
                     }
                 }).setCancelable(false).show();
@@ -251,7 +251,7 @@ public class MultiplicationTableExam extends AppCompatActivity {
             switch (which) {
                 case AlertDialog.BUTTON_POSITIVE:
                     music.stop();
-                    startActivity(new Intent(MultiplicationTableExam.this, Choose_Mode.class));
+//                    startActivity(new Intent(MultiplicationTableExam.this, Choose_Mode.class));
                     MultiplicationTableExam.this.finish();
                     break;
                 case AlertDialog.BUTTON_NEGATIVE:

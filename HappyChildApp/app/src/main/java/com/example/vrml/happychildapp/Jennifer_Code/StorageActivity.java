@@ -124,6 +124,7 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
                             Toast.makeText(getApplicationContext(), "上傳成功", Toast.LENGTH_SHORT).show();
                             intent.setClass(StorageActivity.this, menu_choose.class);
                             startActivity(intent);
+                            StorageActivity.this.finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

@@ -51,7 +51,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="小花的書櫃裡原有16本書，被好朋友芬芬借走5本，請問：現在書櫃裡還有幾本書？"
+                        android:text="小花的書櫃裡原有16本書，被好朋友芬芬借走5本，請問：現在書櫃裡還有幾本書？（請把藍區裡的書移到黃區裡！藍區裡還有幾本書？）"
                         android:textColor="#000000"
                         android:layout_marginTop="10dp"
                         android:textSize="35dp" />

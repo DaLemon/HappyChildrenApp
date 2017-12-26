@@ -432,7 +432,8 @@ public class MatchGame extends AppCompatActivity {
                 .setNegativeButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(MatchGame.this, menu_choose.class));
+//                        startActivity(new Intent(MatchGame.this, menu_choose.class));
+                        MatchGame.this.finish();
                     }
                 }).setCancelable(false).show();
 
@@ -442,7 +443,7 @@ public class MatchGame extends AppCompatActivity {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case AlertDialog.BUTTON_POSITIVE:
-                    startActivity(new Intent(MatchGame.this, menu_choose.class));
+//                    startActivity(new Intent(MatchGame.this, menu_choose.class));
                     MatchGame.this.finish();
                     break;
                 case AlertDialog.BUTTON_NEGATIVE:

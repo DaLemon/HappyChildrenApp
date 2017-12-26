@@ -137,7 +137,7 @@ public class Homonym extends AppCompatActivity {
             }
             if (index < title.size()) {
                 setData();
-            } else {//差上傳資料
+            } else {
                 SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
                 String User = sharedPreferences.getString("Name", "");
                 timeup = System.currentTimeMillis();
@@ -155,7 +155,7 @@ public class Homonym extends AppCompatActivity {
                 .setNegativeButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(Homonym.this, menu_choose.class));
+                        Homonym.this.finish();
                     }
                 }).setCancelable(false).show();
 

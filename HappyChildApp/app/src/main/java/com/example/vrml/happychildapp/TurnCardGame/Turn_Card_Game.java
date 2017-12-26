@@ -44,7 +44,7 @@ public class Turn_Card_Game extends AppCompatActivity {
     private static MediaPlayer music;
     DisplayMetrics metrics = new DisplayMetrics();
     Turn_Card_Data turn_card_data;
-    private long startTime, timeup, totaltime;
+    private long startTime=0, timeup=0, totaltime=0;
     Bundle bundle;
 
     @Override
@@ -228,7 +228,7 @@ public class Turn_Card_Game extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         setContentView(R.layout.trun_card_game_start);
                         StartSet();
-                        startActivity(new Intent(Turn_Card_Game.this, menu_choose.class));
+//                        startActivity(new Intent(Turn_Card_Game.this, menu_choose.class));
                         Turn_Card_Game.this.finish();
                     }
                 }).setCancelable(false).show();
@@ -241,7 +241,7 @@ public class Turn_Card_Game extends AppCompatActivity {
             switch (which) {
                 case AlertDialog.BUTTON_POSITIVE:
                     music.stop();
-                    startActivity(new Intent(Turn_Card_Game.this, menu_choose.class));
+//                    startActivity(new Intent(Turn_Card_Game.this, menu_choose.class));
                     Turn_Card_Game.this.finish();
                     break;
                 case AlertDialog.BUTTON_NEGATIVE:
