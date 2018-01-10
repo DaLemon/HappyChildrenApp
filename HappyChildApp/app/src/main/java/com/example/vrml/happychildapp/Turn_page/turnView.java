@@ -344,10 +344,13 @@ public class turnView extends View {
 
         int start = mBitmaps.size() - 2 - pageIndex;//計算起始位置
         int end = mBitmaps.size() - pageIndex;
+        if (pageIndex + 1 == mBitmaps.size()) {
+            isLastPage = true;
+        }
 
         if (start < 0) {//表示小於兩張圖 因此只需要目前到最後一張就好
             isLastPage = true;
-//            Toast.makeText(getContext(),"最後一頁～",Toast.LENGTH_SHORT).show();不會消失...
+            slideStop();
             start = 0;
             end = 1;
         }
@@ -417,7 +420,6 @@ public class turnView extends View {
             invalidate();
         }
         if (mslide == Slide.RIGHT_BUTTON && mCurPointX < width) {
-            Log.e("DEBUG", "421");
             mCurPointX += mAutoSlideV_BR;
             mCurPointY = startY + ((mCurPointX - startX) * (height - startY)) / (width - startX);
             mSlideHandler.sleep(5);
@@ -482,19 +484,29 @@ public class turnView extends View {
         isNextPage = true;
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
+                Log.e("DEBUG", "ACTION_DOWN : " + isLastPage);
 
-                    isSlide = false;
-                    if (mCurPointX < mAutoAreaLeft)//判斷觸點起始位置是否在左邊 左往右滑為上一頁
-                    {
-                        isNextPage = false;
-                        pageIndex--;
-                        invalidate();
-                    }
+                isSlide = false;
+                if (mCurPointX < mAutoAreaLeft)//判斷觸點起始位置是否在左邊 左往右滑為上一頁
+                {
+                    isNextPage = false;
+                    pageIndex--;
+                    invalidate();
+                }
+//                if (isLastPage != true) {
                     downAndMove(event);
-                
+//                } else {
+//                    if (mCurPointX < mAutoAreaLeft)//判斷觸點起始位置是否在左邊 左往右滑為上一頁
+//                    {
+//                        isNextPage = false;
+//                        pageIndex--;
+//                        invalidate();
+//                    }
+//                    break;
+//                }
+
                 break;
             case MotionEvent.ACTION_MOVE:
-
                 downAndMove(event);
                 break;
             case MotionEvent.ACTION_UP:
@@ -523,7 +535,8 @@ public class turnView extends View {
     }
 
     private void downAndMove(MotionEvent event) {
-        if (!isLastPage) {
+        Log.e("DEBUG", "downAndMove : " + isLastPage);
+        if (isLastPage != false) {
             mCurPointX = event.getX();
             mCurPointY = event.getY();
             invalidate();

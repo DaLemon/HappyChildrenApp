@@ -39,7 +39,6 @@ public class one extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int DeviceTotalWidth = metrics.widthPixels;
-        int DeviceTotalHeight = metrics.heightPixels;
         TextView product = (TextView)findViewById(R.id.x) ;
         TextView product_2 = (TextView)findViewById(R.id.ba) ;
         TextView one_1 = (TextView)findViewById(R.id.one_1);

@@ -32,6 +32,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent1 = new Intent(v.getContext(), com.example.vrml.happychildapp.HYC_Code.MultiplicationTable.one.class);
                         startActivity(myIntent1);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );
@@ -44,6 +45,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent2 = new Intent(v.getContext(), two.class);
                         startActivity(myIntent2);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );
@@ -55,6 +57,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent3 = new Intent(v.getContext(), three.class);
                         startActivity(myIntent3);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );
@@ -66,6 +69,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent4 = new Intent(v.getContext(), four.class);
                         startActivity(myIntent4);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );
@@ -77,6 +81,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent5 = new Intent(v.getContext(), five.class);
                         startActivity(myIntent5);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );
@@ -88,6 +93,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent6 = new Intent(v.getContext(), six.class);
                         startActivity(myIntent6);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );
@@ -99,6 +105,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent7 = new Intent(v.getContext(), seven.class);
                         startActivity(myIntent7);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );
@@ -110,6 +117,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent8 = new Intent(v.getContext(), eight.class);
                         startActivity(myIntent8);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );
@@ -121,6 +129,7 @@ public class MultiplicationTable extends AppCompatActivity {
                     {
                         Intent myIntent9 = new Intent(v.getContext(), nine.class);
                         startActivity(myIntent9);
+                        MultiplicationTable.this.finish();
                     }
                 }
         );

@@ -59,13 +59,11 @@ public class turn_page_pratice extends AppCompatActivity {
                     final int size = temp2.length;
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference(temp2[size-2]);
                     StorageReference temp3 = storageRef.child(temp2[size-1]);
-//        Log.e("DEBUG","turnData line 46 : "+temp.toString());
                     temp3.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] bytes) {
                             Bitmap temp = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
                             mBitmaps.add(temp);
-                            Log.e("DEBUG","Fuckkkkk "+mBitmaps.size());
                             if(mBitmaps.size() == turn_page_pratice.this.size){
                                 setContentView(new turnView(turn_page_pratice.this,mBitmaps));
                                 dialog.dismiss();
